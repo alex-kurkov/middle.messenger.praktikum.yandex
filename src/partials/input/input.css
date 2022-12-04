@@ -1,0 +1,15 @@
+.input {
+  height: 36px;
+  width: 100%;
+  border-radius: 4px;
+  &__narrow {
+    height: 24px;
+  }
+
+  &[type=button] {
+    background-color: $accent;
+    color: $black;
+    margin-top: 20px;
+    border: 0;
+  }
+}

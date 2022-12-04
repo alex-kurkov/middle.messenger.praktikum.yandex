@@ -1,0 +1,33 @@
+---
+links: 
+  - pageUrl: "main.hbs"
+    type: 'button'
+    class: 'input__narrow'
+    value: "Главная"
+    labelText: Главная страница с выкладкой
+  - pageUrl: "signin.hbs"
+    type: "button"
+    class: 'input__narrow'
+    value: "Авторизация"
+  - value: "Профиль"
+    pageUrl: "/main"
+  - value: "Назад"
+    pageUrl: "index.hbs"
+h1: 'Оглавление'
+pageTitle: "Index" 
+---
+
+{{#extend "base"}}
+  {{#content "main"}}
+    <h1>{{h1}}</h1>
+    <ul>
+      {{#each links}}
+        <li><a href={{pageUrl}}>
+        {{> input-field/input-field this }}
+        </a></li>
+      {{/each}}
+    </ul>
+  {{/content}}
+{{/extend}}
+
+

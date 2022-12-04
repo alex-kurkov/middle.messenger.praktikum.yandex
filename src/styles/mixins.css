@@ -1,0 +1,19 @@
+.flex-vertical-left {
+  display: flex;
+  flex-direction: column;
+  align-content: center;
+  align-items: flex-start;
+  justify-content: flex-start;
+  flex-wrap: nowrap;
+}
+
+.text-paragraph-thin {
+  font: 300 18px /1.2 $font-family;
+}
+.text-paragraph-normal {
+  font: 400 18px /1.2 $font-family;
+}
+
+.text-paragraph-title {
+  font: 400 28px /1.2 $font-family;
+}

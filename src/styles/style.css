@@ -1,0 +1,29 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;700&display=swap');
+@import './scss-vars.css';
+@import './mixins.css';
+@import '../partials/input/input.css';
+@import '../partials/input-field/input-field.css';
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  scrollbar-width: 0;
+}
+ul, li {
+  padding: 0;
+  list-style: none;
+  color: $accent;
+}
+a {
+ text-decoration: none;
+ color: inherit; 
+}
+
+#notifications {
+  width: 0;
+  height: 0;
+  position: fixed;
+  top: 0;
+  right: 0;
+  z-index: 200;
+}

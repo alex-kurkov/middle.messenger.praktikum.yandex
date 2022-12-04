@@ -1,0 +1,13 @@
+$base-white: #f2f2f2;
+$light-gray: #d9d9d9;
+$dark-gray: #434343;
+$accent: #ff7a00;
+$success: #00d27a;
+$danger: #bf0000;
+$black: #000;
+$menu-gradient: linear-gradient(to bottom, #434343 100%, black 100%);
+
+$content-width: clamp(320px, 100%, 1280px);
+$vidget-content-width: clamp(320px, calc(100% - 20px), 600px);
+
+$font-family: Montserrat, Open Sans, Arial, sans-serif;

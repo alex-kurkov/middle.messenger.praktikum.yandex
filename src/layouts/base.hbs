@@ -1,0 +1,29 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="author" content="Alex Kurkov">
+    <meta name="github login" content="alex-kurkov">
+    <link rel="stylesheet" href="../styles/style.css" />
+
+    {{#block "title"}}
+      <title>{{#if title}}{{pageTitle}}{{else}}middle.messenger{{/if}}</title>
+    {{/block}}
+
+    {{#block "meta"}}
+    {{/block}}
+  </head>
+  <body>
+    {{#block "side-menu"}}
+    {{/block}}
+    <main>
+      {{#block "main"}}
+      {{/block}}
+    </main>
+    {{#block "controls"}}
+    {{/block}}
+    <div id="notifications"></div>
+  </body>
+</html>
