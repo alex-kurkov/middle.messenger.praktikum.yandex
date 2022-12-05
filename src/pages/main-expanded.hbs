@@ -1,14 +1,10 @@
----
-h1: 'Главная'
----
 {{#extend "base"}}
   {{#content "head"}}
     {{> head-partials/page-title}}
   {{/content}}
   {{#content "main"}}
-      <h1>
-        {{h1}}
-      </h1>
-      MAIN
+  
+  {{> side-menu/side-menu expanded=true}}
+
   {{/content}}
-  {{/extend}}
+{{/extend}}

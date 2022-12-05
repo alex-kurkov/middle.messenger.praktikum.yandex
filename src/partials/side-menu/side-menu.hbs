@@ -1,0 +1,46 @@
+<section class="side-menu flex-vertical-left
+  {{#if expanded}}side-menu_expanded{{/if}}
+">
+  <div class="side-menu__search flex-centered" >
+    {{#if expanded}}
+      <div class="side-menu__search_expanded">
+        {{#with "search-input-data" }}
+          {{> form-partials/input/input}}
+        {{/with}}
+        <div class="side-menu__search-icon_expanded icon icon_medium">{{> icons/search}}</div>
+      </div>
+    {{else}}
+      <div class="side-menu__search-icon icon icon_large">{{> icons/search}}</div>
+    {{/if}}
+  </div>
+
+  <ul class="side-menu__chats">
+    {{#if expanded}}
+      {{#each chats}}
+      <li>
+        {{> side-menu/menu-message expanded=true}}          
+      </li>
+      {{/each}}
+    {{else}}
+      {{#each chats}}
+      <li>
+        {{> side-menu/menu-message }}      
+      </li>
+      {{/each}}
+    {{/if}}
+  </ul>
+
+  <div class="side-menu__footer">
+    {{#if expanded}}
+      <ul class="flex-row-spaced">
+        <li><div class="side-menu__footer-icon icon icon_large flex-centered">{{> icons/sound}}</div></li>
+        <li><div class="side-menu__footer-icon icon icon_large flex-centered">{{> icons/add-person}}</div></li>
+        <li><div class="side-menu__footer-icon icon icon_large flex-centered">{{> icons/settings}}</div></li>
+        <li><div class="side-menu__footer-icon icon icon_large flex-centered">{{> icons/expand}}</div></li>
+      </ul>
+    {{else}}
+      <div class="side-menu__footer-icon icon icon_large flex-centered">{{> icons/expand}}</div>
+    {{/if}}
+  </div>
+
+</section>

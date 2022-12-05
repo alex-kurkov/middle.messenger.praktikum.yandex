@@ -1,0 +1,31 @@
+<article class="menu-message 
+  {{#if active}}menu-message_active{{/if}}
+">
+  
+<div class="menu-message__avatar flex-centered">
+  {{#if avatar}}
+    <img class="menu-message__image" src={{avatar}}>
+    {{else}}
+    <div class="menu-message__image text-paragraph-title">
+      ML
+    </div>
+  {{/if}}
+  {{#if unread_count}}
+    <div class="menu-message__tag flex-centered text-tag">
+      {{unread_count}}
+    </div>
+  {{/if}}
+</div>
+
+{{#if expanded}}
+  <div class="menu-message__content-wrapper flex-vertical-left
+    {{#if active}}menu-message__content_active{{/if}}
+  ">
+    <h3 class="menu-message__title text-message-title">{{title}}</h3>
+    {{#if last_message}}
+      <span class="menu-message__content text-message">{{last_message.content}}</span>
+      <span class="menu-message__time text-time">{{last_message.time}}</span>
+    {{/if}}
+  </div>
+{{/if}}
+</article>

@@ -1,0 +1,87 @@
+[
+  {
+    "id": 123,
+    "title": "Илья Весенний",
+    "avatar": "../assets/avatar-template.png",
+    "unread_count": 15,
+    "last_message": {
+      "user": {
+        "first_name": "Petya",
+        "second_name": "Pupkin",
+        "avatar": "../assets/avatar-template.png",
+        "email": "my@email.com",
+        "login": "userLogin",
+        "phone": "8(911)-222-33-22"
+      },
+      "time": "13:30",
+      "content": "Привет. Как вчера все прошло?)) Надеюсь, что укпрукгпукр"
+    },
+    "active": false,
+    "files": [
+      {
+        "someFileData": true
+      }
+    ]
+  },
+  {
+    "id": 123,
+    "title": "Илья Весенний",
+    "avatar": "../assets/avatar-template.png",
+    "unread_count": 15,
+    "last_message": {
+      "user": {
+        "first_name": "Petya",
+        "second_name": "Pupkin",
+        "avatar": "../assets/avatar-template.png",
+        "email": "my@email.com",
+        "login": "userLogin",
+        "phone": "8(911)-222-33-22"
+      },
+      "time": "2 января 2022",
+      "content": "this is message content"
+    },
+    "active": true,
+    "files": null
+  },
+  {
+    "id": 123,
+    "title": "Илья Весенний",
+    "avatar": "../assets/avatar-template.png",
+    "unread_count": 15,
+    "last_message": {
+      "user": {
+        "first_name": "Petya",
+        "second_name": "Pupkin",
+        "avatar": "../assets/avatar-template.png",
+        "email": "my@email.com",
+        "login": "userLogin",
+        "phone": "8(911)-222-33-22"
+      },
+      "time": "вчера",
+      "content": "this is message content"
+    },
+    "active": false,
+    "files": null
+  },
+  {
+    "id": 165,
+    "title": "PearStore",
+    "avatar": "../assets/pear-avatar.png",
+    "unread_count": 15,
+    "last_message": {
+      "user": {
+        "first_name": "Petya",
+        "second_name": "Pupkin",
+        "avatar": "../assets/avatar-template.png",
+        "email": "my@email.com",
+        "login": "userLogin",
+        "phone": "8(911)-222-33-22"
+      },
+      "time": "позавчера",
+      "content": "this is message content"
+    },
+    "active": false,
+    "files": null
+  }
+]
+ 

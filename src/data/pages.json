@@ -1,0 +1,37 @@
+{
+  "links": [
+    {
+      "pageUrl": "main-narrow.hbs",
+      "type": "button",
+      "value": "Главная",
+      "labelText": "Главная страница с узким меню"
+    },
+    {
+      "pageUrl": "main-expanded.hbs",
+      "type": "button",
+      "value": "Главная | full",
+      "labelText": "Главная страница с раскрытым меню"
+    },
+    {
+      "pageUrl": "signin.hbs",
+      "type": "button",
+      "value": "Авторизация"
+    },
+    {
+      "pageUrl": "signup.hbs",
+      "type": "button",
+      "labelText": "Регистрация + разное состояние :focus (на поле пароль), autocomplete и пример ошибки валидации",
+      "value": "Регистрация"
+    },
+    {
+      "value": "Профиль",
+      "pageUrl": "/"
+    },
+    {
+      "value": "Назад",
+      "pageUrl": "index.hbs"
+    }
+  ],
+  "h1": "Страницы проекта",
+  "pageTitle": "Index"
+}

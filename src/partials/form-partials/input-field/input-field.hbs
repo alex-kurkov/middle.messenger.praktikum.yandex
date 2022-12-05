@@ -6,6 +6,9 @@
   {{/if}}
   
   {{> form-partials/input/input}}
-    <div class="label__errors-wrapper">
+    <div class="label__error text-error">
+  {{#if errorMessage}}
+    {{errorMessage}}
+  {{/if}}
     </div>
 </label>
