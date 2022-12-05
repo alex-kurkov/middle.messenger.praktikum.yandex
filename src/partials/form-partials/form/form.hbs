@@ -1,0 +1,21 @@
+<form 
+  class="form"
+  action=""
+  name=""  
+  autocomplete=""
+    >
+    <fieldset class="form__fieldset flex-centered text-paragraph-title">
+    <legend class="form__legend">
+      {{form.formTitle}}
+    </legend>
+      {{#each form/inputs}}
+        {{> form-partials/input-field/input-field }}
+      {{/each}}
+    </fieldset>
+    {{#if form.addon}}
+      <div class="form__addon text-paragraph-normal">
+        <span>{{form.addon.text}}</span>
+        <a class="form__adon-link" href={{form.addon.link}}><span>{{form.addon.linkText}}</span></a>
+      </div>
+    {{/if}}
+</form>

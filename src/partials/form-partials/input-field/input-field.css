@@ -1,0 +1,15 @@
+.label {
+  width: 100%;
+    & > span {
+    color: $black; 
+  }
+
+  &__errors-wrapper {
+    height: 20px;
+  }
+
+  &_required > span:after {
+    content: '*';
+    color: $accent;
+  }
+}

@@ -17,13 +17,17 @@ h1: 'Оглавление'
 pageTitle: "Index" 
 ---
 
+
 {{#extend "base"}}
+  {{#content "head"}}
+    {{> head-partials/page-title}}
+  {{/content}}
   {{#content "main"}}
     <h1>{{h1}}</h1>
     <ul>
       {{#each links}}
         <li><a href={{pageUrl}}>
-        {{> input-field/input-field this }}
+        {{> form-partials/input-field/input-field }}
         </a></li>
       {{/each}}
     </ul>

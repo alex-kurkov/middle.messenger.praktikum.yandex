@@ -7,6 +7,15 @@
   flex-wrap: nowrap;
 }
 
+.flex-centered {
+  display: flex;
+  flex-direction: column;
+  align-content: center;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: nowrap;
+}
+
 .text-paragraph-thin {
   font: 300 18px /1.2 $font-family;
 }

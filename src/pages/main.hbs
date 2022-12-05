@@ -2,6 +2,9 @@
 h1: 'Главная'
 ---
 {{#extend "base"}}
+  {{#content "head"}}
+    {{> head-partials/page-title}}
+  {{/content}}
   {{#content "main"}}
       <h1>
         {{h1}}
