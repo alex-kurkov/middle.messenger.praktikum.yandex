@@ -1,20 +1,27 @@
 ---
 links: 
-  - pageUrl: "main.hbs"
-    type: 'button'
-    class: 'input__narrow'
-    value: "Главная"
+  - 
+    pageUrl: main.hbs
+    type: button
+    value: Главная
     labelText: Главная страница с выкладкой
-  - pageUrl: "signin.hbs"
-    type: "button"
-    class: 'input__narrow'
-    value: "Авторизация"
-  - value: "Профиль"
-    pageUrl: "/main"
-  - value: "Назад"
-    pageUrl: "index.hbs"
-h1: 'Оглавление'
-pageTitle: "Index" 
+  - 
+    pageUrl: signin.hbs
+    type: button
+    value: Авторизация
+  - 
+    pageUrl: signup.hbs
+    type: button
+    labelText: Регистрация + разное состояние :focus (на поле пароль), autocomplete и пример ошибки валидации
+    value: Регистрация
+  - 
+    value: Профиль
+    pageUrl: /
+  - 
+    value: Назад
+    pageUrl: index.hbs
+h1: Страницы проекта
+pageTitle: Index
 ---
 
 
@@ -23,14 +30,17 @@ pageTitle: "Index"
     {{> head-partials/page-title}}
   {{/content}}
   {{#content "main"}}
-    <h1>{{h1}}</h1>
-    <ul>
-      {{#each links}}
-        <li><a href={{pageUrl}}>
-        {{> form-partials/input-field/input-field }}
-        </a></li>
-      {{/each}}
-    </ul>
+    {{#> modal-partials/modal}}
+      <h1>{{h1}}</h1>
+      <ul>
+        {{#each links}}
+          <li><a href={{pageUrl}}>
+          {{> form-partials/input-field/input-field }}
+          </a></li>
+        {{/each}}
+      </ul>
+   
+    {{/modal-partials/modal}}
   {{/content}}
 {{/extend}}
 

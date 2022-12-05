@@ -1,7 +1,10 @@
 <label class="label {{#if required}}label_required{{/if}} flex-vertical-left text-paragraph-thin">
-  <span>
-    {{labelText}}
-  </span>
+  {{#if labelText}}
+    <span>
+      {{labelText}}
+    </span>
+  {{/if}}
+  
   {{> form-partials/input/input}}
     <div class="label__errors-wrapper">
     </div>

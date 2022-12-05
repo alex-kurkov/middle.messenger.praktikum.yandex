@@ -1,5 +1,4 @@
 .form {
-  width: $modal-content-width;
   height: fit-content;
   padding: 24px;
   background-color: $base-white;

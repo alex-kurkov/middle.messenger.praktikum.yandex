@@ -1,8 +1,10 @@
 <input 
   class="input {{this.class}} text-paragraph-normal"
   type={{this.type}}
-  {{#if value}}value={{this.value}}{{else}}value=""{{/if}}
-  autocomplete={{this.autocomplete}}
-  name={{this.name}}
+  {{#if this.value}}value={{this.value}}{{else}}value=""{{/if}}
+  {{#if this.autocomplete}}autocomplete{{else}}autocomplete="off"{{/if}}
+  {{#if this.name}}name={{this.name}}{{/if}}
+  {{#if this.error}}data-error="true"{{/if}}
+
 />
 
