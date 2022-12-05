@@ -4,9 +4,9 @@
   <div class="side-menu__search flex-centered" >
     {{#if expanded}}
       <div class="side-menu__search_expanded">
-        {{#with "search-input-data" }}
-          {{> form-partials/input/input}}
-        {{/with}}
+      {{#with search_data}}
+          {{> form-partials/input/input}}      
+      {{/with}}
         <div class="side-menu__search-icon_expanded icon icon_medium">{{> icons/search}}</div>
       </div>
     {{else}}

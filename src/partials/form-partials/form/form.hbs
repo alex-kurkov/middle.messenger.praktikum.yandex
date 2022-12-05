@@ -6,16 +6,16 @@
     >
     <fieldset class="form__fieldset text-paragraph-title">
     <legend class="form__legend">
-      {{form.formTitle}}
+      {{formTitle}}
     </legend>
-      {{#each form/inputs}}
+      {{#each inputs}}
         {{> form-partials/input-field/input-field }}
       {{/each}}
     </fieldset>
-    {{#if form.addon}}
+    {{#if addon}}
       <div class="form__addon text-paragraph-normal">
-        <span>{{form.addon.text}}</span>
-        <a class="form__adon-link" href={{form.addon.link}}><span>{{form.addon.linkText}}</span></a>
+        <span>{{addon.text}}</span>
+        <a class="form__adon-link" href={{addon.link}}><span>{{addon.linkText}}</span></a>
       </div>
     {{/if}}
 </form>
