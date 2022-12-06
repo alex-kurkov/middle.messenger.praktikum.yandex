@@ -2,6 +2,7 @@
 @import './scss-vars.css';
 @import './typography.css';
 @import './boxes.css';
+@import './pages.css';
 @import '../partials/form-partials/input/input.css';
 @import '../partials/form-partials/input-field/input-field.css';
 @import '../partials/form-partials/form/form.css';
@@ -10,7 +11,8 @@
 @import '../partials/modal-partials/dialog.css';
 @import '../partials/side-menu/menu-message.css';
 @import '../partials/side-menu/side-menu.css';
-
+@import '../partials/feed/feed.css';
+@import '../partials/feed/feed-message.css';
 
 * {
   box-sizing: border-box;

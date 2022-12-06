@@ -1,21 +1,21 @@
 {
   "links": [
     {
-      "pageUrl": "main-narrow.hbs",
+      "pageUrl": "messenger-narrow.hbs",
       "type": "button",
-      "value": "Главная",
-      "labelText": "Главная страница с узким меню"
+      "value": "Мессенджер",
+      "labelText": "Лента сообщений с узким меню, не выбран чат"
     },
     {
-      "pageUrl": "main-expanded.hbs",
+      "pageUrl": "messenger-expanded.hbs",
       "type": "button",
-      "value": "Главная | full",
-      "labelText": "Главная страница с раскрытым меню"
+      "value": "Мессенджер",
+      "labelText": "Лента сообщений с раскрытым меню"
     },
     {
       "pageUrl": "signin.hbs",
       "type": "button",
-      "value": "Авторизация"
+      "value": "Вход"
     },
     {
       "pageUrl": "signup.hbs",
@@ -24,12 +24,10 @@
       "value": "Регистрация"
     },
     {
-      "value": "Профиль",
-      "pageUrl": "/"
-    },
-    {
-      "value": "Назад",
-      "pageUrl": "index.hbs"
+      "pageUrl": "signup.hbs",
+      "type": "button",
+      "labelText": "",
+      "value": "Профиль"
     }
   ],
   "h1": "Страницы проекта",

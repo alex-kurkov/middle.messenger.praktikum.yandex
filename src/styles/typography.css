@@ -29,6 +29,9 @@
 .text-message {
   font: 400 10px /12px $font-family;
 }
+.text-feed-message {
+  font: 400 14px /20px $font-family;
+}
 .text-time {
   font: 400 10px /12px $font-family;
   opacity: 50%;

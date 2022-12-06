@@ -1,0 +1,18 @@
+<article class="feed-message 
+{{#if isFile}}
+  feed-message_hasFile
+{{/if}}
+{{#if isOwn}}feed-message_isOwn{{/if}}">
+
+
+  {{#if isFile}}
+    <img class="feed-message__image" src={{url}} alt="изображение" >
+  {{else}}
+    <div class="feed-message__text text-feed-message">
+      {{ this.content }}    
+    </div>
+  {{/if}}
+
+<div class="feed-message__time text-time">{{time}}</div>
+
+</article>

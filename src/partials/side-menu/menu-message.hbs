@@ -23,7 +23,10 @@
   ">
     <h3 class="menu-message__title text-message-title">{{title}}</h3>
     {{#if last_message}}
-      <span class="menu-message__content text-message">{{last_message.content}}</span>
+      <span class="menu-message__content text-message">
+        {{#if lastIsMine}}<strong>Вы: </strong>{{/if}}
+        {{last_message.content}}
+      </span>
       <span class="menu-message__time text-time">{{last_message.time}}</span>
     {{/if}}
   </div>

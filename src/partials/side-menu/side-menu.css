@@ -51,6 +51,9 @@
     height: 60px;
     width: 100%;
   }
+  &__icons-wrap {
+    width: 100%;
+  }
   &__footer-icon {
     & path {
       fill: $base-white;
