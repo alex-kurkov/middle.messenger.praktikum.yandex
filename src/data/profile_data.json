@@ -24,6 +24,14 @@
     ],
     "addon": null
   },
+  "avatarInput": {
+    "type": "file",
+    "name": "avatar",
+    "required": false,
+    "id": "avatar-input",
+    "accept": "image/*"
+
+  },
   "editPersonalDataForm": {
     "formTitle": null,
     "inputs": [
@@ -32,42 +40,41 @@
         "value": "Иван",
         "labelText": "Имя",
         "name": "first_name",
-        "required": true
+        "required": false
       },
       {
         "type": "text",
         "value": "Иванов",
         "labelText": "Фамилия",
         "name": "second_name",
-        "required": true
+        "required": false
       },
       {
         "type": "text",
         "value": null,
         "labelText": "Ник",
         "name": "display_name",
-        "required": true
+        "required": false
       },
       {
         "type": "text",
         "value": null,
         "labelText": "Логин",
         "name": "login",
-        "required": true
+        "required": false
       },
       {
         "type": "email",
         "value": null,
         "labelText": "E-mail",
         "name": "email",
-        "required": true
+        "required": false
       },
       {
         "type": "tel",
         "labelText": "Телефон",
         "name": "tel",
-        "required": true,
-        "autocomplete": true
+        "required": false
       },
       {
         "type": "button",
@@ -82,13 +89,13 @@
       "type": "button",
       "name": "edit",
       "value": "Редактировать",
-      "link": "#"
+      "link": "profile-data.hbs"
     },
     {
       "type": "button",
       "name": "edit",
-      "value": "Изменить пароль",
-      "link": "#"
+      "value": "Изменить_пароль",
+      "link": "profile-password.hbs"
     },
     {
       "type": "button",

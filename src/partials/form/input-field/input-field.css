@@ -5,7 +5,7 @@
   }
 
   &__error {
-    height: 20px;
+    height: 16px;
     color: $danger;
     overflow: hidden;
     display: inline-block;
