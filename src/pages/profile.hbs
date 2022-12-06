@@ -1,11 +1,11 @@
 {{#extend "base"}}
   {{#content "head"}}
-    {{> head-partials/page-title pageTitle="Вход"}}
+    {{> head-partials/page-title pageTitle="Профиль"}}
   {{/content}}
   {{#content "main"}}
     {{#> modal-partials/modal}} 
-      {{#with forms.signinForm }}
-        {{> form/form/form}}
+      {{#with profile_data }}
+        {{> profile-edit/profile-edit}}
       {{/with}}
     {{/modal-partials/modal}}
   {{/content}}

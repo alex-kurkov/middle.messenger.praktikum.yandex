@@ -13,6 +13,4 @@ $feed-gradient: linear-gradient(180deg, #9e9e9ed4, #4a4a4a);
 $content-width: clamp(320px, 100%, 1440px);
 $modal-content-width:  clamp(320px, 100%, 360px);
 
-$font-family: Montserrat, Open Sans, Arial, sans-serif;
-
 $accent-shadow: 1px 1px 4px $accent;

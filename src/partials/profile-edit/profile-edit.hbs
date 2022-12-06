@@ -1,0 +1,27 @@
+<section class="profile-edit flex-vertical-left">
+  <h1 class="profile-edit__title text text_size_m text_weight_bold">
+    {{user.display_name}}  
+  </h1>
+  <img class="profile-edit__avatar" width="300" height="300" src={{user.avatar}} alt="Аватар пользователя" />
+  <ul class="profile-edit__data-wrap flex-vertical-left">
+    <li>
+      <div class="profile-edit__data-label text text_size_m text_weight_regular">Имя</div>
+      <div class="profile-edit__data text text_size_m text_weight_regular">{{user.first_name}} {{user.second_name}}</div>
+    </li>
+    <li>
+      <div class="profile-edit__data-label text text_size_m text_weight_regular">Email</div>
+      <div class="profile-edit__data text text_size_m text_weight_regular">{{user.email}}</div>
+    </li>
+    <li>
+      <div class="profile-edit__data-label text text_size_m text_weight_regular">Телефон</div>
+      <div class="profile-edit__data text text_size_m text_weight_regular">{{user.phone}}</div>
+    </li>
+  </ul>
+  
+
+  {{#each profileEditButtons}}
+  <a class="profile-edit__link" href={{link}}>
+    {{> form/input/input}}
+  </a>
+  {{/each}}
+</section>

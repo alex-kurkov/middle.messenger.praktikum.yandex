@@ -1,12 +1,12 @@
 <section class="feed{{#if empty}} flex-centered{{else}} flex-vertical-left{{/if}}">
 {{#if empty}}
-  <div class="feed__info-text text-paragraph-title">Выберете чат, чтобы отправить 
+  <div class="feed__info-text text text_size_m text_weight_regular">Выберете чат, чтобы отправить 
 сообщение, или <a class="feed__info-text-link" href="#">создайте новый</a></div>
 {{else}}
   {{#with chat_messages}}
     <div class="feed__title-wrap">
       <img class="feed__avatar" src={{avatar}} alt={{title}}>
-      <div class="feed__title text-paragraph-title">{{title}}</div>
+      <div class="feed__title text text_size_m text_weight_regular">{{title}}</div>
       <div class="feed__chat-settigs icon icon_medium flex-centered">{{> icons/chat_settings}}</div>
     </div>
     <ul class="feed__messages-feed flex-vertical-left">
@@ -19,7 +19,7 @@
     <div class="feed__new-message-wrap flex-centered">
 
       {{#with message_input}}
-          {{> form-partials/input/input }}      
+          {{> form/input/input }}      
       {{/with}}
         <div class="feed__clip-icon icon icon_medium">{{> icons/clip}}</div>
         <div class="feed__send-icon icon icon_medium">{{> icons/send}}</div>

@@ -1,0 +1,14 @@
+<label class="label {{#if required}}label_required{{/if}} flex-vertical-left text text_size_m text_weight_thin">
+  {{#if labelText}}
+    <span>
+      {{labelText}}
+    </span>
+  {{/if}}
+  
+  {{> form/input/input}}
+    <div class="label__error text text_size_xs text_weight_thin">
+  {{#if errorMessage}}
+    {{errorMessage}}
+  {{/if}}
+    </div>
+</label>

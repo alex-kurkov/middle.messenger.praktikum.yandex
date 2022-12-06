@@ -1,0 +1,109 @@
+{
+  "editPasswordForm": {
+    "formTitle": null,
+    "inputs": [
+      {
+        "type": "password",
+        "labelText": "Старый пароль",
+        "name": "oldPassword",
+        "required": true
+      },
+      {
+        "type": "password",
+        "labelText": "Новый пароль",
+        "name": "newPassword",
+        "required": true,
+        "error": true,
+        "errorMessage": "не менее 8 символов"
+      },
+      {
+        "type": "button",
+        "name": "signup",
+        "value": "Сохранить"
+      }
+    ],
+    "addon": null
+  },
+  "editPersonalDataForm": {
+    "formTitle": null,
+    "inputs": [
+      {
+        "type": "text",
+        "value": "Иван",
+        "labelText": "Имя",
+        "name": "first_name",
+        "required": true
+      },
+      {
+        "type": "text",
+        "value": "Иванов",
+        "labelText": "Фамилия",
+        "name": "second_name",
+        "required": true
+      },
+      {
+        "type": "text",
+        "value": null,
+        "labelText": "Ник",
+        "name": "display_name",
+        "required": true
+      },
+      {
+        "type": "text",
+        "value": null,
+        "labelText": "Логин",
+        "name": "login",
+        "required": true
+      },
+      {
+        "type": "email",
+        "value": null,
+        "labelText": "E-mail",
+        "name": "email",
+        "required": true
+      },
+      {
+        "type": "tel",
+        "labelText": "Телефон",
+        "name": "tel",
+        "required": true,
+        "autocomplete": true
+      },
+      {
+        "type": "button",
+        "name": "signup",
+        "value": "Сохранить"
+      }
+    ],
+    "addon": null
+  },
+  "profileEditButtons": [
+    {
+      "type": "button",
+      "name": "edit",
+      "value": "Редактировать",
+      "link": "#"
+    },
+    {
+      "type": "button",
+      "name": "edit",
+      "value": "Изменить пароль",
+      "link": "#"
+    },
+    {
+      "type": "button",
+      "name": "edit",
+      "value": "Выйти",
+      "link": "signin.hbs"
+    }
+  ],
+  "user": {
+    "first_name": "Илья Сергеевич",
+    "second_name": "Джонсонов",
+    "display_name": "Илья Весенний",
+    "avatar": "../assets/avatar-template.png",
+    "email": "my@email.com",
+    "login": "userLogin",
+    "phone": "8(911)-222-33-22"
+  }
+}

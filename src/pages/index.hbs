@@ -4,12 +4,12 @@
   {{/content}}
   {{#content "main"}}
     {{#> modal-partials/modal}}
-      <h1 class="text-page-title">{{pages.h1}}</h1>
+      <h1 class="text text_size_m text_weight_bold">{{pages.h1}}</h1>
       <nav>
         <ul>
           {{#each pages.links}}
             <li><a href={{pageUrl}}>
-            {{> form-partials/input-field/input-field }}
+            {{> form/input-field/input-field }}
             </a></li>
           {{/each}}
         </ul>

@@ -24,10 +24,22 @@
       "value": "Регистрация"
     },
     {
-      "pageUrl": "signup.hbs",
+      "pageUrl": "profile.hbs",
       "type": "button",
-      "labelText": "",
+      "labelText": "Страница своего профиля",
       "value": "Профиль"
+    },
+    {
+      "pageUrl": "profile.hbs",
+      "type": "button",
+      "labelText": null,
+      "value": "400"
+    },
+    {
+      "pageUrl": "profile.hbs",
+      "type": "button",
+      "labelText": null,
+      "value": "5**"
     }
   ],
   "h1": "Страницы проекта",

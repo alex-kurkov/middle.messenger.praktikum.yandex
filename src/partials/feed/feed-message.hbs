@@ -8,11 +8,11 @@
   {{#if isFile}}
     <img class="feed-message__image" src={{url}} alt="изображение" >
   {{else}}
-    <div class="feed-message__text text-feed-message">
+    <div class="feed-message__text text text_size_s text_weight_regular ">
       {{ this.content }}    
     </div>
   {{/if}}
 
-<div class="feed-message__time text-time">{{time}}</div>
+<time datetime="" class="feed-message__time text text_size_xs text_weight_regular ">{{time}}</time>
 
 </article>

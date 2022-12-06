@@ -4,16 +4,16 @@
   name=""  
   autocomplete=""
     >
-    <fieldset class="form__fieldset text-paragraph-title">
+    <fieldset class="form__fieldset text text_size_m text_weight_regular">
     <legend class="form__legend">
       {{formTitle}}
     </legend>
       {{#each inputs}}
-        {{> form-partials/input-field/input-field }}
+        {{> form/input-field/input-field }}
       {{/each}}
     </fieldset>
     {{#if addon}}
-      <div class="form__addon text-paragraph-normal">
+      <div class="form__addon text text_size_m text_weight_regular">
         <span>{{addon.text}}</span>
         <a class="form__adon-link" href={{addon.link}}><span>{{addon.linkText}}</span></a>
       </div>

@@ -1,38 +1,30 @@
-.text-paragraph-thin {
-  font: 300 18px /1.2 $font-family;
-}
-.text-paragraph-normal {
-  font: 400 18px /1.2 $font-family;
-}
+.text {
+  font-family: Montserrat, Open Sans, Arial, sans-serif;
 
-.text-paragraph-title {
-  font: 400 28px /1.2 $font-family;
-}
-.text-page-title {
-  font: 700 40px /1.2 $font-family;
-  margin-bottom: 40px;
-}
-.text-message-title {
-  font: 700 16px /20px $font-family;
-}
-.text-error {
-  font: 300 12px /20px $font-family;
-  display: inline-block;
-  width: 100%;
-  white-space: nowrap;
-  text-overflow: ellipsis;
-}
-.text-tag {
-  font: 400 12px /12px $font-family;
-}
+  &_size_xs {
+    font-size: 12px;
+    line-height: 1.2;
+  }
+  &_size_s {
+    font-size: 14px;
+    line-height: 1.2;
+  }
+  &_size_m {
+    font-size: 18px;
+    line-height: 1.2;
+  }
+  &_size_l {
+    font-size: 28px;
+    line-height: 1.2;
+  }
 
-.text-message {
-  font: 400 10px /12px $font-family;
-}
-.text-feed-message {
-  font: 400 14px /20px $font-family;
-}
-.text-time {
-  font: 400 10px /12px $font-family;
-  opacity: 50%;
+  &_weight_thin {
+    font-weight: 300;
+  }
+  &_weight_regular {
+    font-weight: 400;
+  }
+  &_weight_bold {
+    font-weight: 700;
+  }
 }
