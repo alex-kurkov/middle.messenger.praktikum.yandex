@@ -26,17 +26,17 @@
     {
       "pageUrl": "profile.hbs",
       "type": "button",
-      "labelText": "Страница своего профиля",
+      "labelText": "Страница своего профиля - кнопки редактирования кликабельны",
       "value": "Профиль"
     },
     {
-      "pageUrl": "profile.hbs",
+      "pageUrl": "400.hbs",
       "type": "button",
       "labelText": null,
       "value": "400"
     },
     {
-      "pageUrl": "profile.hbs",
+      "pageUrl": "500.hbs",
       "type": "button",
       "labelText": null,
       "value": "5**"

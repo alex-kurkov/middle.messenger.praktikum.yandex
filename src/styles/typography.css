@@ -28,3 +28,7 @@
     font-weight: 700;
   }
 }
+
+.text-link {
+  color: $accent;
+}

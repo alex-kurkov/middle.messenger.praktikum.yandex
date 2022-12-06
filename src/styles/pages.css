@@ -1,7 +1,7 @@
 .main {
   width: 100%;
   background: $feed-gradient;
-  max-height: 100vh;
+  height: 100vh;
   overflow: hidden;
 
   &_layout_feed {
