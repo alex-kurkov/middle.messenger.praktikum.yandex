@@ -6,7 +6,7 @@
 
 - макет приложения в приложении Фигма [здесь](https://www.figma.com/file/jbEHoHxmQfW9PpMG2SCI96/YAP_messenger?t=lqSEdEbcNCIGZbhK-6)
 - проект доступен на сервисе [Netlify](https://voluble-marshmallow-b07071.netlify.app/)
-- код проекта на [github]()
+- код проекта на [github](https://github.com/alex-kurkov/middle.messenger.praktikum.yandex)
 
 ---
 
