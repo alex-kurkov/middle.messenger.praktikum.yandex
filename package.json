@@ -11,8 +11,8 @@
     "type": "git",
     "url": "git+https://github.com/alex-kurkov/middle.messenger.praktikum.yandex.git"
   },
-  "keywords": [],
-  "author": "",
+  "keywords": ["Yandex Praktikum", "educational project"],
+  "author": "Alex Kurkov",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/alex-kurkov/middle.messenger.praktikum.yandex/issues"
