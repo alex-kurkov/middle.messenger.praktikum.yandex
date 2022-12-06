@@ -1,38 +1,29 @@
 .icon {
   cursor: pointer;
-
+  & svg {
+    width: 100%;
+    height: 100%;
+  }
   &:hover {
     & path {
       fill: $accent;
-    }  
+    }
   }
 }
 
 .icon_small {
   width: 16px;
   height: 16px;
-  & svg {
-    width: 100%;
-    height: 100%;
-  }
 }
 
 .icon_medium {
   width: 24px;
   height: 24px;
-    & svg {
-    width: 100%;
-    height: 100%;
-  }
 }
 
 .icon_large {
   width: 40px;
   height: 40px;
-  & svg {
-    width: 100%;
-    height: 100%;
-  }
 }
 
 .icon_fixed_topright {
