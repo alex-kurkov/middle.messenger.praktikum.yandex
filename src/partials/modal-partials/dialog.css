@@ -1,0 +1,19 @@
+.dialog {
+  border: none;
+
+  &::backdrop {
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    bottom: 0px;
+    right: 0px;
+    opacity: 80%;
+    background: $menu-gradient;
+    /* animation: */
+  }
+}
+
+.dialog__wrapper {
+  
+  background-color: none;
+}

@@ -1,0 +1,9 @@
+{{#extend "base"}}
+  {{#content "head"}}
+    {{> head-partials/page-title}}
+  {{/content}}
+    {{#content "main"}}
+        {{> side-menu/side-menu expanded=true}}
+        {{> feed/feed}}
+    {{/content}}
+{{/extend}}

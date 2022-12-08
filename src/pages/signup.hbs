@@ -1,0 +1,12 @@
+{{#extend "base"}}
+  {{#content "head"}}
+    {{> head-partials/page-title}}
+  {{/content}}
+  {{#content "main"}}
+    {{#> modal-partials/modal}}
+      {{#with forms.signupForm }}
+        {{> form/form/form}}
+      {{/with}}
+    {{/modal-partials/modal}}
+  {{/content}}
+{{/extend}}

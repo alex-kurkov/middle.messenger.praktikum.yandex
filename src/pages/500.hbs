@@ -1,0 +1,10 @@
+{{#extend "base"}}
+  {{#content "head"}}
+    {{> head-partials/page-title pageTitle="Профиль"}}
+  {{/content}}
+  {{#content "main"}}
+    {{#with not_found.p500}}
+        {{> not-found/not-found}}
+    {{/with}}
+  {{/content}}
+{{/extend}}

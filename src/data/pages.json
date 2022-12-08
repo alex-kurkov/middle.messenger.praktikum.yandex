@@ -1,0 +1,47 @@
+{
+  "links": [
+    {
+      "pageUrl": "messenger-narrow.hbs",
+      "type": "button",
+      "value": "Мессенджер",
+      "labelText": "Лента сообщений с узким меню, не выбран чат"
+    },
+    {
+      "pageUrl": "messenger-expanded.hbs",
+      "type": "button",
+      "value": "Мессенджер",
+      "labelText": "Лента сообщений с раскрытым меню"
+    },
+    {
+      "pageUrl": "signin.hbs",
+      "type": "button",
+      "value": "Вход"
+    },
+    {
+      "pageUrl": "signup.hbs",
+      "type": "button",
+      "labelText": "Регистрация + разное состояние :focus (на поле пароль), autocomplete и пример ошибки валидации",
+      "value": "Регистрация"
+    },
+    {
+      "pageUrl": "profile.hbs",
+      "type": "button",
+      "labelText": "Страница своего профиля - кнопки редактирования кликабельны",
+      "value": "Профиль"
+    },
+    {
+      "pageUrl": "400.hbs",
+      "type": "button",
+      "labelText": null,
+      "value": "400"
+    },
+    {
+      "pageUrl": "500.hbs",
+      "type": "button",
+      "labelText": null,
+      "value": "5**"
+    }
+  ],
+  "h1": "Страницы проекта",
+  "pageTitle": "Index"
+}
