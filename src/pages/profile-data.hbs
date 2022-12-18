@@ -1,7 +1,3 @@
-{{#extend "base"}}
-  {{#content "head"}}
-    {{> head-partials/page-title pageTitle="Профиль"}}
-  {{/content}}
   {{#content "main"}}
     {{#> modal-partials/modal}} 
       {{#with profile_data }}
@@ -9,4 +5,4 @@
       {{/with}}
     {{/modal-partials/modal}}
   {{/content}}
-{{/extend}}
+

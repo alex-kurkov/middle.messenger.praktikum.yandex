@@ -52,4 +52,27 @@ export default {
     ],
     title: 'Страницы проекта',
   },
+  loginPage: {
+    formTitle: 'Вход',
+    inputs: [
+      {
+        type: 'text',
+        value: '',
+        labelText: 'Логин',
+        name: 'login',
+        required: true,
+      },
+      {
+        type: 'password',
+        labelText: 'Пароль',
+        name: 'password',
+        required: true,
+      },
+      {
+        type: 'button',
+        name: 'signin',
+        value: 'Войти',
+      },
+    ],
+  },
 };

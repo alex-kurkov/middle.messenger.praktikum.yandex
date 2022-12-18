@@ -1,0 +1,25 @@
+<label class="label {{#if required}}label_required{{/if}} flex-vertical-left text text_size_m text_weight_thin">
+  {{#if labelText}}
+    <span>
+      {{labelText}}
+    </span>
+  {{/if}}
+    {{{Input
+      labelText=labelText
+      type=this.type
+      required=required
+      placeholder=placeholder
+      value=value
+      errorMessage=errorMessage
+      onChange=onChange
+      error=error
+      autocomplete=autocomplete
+      accept=accept
+      class=class
+    }}}
+    <div class="label__error text text_size_xs text_weight_thin">
+  {{#if errorMessage}}
+    {{errorMessage}}
+  {{/if}}
+    </div>
+</label>

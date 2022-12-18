@@ -1,25 +1,31 @@
 import './app.css';
 import { renderDOM, registerComponent, Block } from './core';
-import { NotFoundPage } from './pages/NotFound';
+import props from './mock-data/pages-props';
 import Button from './components/button';
 import Link from './components/link';
 import Input from './components/input';
-import { Layout } from './components/layout';
-import props from './mock-data/pages-props';
-import { Main } from './pages/Main';
-import { Modal } from './components/modal';
-import { Icon } from './components/icon';
+import Layout from './components/layout';
+import Modal from './components/modal';
+import Icon from './components/icon';
+import Form from './components/form';
+import NotFoundPage from './pages/NotFound';
+import InputField from './components/input-field';
+import Main from './pages/Main';
+import Login from './pages/Login';
 
 registerComponent(Button);
 registerComponent(Link);
 registerComponent(Input);
+registerComponent(InputField);
 registerComponent(Layout);
 registerComponent(Modal);
 registerComponent(Icon);
+registerComponent(Form);
 
 const Page400 = new NotFoundPage(props.page400);
 const Page500 = new NotFoundPage(props.page500);
 const MainPage = new Main(props.mainPage);
+const LoginPage = new Login(props.loginPage);
 
 const mockRouter = () => {
   let page: Nullable<Block<{}>> = null;
@@ -34,6 +40,9 @@ const mockRouter = () => {
       break;
     case '/500':
       page = Page500;
+      break;
+    case '/login':
+      page = LoginPage;
       break;
     default:
       page = Page400;

@@ -1,0 +1,21 @@
+.label {
+  width: 100%;
+  & > span {
+    color: var(--black);
+  }
+
+  &__error {
+    height: 16px;
+    color: var(--danger);
+    overflow: hidden;
+    display: inline-block;
+    width: 100%;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+  }
+
+  &_required > span:after {
+    content: "*";
+    color: var(--accent);
+  }
+}
