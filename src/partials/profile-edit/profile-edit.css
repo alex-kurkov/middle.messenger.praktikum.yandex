@@ -17,10 +17,10 @@
     gap: 10px;
   }
   &__data-label {
-    color: $dark-gray;
+    color: var(--dark-gray);
   }
   &__data {
-    color: $black;
+    color: var(--black);
   }
   &__link {
     width: 100%;

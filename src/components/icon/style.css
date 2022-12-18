@@ -6,7 +6,7 @@
   }
   &:hover {
     & path {
-      fill: $accent;
+      fill: var(--accent);
     }
   }
 }

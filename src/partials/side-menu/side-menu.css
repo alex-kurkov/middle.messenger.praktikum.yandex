@@ -1,7 +1,7 @@
 .side-menu {
   width: 80px;
   height: 100vh;
-  background: $menu-gradient;
+  background: var(--menu-gradient);
   &_expanded {
     width: 360px;
   }
@@ -19,7 +19,7 @@
     border: none;
     padding-left: 40px;
     &:focus {
-      box-shadow: $accent-shadow;
+      box-shadow: var(--accent)-shadow;
     }
   }
   &__chats {
@@ -43,7 +43,7 @@
       width: auto;
       max-height: 24px;
       & path {
-        fill: $dark-gray;
+        fill: var(--dark-gray);
       }
     }
   }

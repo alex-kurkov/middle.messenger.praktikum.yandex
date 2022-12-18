@@ -5,7 +5,7 @@
   flex-wrap: nowrap;
   overflow: hidden;
   &_active {
-    background-color: $light-gray-half-opacity;
+    background-color: var(--light-gray)-half-opacity;
   }
 
   &__avatar {
@@ -21,7 +21,7 @@
   }
 
   &__tag {
-    color: $black;
+    color: var(--black);
     position: absolute;
     top: 4px;
     right: 4px;
@@ -56,14 +56,14 @@
   }
 
   &:hover &__title{
-    color: $accent;
+    color: var(--accent);
   }
 
   &:hover &__image {
-    box-shadow: $accent-shadow;
+    box-shadow: var(--accent)-shadow;
   }
 
   &:hover &__tag {
-    color: $accent;
+    color: var(--accent);
   }
 }

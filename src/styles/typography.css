@@ -27,8 +27,12 @@
   &_weight_bold {
     font-weight: 700;
   }
+  
+  &_centered {
+    text-align: center;
+  }
 }
 
 .text-link {
-  color: $accent;
+  color: var(--accent);
 }

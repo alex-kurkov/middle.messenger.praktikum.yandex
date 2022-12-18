@@ -19,7 +19,7 @@ const buttons = [
   },
 ];
 
-export class NotFoundPage extends Block {
+export class NotFoundPage extends Block<{}> {
   constructor(props: NotFoundPageProps) {
     super({ ...props, buttons });
   }

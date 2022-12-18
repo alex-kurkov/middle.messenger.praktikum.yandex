@@ -1,12 +1,12 @@
 .label {
   width: 100%;
   & > span {
-    color: $black;
+    color: var(--black);
   }
 
   &__error {
     height: 16px;
-    color: $danger;
+    color: var(--danger);
     overflow: hidden;
     display: inline-block;
     width: 100%;
@@ -16,6 +16,6 @@
 
   &_required > span:after {
     content: "*";
-    color: $accent;
+    color: var(--accent);
   }
 }
