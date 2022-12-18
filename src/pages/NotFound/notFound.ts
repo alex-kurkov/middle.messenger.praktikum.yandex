@@ -8,20 +8,9 @@ interface NotFoundPageProps {
   link: string;
 }
 
-const buttons = [
-  {
-    text: 'ONE',
-    onButtonClick: (e: Event) => console.log("fiiiiiiiiiiiirst"),
-  },
-  {
-    text: 'Two',
-    onButtonClick: (e: Event) => console.log(e.target),
-  },
-];
-
 export class NotFoundPage extends Block<{}> {
   constructor(props: NotFoundPageProps) {
-    super({ ...props, buttons });
+    super({ ...props });
   }
 
   render() {
