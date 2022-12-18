@@ -26,16 +26,15 @@
     "nanoid": "4.0.0"
   },
   "devDependencies": {
-    "@anikin/parcel-transformer-handlebars": "1.0.9",
     "@parcel/transformer-inline-string": "2.4.0",
     "@types/node": "18.11.16",
     "autoprefixer": "10.4.13",
     "dotenv": "16.0.3",
     "express": "4.18.2",
-    "parcel": "2.4.0",
+    "parcel": "2.8.0",
     "postcss": "8.4.12",
-    "postcss-import": "14.1.0",
-    "postcss-nested": "5.0.6",
+    "postcss-import": "15.0.0",
+    "postcss-nested": "6.0.0",
     "postcss-simple-vars": "7.0.1",
     "typescript": "4.6.2"
   }

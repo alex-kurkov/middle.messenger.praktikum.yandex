@@ -1,16 +1,18 @@
-<div class="flex-centered" style="gap: 40px; width: 100%">
-  <h1 class="text text_size_l text_weight_bold">
-    {{title}}
-  </h1>
-  <p class="text text_size_m text_weight_regular">
-    {{message}}
-  </p>
-  <p class="text text_size_m text_weight_regular">
-    <a class="text-link" href={{link}}>
-      {{linkMessage}}
-    </a>
-  </p>
-  {{#each buttons}}
-    {{{ Button text="{{text}}" onClick=onButtonClick }}}
-  {{/each}}
-</div>
+{{#Layout class="flex-centered"}}
+  <div class="flex-centered" style="gap: 40px; width: 100%">
+    <h1 class="text text_size_l text_weight_bold">
+      {{title}}
+    </h1>
+    <p class="text text_size_m text_weight_regular">
+      {{message}}
+    </p>
+    <p class="text text_size_m text_weight_regular">
+      <a class="text-link" href={{link}}>
+        {{linkMessage}}
+      </a>
+    </p>
+    {{#each buttons}}
+      {{{ Button text="{{text}}" onClick=onButtonClick }}}
+    {{/each}}
+  </div>
+{{/Layout}}

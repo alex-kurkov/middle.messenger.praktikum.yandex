@@ -1,6 +1,6 @@
 .main {
   width: 100%;
-  background: $feed-gradient;
+  background: linear-gradient(180deg, #9e9e9ed4, #4a4a4a);
   height: 100vh;
   overflow: hidden;
 

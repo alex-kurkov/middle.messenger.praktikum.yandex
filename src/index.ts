@@ -7,7 +7,7 @@ import './app.css';
 import Button from './components/button';
 import Link from './components/link';
 import Input from './components/input';
-import Layout from './components/layout';
+import { Layout } from './components/layout';
 
 registerComponent(Button);
 registerComponent(Link);
@@ -20,8 +20,6 @@ const newP = new NotFoundPage({
   linkMessage: 'Главную',
   link: '/',
 });
-
-console.log(newP)
 
 document.addEventListener('DOMContentLoaded', () => {
   renderDOM('#app', newP);

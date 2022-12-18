@@ -3,9 +3,6 @@
   "transformers": {
     "bundle-text:*": [
       "@parcel/transformer-inline-string"
-    ],
-    "*.hbs": [
-      "@anikin/parcel-transformer-handlebars"
     ]
   }
 }
