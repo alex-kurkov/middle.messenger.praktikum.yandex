@@ -12,6 +12,7 @@ import NotFoundPage from './pages/NotFound';
 import InputField from './components/input-field';
 import Main from './pages/Main';
 import Login from './pages/Login';
+import FormAddon from './components/form-addon';
 
 registerComponent(Button);
 registerComponent(Link);
@@ -21,11 +22,13 @@ registerComponent(Layout);
 registerComponent(Modal);
 registerComponent(Icon);
 registerComponent(Form);
+registerComponent(FormAddon);
 
 const Page400 = new NotFoundPage(props.page400);
 const Page500 = new NotFoundPage(props.page500);
 const MainPage = new Main(props.mainPage);
 const LoginPage = new Login(props.loginPage);
+const RegisterPage = new Login(props.registerPage);
 
 const mockRouter = () => {
   let page: Nullable<Block<{}>> = null;
@@ -43,6 +46,9 @@ const mockRouter = () => {
       break;
     case '/login':
       page = LoginPage;
+      break;
+    case '/register':
+      page = RegisterPage;
       break;
     default:
       page = Page400;

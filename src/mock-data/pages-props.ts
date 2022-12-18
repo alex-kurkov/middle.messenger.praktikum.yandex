@@ -19,16 +19,16 @@ export default {
         labelText: 'Лента сообщений с узким меню, не выбран чат',
       },
       {
-        pageUrl: 'messenger-expanded.hbs',
+        pageUrl: 'messenger-expanded',
         text: 'Мессенджер',
         labelText: 'Лента сообщений с раскрытым меню',
       },
       {
-        pageUrl: 'signin',
+        pageUrl: 'login',
         text: 'Вход',
       },
       {
-        pageUrl: 'signup',
+        pageUrl: 'register',
         labelText:
           'Регистрация + разное состояние :focus (на поле пароль), autocomplete и пример ошибки валидации',
         text: 'Регистрация',
@@ -74,5 +74,81 @@ export default {
         value: 'Войти',
       },
     ],
+    addon: {
+      text: null,
+      link: 'register',
+      linkText: 'Нет аккаунта?',
+    },
+  },
+  registerPage: {
+    formTitle: 'Регистрация',
+    inputs: [
+      {
+        type: 'text',
+        value: 'Иван',
+        labelText: 'Имя',
+        name: 'first_name',
+        required: true,
+      },
+      {
+        type: 'text',
+        value: 'Иванов',
+        labelText: 'Фамилия',
+        name: 'second_name',
+        required: true,
+      },
+      {
+        type: 'text',
+        value: null,
+        labelText: 'Логин',
+        name: 'login',
+        required: true,
+      },
+      {
+        type: 'text',
+        value: null,
+        labelText: 'Ник',
+        name: 'display_name',
+        required: true,
+      },
+      {
+        type: 'email',
+        value: null,
+        labelText: 'E-mail',
+        name: 'email',
+        required: true,
+      },
+      {
+        type: 'tel',
+        labelText: 'Телефон',
+        name: 'tel',
+        required: true,
+        autocomplete: true,
+      },
+      {
+        type: 'password',
+        labelText: 'Пароль',
+        name: 'password',
+        required: true,
+        error: true,
+        errorMessage: 'не менее 8 символов',
+      },
+      {
+        type: 'password',
+        labelText: 'Пароль еще раз',
+        name: 'password-confirm',
+        required: true,
+      },
+      {
+        type: 'button',
+        name: 'signup',
+        value: 'Зарегистрироваться',
+      },
+    ],
+    addon: {
+      text: 'Уже зарегистрированы?',
+      link: 'signin.hbs',
+      linkText: 'Войти',
+    },
   },
 };
