@@ -5,7 +5,7 @@
   flex-wrap: nowrap;
   overflow: hidden;
   &_active {
-    background-color: var(--light-gray)-half-opacity;
+    background-color: var(--light-gray-half-opacity);
   }
 
   &__avatar {
@@ -28,10 +28,10 @@
     width: 20px;
     height: 20px;
     border-radius: 50%;
-    background-color: $base-white;
+    background-color: var(--base-white);
   }
   &__title {
-    color: $base-white;
+    color: var(--base-white);
     white-space: nowrap;
     text-overflow: ellipsis;
     overflow: hidden;
@@ -43,7 +43,7 @@
     width: calc(100% - 80px);
   }
   &__content {
-    color: $base-white;
+    color: var(--base-white);
     white-space: nowrap;
     text-overflow: ellipsis;
     overflow: hidden;
@@ -51,7 +51,7 @@
     margin-bottom: 16px;
   }
   &__time {
-    color: $base-white;
+    color: var(--base-white);
     align-self: flex-end;
   }
 

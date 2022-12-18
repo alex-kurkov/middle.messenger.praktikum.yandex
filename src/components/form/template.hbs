@@ -11,7 +11,9 @@
         {{#with this}}
         {{{ InputField 
           labelText=labelText
-          type=this.type
+          name=name
+          type=type
+          id=id
           required=required
           placeholder=placeholder
           value=value
@@ -20,10 +22,15 @@
           error=error
           autocomplete=autocomplete
           accept=accept
-          class=class
         }}}
         {{/with}}
       {{/each}}
     </fieldset>
+    {{#if addon}}
+      <div class="form__addon text text_size_m text_weight_regular">
+        <span>{{addon.text}}</span>
+        <a class="text-link" href={{addon.link}}><span>{{addon.linkText}}</span></a>
+      </div>
+    {{/if}}
 </form>
 

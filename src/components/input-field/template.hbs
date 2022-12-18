@@ -4,19 +4,21 @@
       {{labelText}}
     </span>
   {{/if}}
-    {{{Input
-      labelText=labelText
-      type=this.type
-      required=required
-      placeholder=placeholder
-      value=value
-      errorMessage=errorMessage
-      onChange=onChange
-      error=error
-      autocomplete=autocomplete
-      accept=accept
-      class=class
-    }}}
+    {{#with this}}
+      {{{Input
+          name=name
+          type=type
+          id=id
+          required=required
+          placeholder=placeholder
+          value=value
+          errorMessage=errorMessage
+          onChange=onChange
+          error=error
+          autocomplete=autocomplete
+          accept=accept
+      }}}
+    {{/with}}
     <div class="label__error text text_size_xs text_weight_thin">
   {{#if errorMessage}}
     {{errorMessage}}

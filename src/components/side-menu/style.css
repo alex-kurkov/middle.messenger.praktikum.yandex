@@ -33,7 +33,7 @@
   }
   &__search-icon {
     & path {
-      fill: $base-white;
+      fill: var(--base-white);
     }
     &_expanded {
       position: absolute;
@@ -56,7 +56,7 @@
   }
   &__footer-icon {
     & path {
-      fill: $base-white;
+      fill: var(--base-white);
     }
   }
 }

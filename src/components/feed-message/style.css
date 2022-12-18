@@ -2,7 +2,7 @@
   display: block;
   width: fit-content;
   max-width: 80%;
-  background-color: $base-white;
+  background-color: var(--base-white);
   float: inline-start;
   border-radius: 0 20px 20px 20px;
   padding: 20px;
@@ -19,7 +19,7 @@
     background-color: transparent;
   }
   &__time {
-    color: $base-white;
+    color: var(--base-white);
     position: absolute;
     bottom: -16px;
     right: 0;

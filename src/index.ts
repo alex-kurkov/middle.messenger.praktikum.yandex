@@ -8,11 +8,16 @@ import Layout from './components/layout';
 import Modal from './components/modal';
 import Icon from './components/icon';
 import Form from './components/form';
-import NotFoundPage from './pages/NotFound';
+import FormAddon from './components/form-addon';
+import SideMenu from './components/side-menu';
+import MenuMessage from './components/menu-message';
+import Feed from './components/feed';
+import FeedMessage from './components/feed-message';
 import InputField from './components/input-field';
+import NotFoundPage from './pages/NotFound';
 import Main from './pages/Main';
 import Login from './pages/Login';
-import FormAddon from './components/form-addon';
+import Messenger from './pages/Messenger';
 
 registerComponent(Button);
 registerComponent(Link);
@@ -23,12 +28,18 @@ registerComponent(Modal);
 registerComponent(Icon);
 registerComponent(Form);
 registerComponent(FormAddon);
+registerComponent(SideMenu);
+registerComponent(MenuMessage);
+registerComponent(Feed);
+registerComponent(FeedMessage);
 
 const Page400 = new NotFoundPage(props.page400);
 const Page500 = new NotFoundPage(props.page500);
 const MainPage = new Main(props.mainPage);
 const LoginPage = new Login(props.loginPage);
 const RegisterPage = new Login(props.registerPage);
+const MessengerPage = new Messenger(props.messengerNarrow);
+const MessengerPageExpanded = new Messenger(props.messengerExpanded);
 
 const mockRouter = () => {
   let page: Nullable<Block<{}>> = null;
@@ -50,6 +61,12 @@ const mockRouter = () => {
     case '/register':
       page = RegisterPage;
       break;
+    case '/messenger':
+      page = MessengerPageExpanded;
+      break;
+    case '/messenger-narrow':
+      page = MessengerPage;
+      break;
     default:
       page = Page400;
   }
@@ -60,6 +77,11 @@ const mockRouter = () => {
 
 document.addEventListener('DOMContentLoaded', () => {
   mockRouter();
+
+  const el = document.querySelector('.feed__messages-feed');
+  if (el && el.lastElementChild) {
+    el.lastElementChild.scrollIntoView();
+  }
 });
 
 
