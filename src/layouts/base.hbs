@@ -1,22 +1,22 @@
 <!doctype html>
-<html lang="ru">
-  <head>
-    <meta charset="utf-8" />
-    <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="author" content="Alex Kurkov">
-    <meta name="github login" content="alex-kurkov">
-    <link rel="stylesheet" href="../styles/style.css" />
-
-    {{#block "head"}}
-    {{/block}}
-
-  </head>
-  <body>
-    <main class="main main_layout_feed">
-      {{#block "main"}}
-      {{/block}}
-    </main>
-    <div id="notifications"></div>
-  </body>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <title>{{screenTitle}}</title>
+  <link rel="icon" href="../favicon.png" type="image/png">
+</head>
+<body>
+  <div class="screen {{#if fullScreen}}screen_theme_full{{/if}}">
+    <div class="screen__header">
+      <div class="screen__title">
+        {{screenTitle}}
+      </div>
+    </div>
+    <div class="screen__content">
+      {{{body}}}
+    </div>
+  </div>
+  {{> "footer/footer"}}
+  <script src="../layouts/base.js"></script>
+</body>
 </html>
