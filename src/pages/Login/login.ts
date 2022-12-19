@@ -1,9 +1,8 @@
 import Block from 'core/Block';
-import template from 'bundle-text:./template.hbs';
+import template from 'bundle-text:./login.hbs';
 import { InputProps } from 'components/input/input';
 import Validator from 'core/Validator';
 interface LoginProps {
-
   formTitle?: string;
   inputs: InputProps[];
   formRef?: string;
@@ -21,7 +20,7 @@ export class Login extends Block<{}> {
     const validator = new Validator(this, inputsRaw);
     validator.init();
   }
-  
+
   render() {
     return template;
   }

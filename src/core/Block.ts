@@ -8,7 +8,7 @@ interface BlockMeta<P extends {}> {
 
 export type BlockEvents = Values<typeof Block.EVENTS>;
 
-export default class Block<P extends {}> {
+export default class Block<P extends object> {
   static EVENTS = {
     INIT: 'init',
     FLOW_CDM: 'flow:component-did-mount',
@@ -21,7 +21,7 @@ export default class Block<P extends {}> {
 
   name: string;
   public id = nanoid(6);
-  private readonly _meta: BlockMeta<P>;
+  readonly _meta: BlockMeta<P>;
 
   protected _element: Nullable<HTMLElement> = null;
   protected readonly props: P;
@@ -40,7 +40,7 @@ export default class Block<P extends {}> {
       props,
     };
 
-    this.getStateFromProps(props);
+    this.getStateFromProps();
 
     this.props = this._makePropsProxy(props || ({} as P));
 
@@ -60,7 +60,7 @@ export default class Block<P extends {}> {
     this._element = this._createDocumentElement('div');
   }
 
-  protected getStateFromProps(props: any): void {
+  protected getStateFromProps(): void {
     this.state = {};
   }
 
@@ -69,11 +69,11 @@ export default class Block<P extends {}> {
     this.eventBus.emit(Block.EVENTS.FLOW_RENDER, this.props);
   }
 
-  _componentDidMount(props: P) {
-    this.componentDidMount(props);
+  _componentDidMount() {
+    this.componentDidMount();
   }
 
-  componentDidMount(props: P) {}
+  componentDidMount() {}
 
   _componentDidUpdate(oldProps: P, newProps: P) {
     const response = this.componentDidUpdate(oldProps, newProps);
@@ -83,8 +83,11 @@ export default class Block<P extends {}> {
     this._render();
   }
 
-  componentDidUpdate(oldProps: P, newProps: P) {
-    return true;
+  componentDidUpdate(oldProps: P, newProps: P): boolean {
+    if (oldProps !== newProps) {
+      return true;
+    }
+    return false;
   }
 
   setState = (nextState: any) => {

@@ -1,6 +1,6 @@
 import Block from "core/Block";
-import template from 'bundle-text:./template.hbs';
-import './style.css';
+import template from 'bundle-text:./layout.hbs';
+import './layout.css';
 
 interface ILayout {
   class?: string;

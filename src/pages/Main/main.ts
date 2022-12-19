@@ -1,5 +1,5 @@
 import Block from 'core/Block';
-import template from 'bundle-text:./template.hbs';
+import template from 'bundle-text:./main.hbs';
 
 interface MainPageProps {
   title: string;
@@ -10,7 +10,7 @@ interface MainPageProps {
   }>;
 }
 
-export class Main extends Block<{}> {
+export class Main extends Block<MainPageProps> {
   render() {
     return template;
   }

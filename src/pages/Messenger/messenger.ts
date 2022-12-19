@@ -1,5 +1,5 @@
 import Block from 'core/Block';
-import template from 'bundle-text:./template.hbs';
+import template from 'bundle-text:./messenger.hbs';
 
 interface MessengerProps {
   sideMenuExpanded: boolean;
@@ -7,7 +7,7 @@ interface MessengerProps {
 }
 
 
-export class Messenger extends Block<{}> {
+export class Messenger extends Block<MessengerProps> {
   render() {
     return template;
   }

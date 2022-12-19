@@ -1,7 +1,7 @@
 import Block from 'core/Block';
-import template from 'bundle-text:./template.hbs';
+import template from 'bundle-text:./button.hbs';
 
-import './style.css';
+import './button.css';
 
 interface ButtonProps {
   text: string;

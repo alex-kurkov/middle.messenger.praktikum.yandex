@@ -2,7 +2,6 @@ import { InputProps } from 'components/input/input';
 import Block from './Block';
 
 type ValidateRuleType = Values<typeof Validator.ValidateRules>;
-type RegexType = Values<typeof Validator.RE>;
 
 export default class Validator {
   static ValidateRules = {

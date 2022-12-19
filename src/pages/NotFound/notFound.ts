@@ -1,5 +1,5 @@
 import Block from 'core/Block';
-import template from 'bundle-text:./template.hbs';
+import template from 'bundle-text:./notFound.hbs';
 
 interface NotFoundPageProps {
   title: string;
@@ -8,7 +8,7 @@ interface NotFoundPageProps {
   link: string;
 }
 
-export class NotFoundPage extends Block<{}> {
+export class NotFoundPage extends Block<NotFoundPageProps> {
   constructor(props: NotFoundPageProps) {
     super({ ...props });
   }

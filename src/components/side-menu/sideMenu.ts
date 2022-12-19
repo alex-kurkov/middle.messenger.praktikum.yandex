@@ -1,6 +1,6 @@
 import Block from "core/Block";
-import './style.css';
-import template from 'bundle-text:./template.hbs';
+import './sideMenu.css';
+import template from 'bundle-text:./sideMenu.hbs';
 
 export class SideMenu extends Block<{}> {
   render() {

@@ -1,6 +1,6 @@
 import { Block } from '../../core';
-import './style.css';
-import template from 'bundle-text:./template.hbs';
+import './formAddon.css';
+import template from 'bundle-text:./formAddon.hbs';
 
 interface FormAddonProps {
   text?: string;
@@ -9,6 +9,9 @@ interface FormAddonProps {
 }
 
 export class FormAddon extends Block<{}> {
+  constructor(p: FormAddonProps) {
+    super(p);
+  }
   render() {
     return template;
   }
