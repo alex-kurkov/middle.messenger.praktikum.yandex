@@ -1,6 +1,6 @@
 import Block from "core/Block";
-import './style.css';
-import template from 'bundle-text:./template.hbs';
+import './profileEdit.css';
+import template from 'bundle-text:./profileEdit.hbs';
 
 interface ProfileEditProps {
   mainView: boolean;

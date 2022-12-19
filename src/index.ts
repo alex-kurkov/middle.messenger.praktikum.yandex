@@ -20,6 +20,8 @@ import Login from 'pages/Login';
 import Messenger from 'pages/Messenger';
 import Profile from 'pages/Profile';
 import ErrorComponent from 'components/error';
+import profileEditData from 'components/profile-edit-data';
+import profileEditPassword from 'components/profile-edit-password';
 
 registerComponent(Button);
 registerComponent(Input);
@@ -35,6 +37,8 @@ registerComponent(MenuMessage);
 registerComponent(Feed);
 registerComponent(FeedMessage);
 registerComponent(ProfileEdit);
+registerComponent(profileEditData);
+registerComponent(profileEditPassword);
 
 const Page400 = new NotFoundPage(props.page400);
 const Page500 = new NotFoundPage(props.page500);
