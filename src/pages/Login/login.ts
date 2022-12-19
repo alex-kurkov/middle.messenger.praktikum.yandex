@@ -12,12 +12,11 @@ interface LoginProps {
     linkText: string;
   };
 }
-
-export class Login extends Block<{}> {
+export class Login extends Block<LoginProps> {
   constructor(props: LoginProps) {
-    const { formTitle, inputs: inputsRaw, addon } = props;
-    super({ formTitle, addon });
-    const validator = new Validator(this, inputsRaw);
+    super(props);
+
+    const validator = new Validator(this, props.inputs);
     validator.init();
   }
 

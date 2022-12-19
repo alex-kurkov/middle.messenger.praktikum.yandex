@@ -3,9 +3,9 @@ import template from 'bundle-text:./input.hbs';
 import './input.css';
 
 export interface InputProps {
-  onChange?: (e: InputEvent) => void;
-  onFocus?: (e: InputEvent) => void;
-  onBlur?: (e: InputEvent) => void;
+  onChange: (e: InputEvent) => void;
+  onFocus: (e: InputEvent) => void;
+  onBlur: (e: InputEvent) => void;
   type?: string;
   placeholder?: string;
   name?: string;
@@ -21,13 +21,23 @@ export interface InputProps {
   errorRef?: string;
 }
 
-export class Input extends Block<{}> {
-  constructor({onChange, onFocus, onBlur, ...props }: InputProps) {
-    super({...props, events: {
-      input: onChange,
-      focus: onFocus,
-      blur: onBlur,
-    }});
+export class Input extends Block<
+  Omit<InputProps, 'onChange' | 'onFocus' | 'onBlur'> & BlockEvents
+> {
+  constructor({
+    onChange,
+    onFocus,
+    onBlur,
+    ...props
+  }: InputProps) {
+    super({
+      ...props,
+      events: {
+        input: onChange,
+        focus: onFocus,
+        blur: onBlur,
+      },
+    });
   }
 
   protected render(): string {

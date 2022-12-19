@@ -8,10 +8,7 @@ interface FormAddonProps {
   linkText?: string;
 }
 
-export class FormAddon extends Block<{}> {
-  constructor(p: FormAddonProps) {
-    super(p);
-  }
+export class FormAddon extends Block<FormAddonProps> {
   render() {
     return template;
   }

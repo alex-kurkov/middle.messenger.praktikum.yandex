@@ -6,7 +6,6 @@ interface MessengerProps {
   feedEmpty: boolean;
 }
 
-
 export class Messenger extends Block<MessengerProps> {
   render() {
     return template;

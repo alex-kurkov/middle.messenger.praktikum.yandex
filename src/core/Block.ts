@@ -98,7 +98,7 @@ export default class Block<P extends object> {
     Object.assign(this.state, nextState);
   };
 
-  setProps = (nextProps: P) => {
+  setProps = (nextProps: unknown) => {
     if (!nextProps) {
       return;
     }

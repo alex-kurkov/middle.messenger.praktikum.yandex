@@ -8,9 +8,9 @@ interface ButtonProps {
   onClick: () => void;
 }
 
-export class Button extends Block<{}> {
-  constructor({text, onClick}: ButtonProps) {
-    super({text, events: { click: onClick }});
+export class Button extends Block<Pick<ButtonProps, 'text'> & BlockEvents> {
+  constructor({ text, onClick }: ButtonProps) {
+    super({ text, events: { click: onClick } });
   }
 
   protected render(): string {

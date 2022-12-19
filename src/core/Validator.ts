@@ -3,7 +3,7 @@ import Block from './Block';
 
 type ValidateRuleType = Values<typeof Validator.ValidateRules>;
 
-export default class Validator {
+export default class Validator<P extends {}> {
   static ValidateRules = {
     LOGIN: 'login',
     PASSWORD: 'password',
@@ -41,10 +41,10 @@ export default class Validator {
     LOGIN_INVALID: 'цифры(но не только), латиница, "-" и "_"',
     NAME_INVALID: 'с большой буквы, без пробелов, допустим "-"',
   };
-  block: Block<{}>;
+  block: Block<P>;
   controlledInputs: InputProps[];
 
-  constructor(block: Block<{}>, inputs: InputProps[]) {
+  constructor(block: Block<P>, inputs: InputProps[]) {
     this.block = block;
     this.controlledInputs = this.enrichInputs(inputs);
     this.registerListeners();

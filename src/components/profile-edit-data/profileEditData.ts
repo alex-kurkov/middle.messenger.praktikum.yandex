@@ -8,7 +8,7 @@ interface ProfileEditProps {
   inputs: InputProps[];
 }
 
-export class ProfileEditData extends Block<{}> {
+export class ProfileEditData extends Block<Omit<ProfileEditProps, 'inputs'>> {
   constructor({ inputs, ...props }: ProfileEditProps) {
     super(props);
     const validator = new Validator(this, inputs);

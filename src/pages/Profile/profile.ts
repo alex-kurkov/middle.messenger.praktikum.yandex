@@ -6,7 +6,7 @@ interface ProfileProps {
 }
 
 
-export class Profile extends Block<{}> {
+export class Profile extends Block<ProfileProps> {
   render() {
     return template;
   }

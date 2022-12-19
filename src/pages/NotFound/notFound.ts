@@ -9,9 +9,6 @@ interface NotFoundPageProps {
 }
 
 export class NotFoundPage extends Block<NotFoundPageProps> {
-  constructor(props: NotFoundPageProps) {
-    super({ ...props });
-  }
 
   render() {
     return template;

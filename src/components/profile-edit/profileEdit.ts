@@ -8,10 +8,7 @@ interface ProfileEditProps {
   dataView: boolean;
 }
 
-export class ProfileEdit extends Block<{}> {
-  constructor(props: ProfileEditProps) {
-    super({ ...props });
-  }
+export class ProfileEdit extends Block<ProfileEditProps> {
   render() {
     return template;
   }

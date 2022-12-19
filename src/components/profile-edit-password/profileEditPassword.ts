@@ -9,7 +9,7 @@ interface ProfileEditProps {
   inputs: InputProps[];
 }
 
-export class ProfileEditPassword extends Block<{}> {
+export class ProfileEditPassword extends Block<Omit<ProfileEditProps, 'inputs'>> {
   constructor({ formTitle, inputs }: ProfileEditProps) {
     super({ formTitle });
     const validator = new Validator(this, inputs);
