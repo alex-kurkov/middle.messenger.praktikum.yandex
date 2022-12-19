@@ -1,8 +1,8 @@
 import Block from '../../core/Block';
-import template from 'bundle-text:./template.hbs';
-
+import template from 'bundle-text:./profile.hbs';
 interface ProfileProps {
-
+  sideMenuExpanded: boolean;
+  feedEmpty: boolean;
 }
 
 

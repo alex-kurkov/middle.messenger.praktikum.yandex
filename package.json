@@ -21,6 +21,12 @@
     "url": "https://github.com/alex-kurkov/middle.messenger.praktikum.yandex/issues"
   },
   "homepage": "https://github.com/alex-kurkov/middle.messenger.praktikum.yandex#readme",
+  "alias": {
+    "core": "./src/core",
+    "components": "./src/components",
+    "helpers": "./src/helpers",
+    "pages": "./src/pages"
+  },
   "dependencies": {
     "handlebars": "4.7.7",
     "nanoid": "4.0.0"

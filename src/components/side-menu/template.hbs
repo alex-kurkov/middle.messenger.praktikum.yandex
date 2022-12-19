@@ -13,11 +13,10 @@
   </div>
 
   <ul class="side-menu__chats">
-    {{#if expanded}}
-      {{#each chats}}
+      {{#each chats }}
       <li>
         {{{MenuMessage 
-          expanded=true
+          expanded=@root.expanded
           active=active 
           avatar=avatar 
           unread_count=unread_count
@@ -29,23 +28,6 @@
         }}}
       </li>
       {{/each}}
-    {{else}}
-      {{#each chats}}
-      <li>
-        {{{MenuMessage 
-          expanded=false
-          active=active 
-          avatar=avatar 
-          unread_count=unread_count
-          last_message=last_message
-          lastIsMine=lastIsMine
-          title=title
-          id=id
-          files=files 
-        }}}
-      </li>
-      {{/each}}
-    {{/if}}
   </ul>
 
   <div class="side-menu__footer flex-centered">

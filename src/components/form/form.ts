@@ -1,5 +1,5 @@
-import { Block } from "../../core";
-import './style.css';
+import Block from "core/Block";
+import './form.css';
 import template from 'bundle-text:./template.hbs';
 
 export class Form extends Block<{}> {

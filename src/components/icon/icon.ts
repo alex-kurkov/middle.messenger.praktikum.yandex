@@ -1,4 +1,4 @@
-import { Block } from "../../core";
+import Block from 'core/Block';
 import './style.css';
 import addPerson from 'bundle-text:./add-person.hbs';
 import avatarEdit from 'bundle-text:./avatar-edit.hbs';
@@ -12,29 +12,32 @@ import settings from 'bundle-text:./settings.hbs';
 import sound from 'bundle-text:./sound.hbs';
 
 enum IconTypes {
-  'close',
-  'addPerson',
-  'avatarEdit',
-  'clip',
-  'chatSettings',
-  'expand',
-  'search',
-  'send',
-  'settings',
-  'sound',
+  CLOSE = 'close',
+  ADD_PERSON = 'addPerson',
+  AVATAT_EDIT = 'avatarEdit',
+  CLIP = 'clip',
+  CHAT_SETTINGS = 'chatSettings',
+  EXPAND = 'expand',
+  SEARCH = 'search',
+  SEND = 'send',
+  SETTINGS = 'settings',
+  SOUND = 'sound',
 }
 
 interface IconProps {
   type: IconTypes;
-  onClick?: () => void;
+  onClick: () => void;
 }
 
-export class Icon extends Block {
-  constructor({ type, onClick }: IconProps) {
-    super({ type, events: { click: onClick } });
+export class Icon extends Block<IconProps> {
+  constructor(props: IconProps) {
+    super(props);
   }
 
   render() {
+    if (!this.props.type) {
+      return '<span>не могу отобразить иконку без поля type</span>'
+    }
     switch (this.props.type) {
       case 'close':
         return close;
