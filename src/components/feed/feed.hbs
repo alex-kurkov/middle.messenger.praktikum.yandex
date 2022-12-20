@@ -17,15 +17,11 @@
       </li>
     {{/each}}
     </ul>
-
-    <div class="feed__new-message-wrap flex-centered">
-      {{#with message_input}}
-        {{{Input name=name placeholder=placeholder}}}    
-      {{/with}}
-      <div class="feed__clip-icon icon icon_medium">{{{Icon type="clip"}}}</div>
-      <div class="feed__send-icon icon icon_medium">{{{Icon type="send"}}}</div>
-    </div>
-
   {{/with}}
+    <div class="feed__new-message-wrap flex-centered">
+      {{{Form inputs=inputs ref="formRef" formButton=false}}}
+      <div class="feed__clip-icon icon icon_medium">{{{Icon ref="addFile" type="clip"}}}</div>
+      <div class="feed__send-icon icon icon_medium">{{{Icon ref="submitButton" type="send"}}}</div>
+    </div>
 {{/if}}
 </section>

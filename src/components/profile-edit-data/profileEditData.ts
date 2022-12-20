@@ -15,7 +15,7 @@ export class ProfileEditData extends Block<Omit<ProfileEditProps, 'inputs'>> {
   constructor(props: ProfileEditProps) {
     super(props);
 
-    const validator = new ValidatorController(this, props.inputs);
+    const validator = new ValidatorController(this, props.inputs, true);
     validator.init();
 
     this.eventBus.on(Block.EVENTS.FORM_SUBMIT, () =>

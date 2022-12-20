@@ -20,7 +20,7 @@ export class Login extends Block<LoginProps> {
   constructor(props: LoginProps) {
     super(props);
 
-    const validator = new ValidatorController(this, props.inputs);
+    const validator = new ValidatorController(this, props.inputs, true);
     validator.init();
 
     this.eventBus.on(Block.EVENTS.FORM_SUBMIT, () => console.log(validator.errors));

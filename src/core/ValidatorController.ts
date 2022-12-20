@@ -3,15 +3,16 @@ import Block from './Block';
 import Validator, { ValidateRuleType } from './Validator';
 
 export default class ValidatorController<P extends {}> extends Validator {
-  
+  renderErrors: boolean = false;
   block: Block<P>;
   controlledInputs: InputProps[];
 
-  constructor(block: Block<P>, inputs: InputProps[]) {
+  constructor(block: Block<P>, inputs: InputProps[], renderErrors: boolean) {
     super();
     this.block = block;
     this.controlledInputs = this.enrichInputs(inputs);
     this.registerListeners();
+    this.renderErrors = renderErrors;
   }
 
   init() {
@@ -70,8 +71,11 @@ export default class ValidatorController<P extends {}> extends Validator {
   }
 
   renderErrorText(inputName: ValidateRuleType, error: string): void {
+    if (!this.renderErrors) {
+      return;
+    }
     const inputRef = inputName + '_inputRef';
-    this.block.refs.formRef.refs[inputRef].refs.error.setProps({
+    this.block.refs.formRef.refs[inputRef]?.refs?.error?.setProps({
       error,
     });
   }
@@ -119,7 +123,10 @@ export default class ValidatorController<P extends {}> extends Validator {
     const { Messages, ValidateRules } = Validator;
 
     if (
-      !(ruleType === ValidateRules.NEW_PASSWORD || ruleType === ValidateRules.REPEAT_PASSWORD) ||
+      !(
+        ruleType === ValidateRules.NEW_PASSWORD ||
+        ruleType === ValidateRules.REPEAT_PASSWORD
+      ) ||
       errorMessage.length
     ) {
       return errorMessage;

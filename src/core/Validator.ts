@@ -12,6 +12,7 @@ export default class Validator {
     FIRST_NAME: 'first_name',
     SECOND_NAME: 'second_name',
     DISPLAY_NAME: 'display_name',
+    MESSAGE: 'message',
   };
   static RE = {
     HAS_DIGIT_REGEX: /\d/,
@@ -39,6 +40,7 @@ export default class Validator {
     LESS_THAN_40: 'не больше 40 символов',
     LOGIN_INVALID: 'цифры(но не только), латиница, "-" и "_"',
     NAME_INVALID: 'с большой буквы, без пробелов, допустим "-"',
+    MESSAGE_NOT_EMPTY: 'сообщение должно состоять как минимум из 1 символа...',
   };
 
   constructor() {}
@@ -282,12 +284,26 @@ export default class Validator {
           break;
         }
         break;
-      // от 10 до 15 символов, состоит из цифр !DONE
+
+      // ------------------------
+      // от 10 до 15 символов, состоит из цифр
+      // ------------------------
       case ValidateRules.PHONE:
         const digits = value.match(/\d/g);
 
         if (!digits || !RE.TEN_TO_FIFTEEN_DIGITS_REGEX.test(digits.join(''))) {
           errorMessage = Messages.PHONE_INVALID;
+          break;
+        }
+        break;
+      
+      // ------------------------
+      // от 10 до 15 символов, состоит из цифр
+      // ------------------------
+      case ValidateRules.MESSAGE:
+
+        if (!value.length) {
+          errorMessage = Messages.MESSAGE_NOT_EMPTY;
           break;
         }
         break;
