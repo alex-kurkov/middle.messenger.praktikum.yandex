@@ -14,9 +14,10 @@ export default class Block<P extends object> {
     FLOW_CDM: 'flow:component-did-mount',
     FLOW_CDU: 'flow:component-did-update',
     FLOW_RENDER: 'flow:render',
-    INPUT_CHANGED: 'form:input-event-occured',
-    INPUT_BLURRED: 'form:input-blur-occured',
-    INPUT_FOCUSED: 'form:input-focus-occured',
+    INPUT_CHANGED: 'form:input-event-did-change',
+    INPUT_BLURRED: 'form:input-blur-did-blur',
+    INPUT_FOCUSED: 'form:input-focus-did-focus',
+    FORM_SUBMIT: 'form:did-submit',
   } as const;
 
   name: string;
@@ -28,10 +29,11 @@ export default class Block<P extends object> {
   protected children: { [id: string]: Block<{}> } = {};
 
   eventBus: EventBus<BlockEvents>;
-
-  state: any = {};
+  
   refs: { [key: string]: Block<{}> } = {};
 
+  public state: any = {};
+  
   public constructor(props: P) {
     this.name = this.constructor.name;
     this.eventBus = new EventBus<BlockEvents>();
@@ -113,13 +115,13 @@ export default class Block<P extends object> {
   _render() {
     const fragment = this._compile();
 
-    this._removeEvents();
+    this.removeEvents();
     const newElement = fragment.firstElementChild!;
 
     this._element!.replaceWith(newElement);
 
     this._element = newElement as HTMLElement;
-    this._addEvents();
+    this.addEvents();
   }
 
   protected render(): string {
@@ -165,7 +167,7 @@ export default class Block<P extends object> {
     return document.createElement(tagName);
   }
 
-  _removeEvents() {
+  removeEvents() {
     const events: Record<string, () => void> = (this.props as any).events;
 
     if (!events || !this._element) {
@@ -177,7 +179,7 @@ export default class Block<P extends object> {
     });
   }
 
-  _addEvents() {
+  addEvents() {
     const events: Record<string, () => void> = (this.props as any).events;
 
     if (!events) {

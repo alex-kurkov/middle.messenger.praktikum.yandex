@@ -1,15 +1,11 @@
-<form 
-  class="form"
-  action=""
-  name=""
-    >
-    <fieldset class="form__fieldset text text_size_m text_weight_regular">
+<form class="form" action="" name="">
+  <fieldset class="form__fieldset text text_size_m text_weight_regular">
     <legend class="form__legend">
       {{formTitle}}
     </legend>
-      {{#each inputs}}
-        {{#with this}}
-        {{{ InputField 
+    {{#each inputs}}
+      {{#with this}}
+        {{{InputField
           labelText=labelText
           name=name
           type=type
@@ -26,14 +22,18 @@
           ref=ref
           errorRef=errorRef
         }}}
-        {{/with}}
-      {{/each}}
-    </fieldset>
-    {{#if addon}}
-      <div class="form__addon text text_size_m text_weight_regular">
-        <span>{{addon.text}}</span>
-        <a class="text-link" href={{addon.link}}><span>{{addon.linkText}}</span></a>
-      </div>
-    {{/if}}
+      {{/with}}
+    {{/each}}
+  </fieldset>
+  {{#if addon}}
+    <div class="form__addon text text_size_m text_weight_regular">
+      <span>{{addon.text}}</span>
+      <a class="text-link" href={{addon.link}}>
+        <span>{{addon.linkText}}</span>
+      </a>
+    </div>
+  {{/if}}
+  {{#if formButton}}
+    {{{Button ref="submitButton" text=formButton.text}}}
+  {{/if}}
 </form>
-

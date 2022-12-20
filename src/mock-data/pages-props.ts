@@ -270,6 +270,7 @@ export default {
     title: 'Страницы проекта',
   },
   loginPage: {
+    formName: 'login',
     formTitle: 'Вход',
     inputs: [
       {
@@ -291,13 +292,10 @@ export default {
         ref: 'password_inputRef',
         errorRef: 'password_errorRef',
       },
-      {
-        type: 'button',
-        name: 'login',
-        value: 'Войти',
-        id: nanoid(4),
-      },
     ],
+    formButton: {
+      text: 'Войти',
+    },
     addon: {
       text: null,
       link: 'register',
@@ -306,6 +304,10 @@ export default {
   },
   registerPage: {
     formTitle: 'Регистрация',
+    formName: 'register',
+    formButton: {
+      text: 'Зарегистрироваться',
+    },
     inputs: [
       {
         type: 'text',
@@ -380,17 +382,11 @@ export default {
       {
         type: 'password',
         labelText: 'Пароль еще раз',
-        name: 'repeat-password',
+        name: 'repeat_password',
         required: true,
         id: nanoid(4),
-        ref: 'repeat-password_inputRef',
-        errorRef: 'repeat-password_errorRef',
-      },
-      {
-        type: 'button',
-        name: 'signup',
-        value: 'Зарегистрироваться',
-        id: nanoid(4),
+        ref: 'repeat_password_inputRef',
+        errorRef: 'repeat_password_errorRef',
       },
     ],
     addon: {

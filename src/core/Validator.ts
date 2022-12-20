@@ -9,6 +9,7 @@ export default class Validator<P extends {}> {
     PASSWORD: 'password',
     OLD_PASSWORD: 'oldPassword',
     NEW_PASSWORD: 'newPassword',
+    REPEAT_PASSWORD: 'repeat_password',
     PHONE: 'phone',
     EMAIL: 'email',
     FIRST_NAME: 'first_name',
@@ -31,7 +32,8 @@ export default class Validator<P extends {}> {
     GREATER_THAN_3: 'поле должно быть не меньше 3 символов',
     GREATER_THAN_8: 'поле должно быть не меньше 8 символов',
     HAS_CAP_AND_DIGIT: 'должны быть как минимум одна цифра и заглавная буква',
-    PASSWORDS_MATCH: 'пароли не должны совпадать',
+    PASSWORDS_SHOULD_NOT_MATCH: 'пароли не должны совпадать',
+    PASSWORDS_SHOULD_MATCH: 'пароли должны совпадать',
     SHOULD_HAVE_CAPITAL: 'должна быть как минимум одна заглавная буква',
     SHOULD_HAVE_DIGIT: 'должна быть как минимум одна цифра',
     SHOULD_HAVE_LOWER: 'должна быть как минимум одна строчная буква',
@@ -58,10 +60,11 @@ export default class Validator<P extends {}> {
     const state = this.controlledInputs.reduce(
       (state, input) => {
         const value: string = input.value ? input.value : '';
+        const error: string = this.validate(input.name!, value);
         return {
           errors: {
             ...state.errors,
-            [input.name!]: '',
+            [input.name!]: error,
           },
           values: {
             ...state.values,
@@ -80,17 +83,28 @@ export default class Validator<P extends {}> {
       return {
         ...input,
         onBlur: (e: InputEvent) =>
-          this.block.eventBus.emit('form:input-blur-occured', e!.target!),
+          this.block.eventBus.emit(Block.EVENTS.INPUT_BLURRED, e!.target!),
         onChange: (e: InputEvent) =>
-          this.block.eventBus.emit('form:input-event-occured', e!.target!),
+          this.block.eventBus.emit(Block.EVENTS.INPUT_CHANGED, e!.target!),
         onFocus: (e: InputEvent) =>
-          this.block.eventBus.emit('form:input-focus-occured', e!.target!),
+          this.block.eventBus.emit(Block.EVENTS.INPUT_FOCUSED, e!.target!),
       };
     });
   }
 
   get inputs() {
     return this.controlledInputs;
+  }
+
+  get errors() {
+    return this.block.state.errors;
+  }
+
+  get hasErrors() {
+    const errorsArr: string[] = Array.from(
+      Object.values(this.block.state.errors)
+    );
+    return errorsArr.some((error: string) => error.length);
   }
 
   renderErrorText(inputName: ValidateRuleType, error: string): void {
@@ -148,9 +162,10 @@ export default class Validator<P extends {}> {
     const { RE, Messages, ValidateRules } = Validator;
 
     switch (ruleType) {
+      // ------------------------
       // латиница или кириллица, первая буква должна быть заглавной,
       // без пробелов и без цифр, нет спецсимволов(допустим только дефис)
-      // !DONE
+      // ------------------------
       case ValidateRules.FIRST_NAME:
         if (value.length === 0) {
           errorMessage = Messages.EMPTY;
@@ -165,6 +180,7 @@ export default class Validator<P extends {}> {
           break;
         }
         break;
+
       case ValidateRules.DISPLAY_NAME:
         if (value.length === 0) {
           errorMessage = Messages.EMPTY;
@@ -194,10 +210,11 @@ export default class Validator<P extends {}> {
         }
         break;
 
+      // ------------------------
       // от 3 до 20 символов, латиница, может содержать цифры,
       // но не состоять из них, без пробелов, без
       // спецсимволов(допустимы дефис и нижнее подчёркивание).
-      // !DONE
+      // ------------------------
       case ValidateRules.LOGIN:
         if (value.length === 0) {
           errorMessage = Messages.EMPTY;
@@ -220,7 +237,11 @@ export default class Validator<P extends {}> {
           break;
         }
         break;
-      // от 8 до 40 символов, обязательно хотя бы одна заглавная буква и цифра !DONE
+
+      // ------------------------
+      // от 8 до 40 символов, обязательно хотя бы одна заглавная
+      // буква и цифра!DONE
+      // ------------------------
       case ValidateRules.PASSWORD:
         if (value.length === 0) {
           errorMessage = Messages.EMPTY;
@@ -254,8 +275,11 @@ export default class Validator<P extends {}> {
           break;
         }
         break;
+
+      // ------------------------
       // от 8 до 40 символов, обязательно хотя бы одна заглавная буква и цифра.
       // Отличный от старого !DONE
+      // ------------------------
       case ValidateRules.NEW_PASSWORD:
         if (value.length === 0) {
           errorMessage = Messages.EMPTY;
@@ -285,7 +309,7 @@ export default class Validator<P extends {}> {
           break;
         }
         if (value === this.block.state.values.oldPassword) {
-          errorMessage = Messages.PASSWORDS_MATCH;
+          errorMessage = Messages.PASSWORDS_SHOULD_NOT_MATCH;
           break;
         }
         if (value.length > 40) {
@@ -293,7 +317,52 @@ export default class Validator<P extends {}> {
           break;
         }
         break;
-      // от 8 до 40 символов, обязательно хотя бы одна заглавная буква и цифра. !DONE
+
+      // ------------------------
+      // от 8 до 40 символов, обязательно хотя бы одна заглавная буква и цифра.
+      // Такой же, как и password
+      // ------------------------
+      case ValidateRules.REPEAT_PASSWORD:
+        if (value.length === 0) {
+          errorMessage = Messages.EMPTY;
+          break;
+        }
+        if (value.length < 8) {
+          errorMessage = Messages.GREATER_THAN_8;
+          break;
+        }
+        if (
+          !RE.HAS_DIGIT_REGEX.test(value) &&
+          !RE.HAS_CAPITAL_REGEX.test(value)
+        ) {
+          errorMessage = Messages.HAS_CAP_AND_DIGIT;
+          break;
+        }
+        if (!Validator.RE.HAS_DIGIT_REGEX.test(value)) {
+          errorMessage = Messages.SHOULD_HAVE_DIGIT;
+          break;
+        }
+        if (!Validator.RE.HAS_CAPITAL_REGEX.test(value)) {
+          errorMessage = Messages.SHOULD_HAVE_CAPITAL;
+          break;
+        }
+        if (!Validator.RE.HAS_LOWERCASE_REGEX.test(value)) {
+          errorMessage = Messages.SHOULD_HAVE_LOWER;
+          break;
+        }
+        if (value !== this.block.state.values.password) {
+          errorMessage = Messages.PASSWORDS_SHOULD_MATCH;
+          break;
+        }
+        if (value.length > 40) {
+          errorMessage = Messages.LESS_THAN_40;
+          break;
+        }
+        break;
+
+      // ------------------------
+      // от 8 до 40 символов, обязательно хотя бы одна заглавная буква и цифра.
+      // ------------------------
       case ValidateRules.OLD_PASSWORD:
         if (value.length === 0) {
           errorMessage = Messages.EMPTY;
@@ -327,7 +396,10 @@ export default class Validator<P extends {}> {
           break;
         }
         break;
-      // валидная почта !DONE нагуглил-)
+
+      // ------------------------
+      // валидная почта
+      // ------------------------
       case ValidateRules.EMAIL:
         if (!RE.EMAIL_REGEX.test(value)) {
           errorMessage = Messages.EMAIL_INVALID;

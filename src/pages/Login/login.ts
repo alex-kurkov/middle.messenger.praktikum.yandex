@@ -3,9 +3,12 @@ import template from 'bundle-text:./login.hbs';
 import { InputProps } from 'components/input/input';
 import Validator from 'core/Validator';
 interface LoginProps {
-  formTitle?: string;
+  formTitle: string;
+  formName: string;
   inputs: InputProps[];
-  formRef?: string;
+  formButton: {
+    text: string
+  }
   addon: {
     text?: Nullable<string>;
     link: string;
@@ -18,6 +21,18 @@ export class Login extends Block<LoginProps> {
 
     const validator = new Validator(this, props.inputs);
     validator.init();
+
+    this.eventBus.on(Block.EVENTS.FORM_SUBMIT, () => console.log(validator.errors));
+
+    const submitButton = this.refs.formRef.refs.submitButton;
+    if (submitButton) {
+      submitButton
+        .getContent()
+        .addEventListener('click', () =>
+          this.eventBus.emit(Block.EVENTS.FORM_SUBMIT)
+        );
+    }
+
   }
 
   render() {

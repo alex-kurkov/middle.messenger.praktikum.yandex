@@ -4,8 +4,8 @@ import template from 'bundle-text:./button.hbs';
 import './button.css';
 
 interface ButtonProps {
-  text: string;
-  onClick: () => void;
+  text?: string;
+  onClick?: () => void;
 }
 
 export class Button extends Block<Pick<ButtonProps, 'text'> & BlockEvents> {
