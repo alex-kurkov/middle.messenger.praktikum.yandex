@@ -1,8 +1,8 @@
-import Block from "core/Block";
-import ValidatorController from "core/ValidatorController";
+import Block from 'core/Block';
+import ValidatorController from 'core/ValidatorController';
 import './profileEditPassword.css';
 import template from 'bundle-text:./profileEditPassword.hbs';
-import { InputProps } from "components/input/input";
+import { InputProps } from 'components/input/input';
 
 interface ProfileEditProps {
   formTitle?: string;
@@ -12,16 +12,19 @@ interface ProfileEditProps {
   };
 }
 
-export class ProfileEditPassword extends Block<Omit<ProfileEditProps, 'inputs'>> {
+export class ProfileEditPassword extends Block<
+  Omit<ProfileEditProps, 'inputs'>
+> {
   constructor(props: ProfileEditProps) {
     super(props);
 
     const validator = new ValidatorController(this, props.inputs, true);
     validator.init();
 
-    this.eventBus.on(Block.EVENTS.FORM_SUBMIT, () =>
-      console.log(validator.errors)
-    );
+    this.eventBus.on(Block.EVENTS.FORM_SUBMIT, () => {
+      console.log('Ошибки: ', validator.errors);
+      console.log('Данные: ', this.state.values);
+    });
 
     const submitButton = this.refs.formRef.refs.submitButton;
     if (submitButton) {

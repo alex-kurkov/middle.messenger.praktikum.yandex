@@ -8,7 +8,7 @@ interface ProfileEditProps {
   inputs: InputProps[];
   formButton: {
     text: string;
-  }
+  };
 }
 
 export class ProfileEditData extends Block<Omit<ProfileEditProps, 'inputs'>> {
@@ -18,9 +18,10 @@ export class ProfileEditData extends Block<Omit<ProfileEditProps, 'inputs'>> {
     const validator = new ValidatorController(this, props.inputs, true);
     validator.init();
 
-    this.eventBus.on(Block.EVENTS.FORM_SUBMIT, () =>
-      console.log(validator.errors)
-    );
+    this.eventBus.on(Block.EVENTS.FORM_SUBMIT, () => {
+      console.log('Ошибки: ', validator.errors);
+      console.log('Данные: ', this.state.values);
+    });
 
     const submitButton = this.refs.formRef.refs.submitButton;
     if (submitButton) {

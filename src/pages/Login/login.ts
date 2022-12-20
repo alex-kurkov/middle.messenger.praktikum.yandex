@@ -8,8 +8,8 @@ interface LoginProps {
   formName: string;
   inputs: InputProps[];
   formButton: {
-    text: string
-  }
+    text: string;
+  };
   addon: {
     text?: Nullable<string>;
     link: string;
@@ -23,7 +23,10 @@ export class Login extends Block<LoginProps> {
     const validator = new ValidatorController(this, props.inputs, true);
     validator.init();
 
-    this.eventBus.on(Block.EVENTS.FORM_SUBMIT, () => console.log(validator.errors));
+    this.eventBus.on(Block.EVENTS.FORM_SUBMIT, () => {
+      console.log('Ошибки: ', validator.errors);
+      console.log('Данные: ', this.state.values);
+    });
 
     const submitButton = this.refs.formRef.refs.submitButton;
     if (submitButton) {
@@ -33,7 +36,6 @@ export class Login extends Block<LoginProps> {
           this.eventBus.emit(Block.EVENTS.FORM_SUBMIT)
         );
     }
-
   }
 
   render() {
