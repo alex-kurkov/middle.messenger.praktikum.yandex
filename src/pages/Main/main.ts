@@ -3,11 +3,11 @@ import template from 'bundle-text:./main.hbs';
 
 interface MainPageProps {
   title: string;
-  links: Array<{
+  links: {
     pageUrl: string;
     text: string;
-    labelText?: string;
-  }>;
+    labelText?: Nullable<string>;
+  }[];
 }
 
 export class Main extends Block<MainPageProps> {

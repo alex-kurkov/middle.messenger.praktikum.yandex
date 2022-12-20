@@ -1,9 +1,6 @@
-import { InputProps } from 'components/input/input';
-import Block from './Block';
+export type ValidateRuleType = Values<typeof Validator.ValidateRules>;
 
-type ValidateRuleType = Values<typeof Validator.ValidateRules>;
-
-export default class Validator<P extends {}> {
+export default class Validator {
   static ValidateRules = {
     LOGIN: 'login',
     PASSWORD: 'password',
@@ -43,119 +40,8 @@ export default class Validator<P extends {}> {
     LOGIN_INVALID: 'цифры(но не только), латиница, "-" и "_"',
     NAME_INVALID: 'с большой буквы, без пробелов, допустим "-"',
   };
-  block: Block<P>;
-  controlledInputs: InputProps[];
 
-  constructor(block: Block<P>, inputs: InputProps[]) {
-    this.block = block;
-    this.controlledInputs = this.enrichInputs(inputs);
-    this.registerListeners();
-  }
-
-  init() {
-    this.block.setProps({
-      inputs: this.controlledInputs,
-    });
-
-    const state = this.controlledInputs.reduce(
-      (state, input) => {
-        const value: string = input.value ? input.value : '';
-        const error: string = this.validate(input.name!, value);
-        return {
-          errors: {
-            ...state.errors,
-            [input.name!]: error,
-          },
-          values: {
-            ...state.values,
-            [input.name!]: value,
-          },
-        };
-      },
-      { errors: {}, values: {} }
-    );
-
-    this.block.setState(state);
-  }
-
-  enrichInputs(inputs: InputProps[]): InputProps[] {
-    return inputs.map((input) => {
-      return {
-        ...input,
-        onBlur: (e: InputEvent) =>
-          this.block.eventBus.emit(Block.EVENTS.INPUT_BLURRED, e!.target!),
-        onChange: (e: InputEvent) =>
-          this.block.eventBus.emit(Block.EVENTS.INPUT_CHANGED, e!.target!),
-        onFocus: (e: InputEvent) =>
-          this.block.eventBus.emit(Block.EVENTS.INPUT_FOCUSED, e!.target!),
-      };
-    });
-  }
-
-  get inputs() {
-    return this.controlledInputs;
-  }
-
-  get errors() {
-    return this.block.state.errors;
-  }
-
-  get hasErrors() {
-    const errorsArr: string[] = Array.from(
-      Object.values(this.block.state.errors)
-    );
-    return errorsArr.some((error: string) => error.length);
-  }
-
-  renderErrorText(inputName: ValidateRuleType, error: string): void {
-    const inputRef = inputName + '_inputRef';
-    this.block.refs.formRef.refs[inputRef].refs.error.setProps({
-      error,
-    });
-  }
-
-  handleFormChange(target: HTMLInputElement): void {
-    const inputName: ValidateRuleType = target.name as ValidateRuleType;
-    const error = this.validate(inputName, target.value);
-    if (error.length) {
-      console.log(`ошибка в поле ${inputName}: `, error);
-    }
-    this.block.state.errors[inputName] = error;
-    this.block.state.values[inputName] = target.value;
-
-    this.renderErrorText(inputName, error);
-  }
-  handleInputBlur(target: HTMLInputElement) {
-    const inputName: ValidateRuleType = target.name as ValidateRuleType;
-    this.renderErrorText(inputName, '');
-    console.log('catch eventBus input blur');
-  }
-  handleInputFocus(target: HTMLInputElement) {
-    const inputName: ValidateRuleType = target.name as ValidateRuleType;
-    const error = this.validate(inputName, target.value);
-    if (error.length) {
-      console.log(`ошибка в поле: ${inputName}: `, error);
-    }
-    this.block.state.errors[inputName] = error;
-    this.block.state.values[inputName] = target.value;
-
-    this.renderErrorText(inputName, error);
-  }
-
-  registerListeners() {
-    this.block.eventBus.on(
-      Block.EVENTS.INPUT_CHANGED,
-      this.handleFormChange.bind(this)
-    );
-    this.block.eventBus.on(
-      Block.EVENTS.INPUT_BLURRED,
-      this.handleInputBlur.bind(this)
-    );
-    this.block.eventBus.on(
-      Block.EVENTS.INPUT_FOCUSED,
-      this.handleInputFocus.bind(this)
-    );
-  }
+  constructor() {}
 
   validate(ruleType: ValidateRuleType, value: string): string {
     let errorMessage = '';
@@ -278,7 +164,6 @@ export default class Validator<P extends {}> {
 
       // ------------------------
       // от 8 до 40 символов, обязательно хотя бы одна заглавная буква и цифра.
-      // Отличный от старого !DONE
       // ------------------------
       case ValidateRules.NEW_PASSWORD:
         if (value.length === 0) {
@@ -308,10 +193,6 @@ export default class Validator<P extends {}> {
           errorMessage = Messages.SHOULD_HAVE_LOWER;
           break;
         }
-        if (value === this.block.state.values.oldPassword) {
-          errorMessage = Messages.PASSWORDS_SHOULD_NOT_MATCH;
-          break;
-        }
         if (value.length > 40) {
           errorMessage = Messages.LESS_THAN_40;
           break;
@@ -320,7 +201,6 @@ export default class Validator<P extends {}> {
 
       // ------------------------
       // от 8 до 40 символов, обязательно хотя бы одна заглавная буква и цифра.
-      // Такой же, как и password
       // ------------------------
       case ValidateRules.REPEAT_PASSWORD:
         if (value.length === 0) {
@@ -348,10 +228,6 @@ export default class Validator<P extends {}> {
         }
         if (!Validator.RE.HAS_LOWERCASE_REGEX.test(value)) {
           errorMessage = Messages.SHOULD_HAVE_LOWER;
-          break;
-        }
-        if (value !== this.block.state.values.password) {
-          errorMessage = Messages.PASSWORDS_SHOULD_MATCH;
           break;
         }
         if (value.length > 40) {

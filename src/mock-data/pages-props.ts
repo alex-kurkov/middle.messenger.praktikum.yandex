@@ -410,6 +410,10 @@ export default {
   profile: {
     editPasswordForm: {
       formTitle: null,
+      formName: 'editPassword',
+      formButton: {
+        text: 'Сохранить',
+      },
       inputs: [
         {
           type: 'password',
@@ -430,11 +434,6 @@ export default {
           errorRef: 'newPassword_errorRef',
           id: nanoid(7),
         },
-        {
-          type: 'button',
-          name: 'signup',
-          value: 'Сохранить',
-        },
       ],
       addon: null,
     },
@@ -447,6 +446,10 @@ export default {
     },
     editPersonalDataForm: {
       formTitle: null,
+      formName: 'editPersonalData',
+      formButton: {
+        text: 'Сохранить',
+      },
       inputs: [
         {
           type: 'text',
@@ -500,11 +503,6 @@ export default {
           required: false,
           ref: 'phone_inputRef',
           errorRef: 'phone_errorRef',
-        },
-        {
-          type: 'button',
-          name: 'signup',
-          value: 'Сохранить',
         },
       ],
       addon: null,

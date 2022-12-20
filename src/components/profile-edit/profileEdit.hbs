@@ -62,7 +62,7 @@
       alt="Аватар пользователя {{user.display_name}}."
     />
     {{#with editPasswordForm}}
-      {{{ProfileEditPassword inputs=inputs}}}
+      {{{ProfileEditPassword inputs=inputs formButton=formButton}}}
     {{/with}}
   {{/if}}
 
@@ -82,7 +82,7 @@
     {{/with}}
     {{#with editPersonalDataForm}}
     {{{ProfileEditData
-      inputs=inputs
+      inputs=inputs formButton=formButton
     }}}
     {{/with}}
   {{/if}}
