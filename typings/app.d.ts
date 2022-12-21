@@ -15,5 +15,3 @@ declare global {
 }
 
 export {};
-
-declare module '*.hbs';

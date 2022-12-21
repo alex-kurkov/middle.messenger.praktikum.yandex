@@ -7,7 +7,7 @@ import { InputProps } from 'components/input/input';
 interface FeedProps {
   inputs: InputProps[];
   empty: boolean;
-  chatMessages: any[];
+  chatMessages: MSNChat[];
 }
 export class Feed extends Block<FeedProps> {
   static componentName = 'Feed';

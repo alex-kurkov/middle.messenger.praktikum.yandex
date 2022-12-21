@@ -45,7 +45,7 @@ export default class Block<P extends object> {
 
     this.getStateFromProps();
 
-    this.props = this._makePropsProxy(props || ({} as P));
+    this.props = this._makePropsProxy(props) as P;
 
     this._registerEvents(this.eventBus);
 
@@ -76,7 +76,9 @@ export default class Block<P extends object> {
     this.componentDidMount();
   }
 
-  componentDidMount() {}
+  componentDidMount() {
+    return;
+  }
 
   private _componentDidUpdate(oldProps: P, newProps: P) {
     const response = this.componentDidUpdate(oldProps, newProps);
