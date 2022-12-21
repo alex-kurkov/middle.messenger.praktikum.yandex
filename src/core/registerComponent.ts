@@ -3,8 +3,8 @@ import Handlebars, { HelperOptions } from 'handlebars';
 import Block from './Block';
 
 interface BlockConstructable<Props extends object> {
-  componentName: string;
   new(props: Props): Block<Props>;
+  
 }
 
 export default function registerComponent<Props extends object>(

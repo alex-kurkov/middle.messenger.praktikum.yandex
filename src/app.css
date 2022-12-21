@@ -1,7 +1,7 @@
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;700&display=swap');
-@import './styles/vars.css';
-@import './styles/typography.css';
-@import './styles/boxes.css';
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;700&display=swap");
+@import url("./styles/vars.css");
+@import url("./styles/typography.css");
+@import url("./styles/boxes.css");
 
 html,
 body {

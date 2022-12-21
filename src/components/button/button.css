@@ -6,6 +6,7 @@
   border-radius: 4px;
   margin-top: 4px;
   border: none;
+
   &_narrow {
     height: 24px;
   }
@@ -13,6 +14,7 @@
   &:focus {
     box-shadow: 1px 1px 4px var(--accent);
   }
+
   &:hover {
     box-shadow: 1px 1px 4px var(--accent);
     cursor: pointer;

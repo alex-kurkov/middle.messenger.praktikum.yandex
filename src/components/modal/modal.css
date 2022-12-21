@@ -11,11 +11,9 @@
   }
 
   &__centered {
-    display: flex;
-    flex-direction: column;
-    align-content: center;
+    flex-flow: column;
+    place-content: center;
     align-items: center;
-    justify-content: center;
-    flex-wrap: nowrap;
+    display: flex;
   }
 }

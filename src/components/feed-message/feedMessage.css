@@ -4,20 +4,22 @@
   max-width: 80%;
   background-color: var(--base-white);
   float: inline-start;
-  border-radius: 0 20px 20px 20px;
+  border-radius: 0 20px 20px;
   padding: 20px;
   position: relative;
   color: var(--black);
-  
+
   &_isOwn {
     background-color: var(--light-gray);
     float: inline-end;
     border-radius: 20px 0 20px 20px;
   }
+
   &_hasFile {
     padding: 0;
     background-color: transparent;
   }
+
   &__time {
     color: var(--base-white);
     position: absolute;
@@ -25,6 +27,7 @@
     right: 0;
     opacity: 1;
   }
+
   &__image {
     max-width: 100%;
     object-fit: contain;

@@ -4,6 +4,7 @@
   display: flex;
   flex-wrap: nowrap;
   overflow: hidden;
+
   &_active {
     background-color: var(--light-gray-half-opacity);
   }
@@ -30,6 +31,7 @@
     border-radius: 50%;
     background-color: var(--base-white);
   }
+
   &__title {
     color: var(--base-white);
     white-space: nowrap;
@@ -38,10 +40,12 @@
     width: 100%;
     margin-bottom: 8px;
   }
+
   &__content-wrapper {
     padding: 4px;
     width: calc(100% - 80px);
   }
+
   &__content {
     color: var(--base-white);
     white-space: nowrap;
@@ -50,17 +54,18 @@
     width: 100%;
     margin-bottom: 16px;
   }
+
   &__time {
     color: var(--base-white);
     align-self: flex-end;
   }
 
-  &:hover &__title{
+  &:hover &__title {
     color: var(--accent);
   }
 
   &:hover &__image {
-    box-shadow: var(--accent)-shadow;
+    box-shadow: var(--accent) -shadow;
   }
 
   &:hover &__tag {
