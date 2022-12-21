@@ -10,9 +10,10 @@ export default class ValidatorController<P extends {}> extends Validator {
   constructor(block: Block<P>, inputs: InputProps[], renderErrors: boolean) {
     super();
     this.block = block;
+    this.renderErrors = renderErrors;
     this.controlledInputs = this.enrichInputs(inputs);
     this.registerListeners();
-    this.renderErrors = renderErrors;
+    this.init();
   }
 
   init() {
@@ -42,7 +43,7 @@ export default class ValidatorController<P extends {}> extends Validator {
   }
 
   enrichInputs(inputs: InputProps[]): InputProps[] {
-    return inputs.map((input) => {
+      return inputs.map((input) => {
       return {
         ...input,
         onBlur: (e: InputEvent) =>

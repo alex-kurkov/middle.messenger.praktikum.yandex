@@ -13,8 +13,7 @@ export class Feed extends Block<FeedProps> {
     super(props);
 
     const validator = new ValidatorController(this, props.inputs, false);
-    validator.init();
-
+    
     this.eventBus.on(Block.EVENTS.FORM_SUBMIT, () => {
       console.log('Ошибки: ', validator.errors);
       console.log('Данные: ', this.state.values);
