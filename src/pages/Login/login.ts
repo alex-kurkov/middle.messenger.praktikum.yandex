@@ -17,24 +17,24 @@ interface LoginProps {
   };
 }
 export class Login extends Block<LoginProps> {
+  static componentName = 'Login';
+
   constructor(props: LoginProps) {
     super(props);
 
     const validator = new ValidatorController(this, props.inputs, true);
-    
 
     this.eventBus.on(Block.EVENTS.FORM_SUBMIT, () => {
       console.log('Ошибки: ', validator.errors);
-      console.log('Данные: ', this.state.values);
+      console.log('Данные: ', validator.values);
     });
 
-    const submitButton = this.refs.formRef.refs.submitButton;
+    const { submitButton } = this.refs.formRef.refs;
     if (submitButton) {
       submitButton
         .getContent()
         .addEventListener('click', () =>
-          this.eventBus.emit(Block.EVENTS.FORM_SUBMIT)
-        );
+          this.eventBus.emit(Block.EVENTS.FORM_SUBMIT));
     }
   }
 

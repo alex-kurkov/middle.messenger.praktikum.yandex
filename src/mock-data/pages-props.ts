@@ -1,3 +1,4 @@
+/* eslint-disable max-len */
 import { nanoid } from 'nanoid';
 import avatar1 from '../assets/avatar-template.png';
 import avatar2 from '../assets/pear-avatar.png';
@@ -225,38 +226,38 @@ export default {
   mainPage: {
     links: [
       {
-        pageUrl: 'messenger-narrow',
+        pageUrl: '#messenger-narrow',
         text: 'Мессенджер',
         labelText: 'Лента сообщений с узким меню, не выбран чат',
       },
       {
-        pageUrl: 'messenger',
+        pageUrl: '#messenger',
         text: 'Мессенджер',
         labelText: 'Лента сообщений с раскрытым меню',
       },
       {
-        pageUrl: 'login',
+        pageUrl: '#login',
         text: 'Вход',
       },
       {
-        pageUrl: 'register',
+        pageUrl: '#register',
         labelText:
           'Регистрация + разное состояние :focus (на поле пароль), autocomplete и пример ошибки валидации',
         text: 'Регистрация',
       },
       {
-        pageUrl: 'profile',
+        pageUrl: '#profile',
         labelText:
           'Страница своего профиля - кнопки редактирования кликабельны',
         text: 'Профиль',
       },
       {
-        pageUrl: '400',
+        pageUrl: '#400',
         labelText: null,
         text: '400',
       },
       {
-        pageUrl: '500',
+        pageUrl: '#500',
         labelText: null,
         text: '5**',
       },
@@ -292,7 +293,7 @@ export default {
     },
     addon: {
       text: null,
-      link: 'register',
+      link: '#register',
       linkText: 'Нет аккаунта?',
     },
   },
@@ -385,7 +386,7 @@ export default {
     ],
     addon: {
       text: 'Уже зарегистрированы?',
-      link: 'login',
+      link: '#login',
       linkText: 'Войти',
     },
   },
@@ -524,19 +525,19 @@ export default {
         type: 'button',
         name: 'edit',
         text: 'Редактировать',
-        link: 'profile-data',
+        link: '#profile-data',
       },
       {
         type: 'button',
         name: 'edit',
         text: 'Изменить_пароль',
-        link: 'profile-password',
+        link: '#profile-password',
       },
       {
         type: 'button',
         name: 'edit',
         text: 'Выйти',
-        link: 'login',
+        link: '#login',
       },
     ],
     user: {

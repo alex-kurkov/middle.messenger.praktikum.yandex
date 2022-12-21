@@ -1,4 +1,4 @@
-import Block from "core/Block";
+import Block from 'core/Block';
 import './profileEdit.css';
 import template from 'bundle-text:./profileEdit.hbs';
 
@@ -9,6 +9,8 @@ interface ProfileEditProps {
 }
 
 export class ProfileEdit extends Block<ProfileEditProps> {
+  static componentName = 'ProfileEdit';
+
   render() {
     return template;
   }

@@ -1,8 +1,8 @@
-import EventBus from './EventBus';
 import { nanoid } from 'nanoid';
 import Handlebars from 'handlebars';
+import EventBus from './EventBus';
 
-interface BlockMeta<P extends {}> {
+interface BlockMeta<P extends object> {
   props?: P;
 }
 
@@ -20,22 +20,23 @@ export default class Block<P extends object> {
     FORM_SUBMIT: 'form:did-submit',
   } as const;
 
-  name: string;
   public id = nanoid(6);
+
   readonly _meta: BlockMeta<P>;
 
   protected _element: Nullable<HTMLElement> = null;
+
   protected readonly props: P;
-  protected children: { [id: string]: Block<{}> } = {};
 
-  eventBus: EventBus<BlockEvents>;
-  
-  refs: { [key: string]: Block<{}> } = {};
+  protected children: { [id: string]: Block<object> } = {};
 
-  public state: any = {};
-  
-  public constructor(props: P) {
-    this.name = this.constructor.name;
+  eventBus: EventBus<string>;
+
+  refs: { [key: string]: Block<object> } = {};
+
+  state: object = {};
+
+  constructor(props: P) {
     this.eventBus = new EventBus<BlockEvents>();
 
     this._meta = {
@@ -51,14 +52,14 @@ export default class Block<P extends object> {
     this.eventBus.emit(Block.EVENTS.INIT, this.props);
   }
 
-  _registerEvents(eventBus: EventBus<BlockEvents>) {
+  private _registerEvents(eventBus: EventBus<BlockEvents>) {
     eventBus.on(Block.EVENTS.INIT, this.init.bind(this));
     eventBus.on(Block.EVENTS.FLOW_CDM, this._componentDidMount.bind(this));
-    eventBus.on(Block.EVENTS.FLOW_CDU, this._componentDidUpdate.bind(this));
+    eventBus.on(Block.EVENTS.FLOW_CDU, this._componentDidUpdate.bind(this) as () => void);
     eventBus.on(Block.EVENTS.FLOW_RENDER, this._render.bind(this));
   }
 
-  _createResources() {
+  private _createResources() {
     this._element = this._createDocumentElement('div');
   }
 
@@ -66,18 +67,18 @@ export default class Block<P extends object> {
     this.state = {};
   }
 
-  init() {
+  private init() {
     this._createResources();
     this.eventBus.emit(Block.EVENTS.FLOW_RENDER, this.props);
   }
 
-  _componentDidMount() {
+  private _componentDidMount() {
     this.componentDidMount();
   }
 
   componentDidMount() {}
 
-  _componentDidUpdate(oldProps: P, newProps: P) {
+  private _componentDidUpdate(oldProps: P, newProps: P) {
     const response = this.componentDidUpdate(oldProps, newProps);
     if (!response) {
       return;
@@ -92,7 +93,7 @@ export default class Block<P extends object> {
     return false;
   }
 
-  setState = (nextState: any) => {
+  setState = (nextState: object) => {
     if (!nextState) {
       return;
     }
@@ -116,10 +117,11 @@ export default class Block<P extends object> {
     const fragment = this._compile();
 
     this.removeEvents();
-    const newElement = fragment.firstElementChild!;
+    const newElement = fragment.firstElementChild;
 
-    this._element!.replaceWith(newElement);
-
+    if (this._element && newElement) {
+      this._element.replaceWith(newElement);
+    }
     this._element = newElement as HTMLElement;
     this.addEvents();
   }
@@ -127,9 +129,11 @@ export default class Block<P extends object> {
   protected render(): string {
     return '';
   }
+
   dispatchComponentDidMount() {
     this.eventBus.emit(Block.EVENTS.FLOW_CDM);
   }
+
   getContent(): HTMLElement {
     if (this.element?.parentNode?.nodeType === Node.DOCUMENT_FRAGMENT_NODE) {
       setTimeout(() => {
@@ -140,21 +144,22 @@ export default class Block<P extends object> {
         }
       }, 100);
     }
-    return this.element!;
+    return this.element as HTMLElement;
   }
 
-  _makePropsProxy(props: any): any {
-    const self = this;
+  _makePropsProxy = (props: object): object => {
+    // eslint-disable-next-line @typescript-eslint/no-this-alias
+    // const self = this;
 
     return new Proxy(props as unknown as object, {
-      get(target: Record<string, unknown>, prop: string) {
-        const value = target[prop];
+      get: (target: Record<string, unknown>, prop: string) => {
+        const value = Reflect.get(target, prop);
         return typeof value === 'function' ? value.bind(target) : value;
       },
-      set(target: Record<string, unknown>, prop: string, value: unknown) {
+      set: (target: Record<string, unknown>, prop: string, value: unknown) => {
         const oldProps = { ...target };
-        target[prop] = value;
-        self.eventBus.emit(Block.EVENTS.FLOW_CDU, oldProps, target);
+        Reflect.set(target, prop, value);
+        this.eventBus.emit(Block.EVENTS.FLOW_CDU, oldProps, target);
         return true;
       },
       deleteProperty() {
@@ -168,26 +173,30 @@ export default class Block<P extends object> {
   }
 
   removeEvents() {
-    const events: Record<string, () => void> = (this.props as any).events;
+    const { events } = this.props as {events: object};
 
     if (!events || !this._element) {
       return;
     }
 
     Object.entries(events).forEach(([event, listener]) => {
-      this._element!.removeEventListener(event, listener);
+      if (this._element) {
+        this._element.removeEventListener(event, listener);
+      }
     });
   }
 
   addEvents() {
-    const events: Record<string, () => void> = (this.props as any).events;
+    const { events } = this.props as {events: object};
 
     if (!events) {
       return;
     }
 
     Object.entries(events).forEach(([event, listener]) => {
-      this._element!.addEventListener(event, listener);
+      if (this._element) {
+        this._element.addEventListener(event, listener);
+      }
     });
   }
 

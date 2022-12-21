@@ -9,6 +9,8 @@ interface ButtonProps {
 }
 
 export class Button extends Block<Pick<ButtonProps, 'text'> & BlockEvents> {
+  static componentName = 'Button';
+
   constructor({ text, onClick }: ButtonProps) {
     super({ text, events: { click: onClick } });
   }
@@ -17,4 +19,3 @@ export class Button extends Block<Pick<ButtonProps, 'text'> & BlockEvents> {
     return template;
   }
 }
- 

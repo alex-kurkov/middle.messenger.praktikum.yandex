@@ -1,6 +1,6 @@
 export interface RequestOptions {
   timeout?: number;
-  data?: Record<string, any>;
+  data?: object;
   headers?: Record<string, string>;
 }
 enum METHODS {
@@ -21,41 +21,30 @@ enum REJECT_MESSAGES {
 
 export default class Fetch {
   get = (url: string | URL, options: RequestOptions = {}) => {
-    if (!!options?.data) {
+    if (options?.data) {
+      // eslint-disable-next-line no-param-reassign
       url = this.addQueries(options.data, url);
     }
     return this.request(
       url,
       { ...options, method: METHODS.GET },
-      options.timeout
+      options.timeout,
     );
   };
-  post = (url: string | URL, options: RequestOptions = {}) => {
-    return this.request(
-      url,
-      { ...options, method: METHODS.POST },
-      options.timeout
-    );
-  };
-  put = (url: string | URL, options: RequestOptions = {}) => {
-    return this.request(
-      url,
-      { ...options, method: METHODS.PUT },
-      options.timeout
-    );
-  };
-  delete = (url: string | URL, options: RequestOptions = {}) => {
-    return this.request(
-      url,
-      { ...options, method: METHODS.DELETE },
-      options.timeout
-    );
-  };
+
+  post = (url: string | URL, options: RequestOptions = {}) =>
+    this.request(url, { ...options, method: METHODS.POST }, options.timeout);
+
+  put = (url: string | URL, options: RequestOptions = {}) =>
+    this.request(url, { ...options, method: METHODS.PUT }, options.timeout);
+
+  delete = (url: string | URL, options: RequestOptions = {}) =>
+    this.request(url, { ...options, method: METHODS.DELETE }, options.timeout);
 
   request = (
     url: string | URL,
     options: RequestOptions & { method: string },
-    timeout = 5000
+    timeout = 5000,
   ): Promise<XMLHttpRequest> => {
     const { method, headers = {}, data } = options;
 
@@ -78,11 +67,12 @@ export default class Fetch {
 
       xhr.onload = () => resolve(xhr);
 
-      xhr.onabort = (res) => reject({message: REJECT_MESSAGES.REQUEST_ABORTED, res});
-      xhr.onerror = (res) => reject({message: REJECT_MESSAGES.REQUEST_ERROR, res});
-      
+      xhr.onabort = () => reject(new Error(REJECT_MESSAGES.REQUEST_ABORTED));
+      xhr.onerror = () => reject(new Error(REJECT_MESSAGES.REQUEST_ERROR));
+
       xhr.timeout = timeout;
-      xhr.ontimeout = (res) => reject({message: REJECT_MESSAGES.REQUEST_TIMEOUTED, res});
+      xhr.ontimeout = () =>
+        reject(new Error(REJECT_MESSAGES.REQUEST_TIMEOUTED));
 
       xhr.onprogress = () => {
         console.log('progress...');
@@ -98,7 +88,7 @@ export default class Fetch {
 
   private setHeaders(
     xhr: XMLHttpRequest,
-    headers: Record<string, string>
+    headers: Record<string, string>,
   ): void {
     Object.keys(headers).forEach((name) => {
       xhr.setRequestHeader(name, headers[name]);
@@ -116,15 +106,14 @@ export default class Fetch {
     }
 
     if (typeof url === 'string') {
-      const queries = dataEntries.map(([key, value]): string => {
-        return `${key}=${value.toString()}`;
-      });
+      const queries = dataEntries.map(
+        ([key, value]): string => `${key}=${value.toString()}`,
+      );
       return `${url}?${queries.join('&')}`;
-    } else {
-      dataEntries.forEach(([key, value]) => {
-        url.searchParams.append(key, value.toString());
-      });
-      return url;
     }
+    dataEntries.forEach(([key, value]) => {
+      url.searchParams.append(key, value.toString());
+    });
+    return url;
   }
 }

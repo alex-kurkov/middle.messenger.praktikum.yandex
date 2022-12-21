@@ -1,5 +1,7 @@
 # **Учебный проект Мессенджер**
 
+SPRINT_2
+
 [![Netlify Status](https://api.netlify.com/api/v1/badges/71857107-645a-426d-9e52-b4f0b73253ff/deploy-status)](https://app.netlify.com/sites/voluble-marshmallow-b07071/deploys)
 
 ## Сайт, макет, код
@@ -41,6 +43,9 @@ npm run start
 
 - html
 - css
-- постпроцессор postcss с плагинами: autoprefixer, -nested, -import, -simple-vars
+- typescript
+- постпроцессор postcss с плагинами: -nested, -import
 - шаблонизатор handlebars
 - node-сервер express
+- eslint
+- stylelint

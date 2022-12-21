@@ -11,6 +11,8 @@ interface MainPageProps {
 }
 
 export class Main extends Block<MainPageProps> {
+  static componentName = 'Main';
+
   render() {
     return template;
   }

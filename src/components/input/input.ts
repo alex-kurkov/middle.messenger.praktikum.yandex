@@ -8,7 +8,7 @@ export interface InputProps {
   onBlur?: (e: InputEvent) => void;
   type?: string;
   placeholder?: string;
-  name?: string;
+  name: string;
   value?: Nullable<string>;
   error?: Nullable<string>;
   autocomplete?: string;
@@ -24,11 +24,10 @@ export interface InputProps {
 export class Input extends Block<
   Omit<InputProps, 'onChange' | 'onFocus' | 'onBlur'> & BlockEvents
 > {
+  static componentName = 'Input';
+
   constructor({
-    onChange,
-    onFocus,
-    onBlur,
-    ...props
+    onChange, onFocus, onBlur, ...props
   }: InputProps) {
     super({
       ...props,

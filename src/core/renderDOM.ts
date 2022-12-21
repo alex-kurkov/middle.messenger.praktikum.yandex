@@ -1,11 +1,11 @@
 import Block from './Block';
 
-export default function renderDOM(rootSelector: string = '#app', block: Block<{}>) {
+export default function renderDOM(rootSelector = '#app', block: Block<object>) {
   const root = document.querySelector(rootSelector);
   if (!root) {
     throw new Error('no root element found');
   }
 
-  root!.innerHTML = '';
-  root!.appendChild(block.getContent());
+  root.innerHTML = '';
+  root.appendChild(block.getContent());
 }

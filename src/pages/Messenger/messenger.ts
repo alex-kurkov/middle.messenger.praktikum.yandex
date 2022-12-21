@@ -7,11 +7,13 @@ interface MessengerProps {
   feedEmpty: boolean;
   inputs: InputProps[];
   // TODO Lookup models for chats and chatMessages from API when adding logic...
-  chats: any[];
-  chatMessages: any[];
+  chats: [];
+  chatMessages: [];
 }
 
 export class Messenger extends Block<MessengerProps> {
+  static componentName = 'Messenger';
+
   render() {
     return template;
   }

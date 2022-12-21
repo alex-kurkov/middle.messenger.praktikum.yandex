@@ -1,5 +1,3 @@
-export type ValidateRuleType = Values<typeof Validator.ValidateRules>;
-
 export default class Validator {
   static ValidateRules = {
     LOGIN: 'login',
@@ -14,17 +12,20 @@ export default class Validator {
     DISPLAY_NAME: 'display_name',
     MESSAGE: 'message',
   };
+
   static RE = {
     HAS_DIGIT_REGEX: /\d/,
     TEN_TO_FIFTEEN_DIGITS_REGEX: /^\d{10,15}$/,
     HAS_CAPITAL_REGEX: /[A-ZА-Я]/,
     HAS_LOWERCASE_REGEX: /[a-zа-я]/,
     EMAIL_REGEX:
+      // eslint-disable-next-line max-len
       /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
     LATIN_DIGITS_DASH: /[^\d\w-]/,
     NOT_ONLY_DIGITS: /[\D]/,
     NAME_VALID: /^[А-ЯЁA-Z]{1}[a-zа-яё-]*$/,
   };
+
   static Messages = {
     EMPTY: 'поле не должно быть пустым',
     GREATER_THAN_3: 'поле должно быть не меньше 3 символов',
@@ -43,9 +44,10 @@ export default class Validator {
     MESSAGE_NOT_EMPTY: 'сообщение должно состоять как минимум из 1 символа...',
   };
 
-  constructor() {}
-
-  validate(ruleType: ValidateRuleType, value: string): string {
+  validate(
+    ruleType: Values<typeof Validator.ValidateRules>,
+    value: string,
+  ): string {
     let errorMessage = '';
     const { RE, Messages, ValidateRules } = Validator;
 
@@ -140,8 +142,8 @@ export default class Validator {
           break;
         }
         if (
-          !RE.HAS_DIGIT_REGEX.test(value) &&
-          !RE.HAS_CAPITAL_REGEX.test(value)
+          !RE.HAS_DIGIT_REGEX.test(value)
+          && !RE.HAS_CAPITAL_REGEX.test(value)
         ) {
           errorMessage = Messages.HAS_CAP_AND_DIGIT;
           break;
@@ -177,8 +179,8 @@ export default class Validator {
           break;
         }
         if (
-          !RE.HAS_DIGIT_REGEX.test(value) &&
-          !RE.HAS_CAPITAL_REGEX.test(value)
+          !RE.HAS_DIGIT_REGEX.test(value)
+          && !RE.HAS_CAPITAL_REGEX.test(value)
         ) {
           errorMessage = Messages.HAS_CAP_AND_DIGIT;
           break;
@@ -214,8 +216,8 @@ export default class Validator {
           break;
         }
         if (
-          !RE.HAS_DIGIT_REGEX.test(value) &&
-          !RE.HAS_CAPITAL_REGEX.test(value)
+          !RE.HAS_DIGIT_REGEX.test(value)
+          && !RE.HAS_CAPITAL_REGEX.test(value)
         ) {
           errorMessage = Messages.HAS_CAP_AND_DIGIT;
           break;
@@ -251,8 +253,8 @@ export default class Validator {
           break;
         }
         if (
-          !RE.HAS_DIGIT_REGEX.test(value) &&
-          !RE.HAS_CAPITAL_REGEX.test(value)
+          !RE.HAS_DIGIT_REGEX.test(value)
+          && !RE.HAS_CAPITAL_REGEX.test(value)
         ) {
           errorMessage = Messages.HAS_CAP_AND_DIGIT;
           break;
@@ -289,6 +291,7 @@ export default class Validator {
       // от 10 до 15 символов, состоит из цифр
       // ------------------------
       case ValidateRules.PHONE:
+        // eslint-disable-next-line no-case-declarations
         const digits = value.match(/\d/g);
 
         if (!digits || !RE.TEN_TO_FIFTEEN_DIGITS_REGEX.test(digits.join(''))) {
@@ -296,12 +299,11 @@ export default class Validator {
           break;
         }
         break;
-      
+
       // ------------------------
       // от 10 до 15 символов, состоит из цифр
       // ------------------------
       case ValidateRules.MESSAGE:
-
         if (!value.length) {
           errorMessage = Messages.MESSAGE_NOT_EMPTY;
           break;

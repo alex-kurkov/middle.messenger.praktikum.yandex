@@ -9,6 +9,7 @@ interface NotFoundPageProps {
 }
 
 export class NotFoundPage extends Block<NotFoundPageProps> {
+  static componentName = 'NotFoundPage';
 
   render() {
     return template;

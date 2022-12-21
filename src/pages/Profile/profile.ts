@@ -1,6 +1,6 @@
-import Block from '../../core/Block';
 import template from 'bundle-text:./profile.hbs';
 import { InputProps } from 'components/input/input';
+import Block from '../../core/Block';
 
 interface ProfileProps {
   avatarInput: {
@@ -37,10 +37,11 @@ interface ProfileProps {
   mainView?: boolean;
   passwordView?: boolean;
   dataView?: boolean;
-};
-
+}
 
 export class Profile extends Block<ProfileProps> {
+  static componentName = 'Profile';
+
   render() {
     return template;
   }

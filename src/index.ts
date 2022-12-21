@@ -1,6 +1,5 @@
 import './app.css';
 import { renderDOM, registerComponent, Block } from 'core';
-import props from './mock-data/pages-props';
 import Button from 'components/button';
 import Input from 'components/input';
 import Layout from 'components/layout';
@@ -22,6 +21,7 @@ import Profile from 'pages/Profile';
 import ErrorComponent from 'components/error';
 import profileEditData from 'components/profile-edit-data';
 import profileEditPassword from 'components/profile-edit-password';
+import props from './mock-data/pages-props';
 
 registerComponent(Button);
 registerComponent(Input);
@@ -47,43 +47,47 @@ const LoginPage = new Login(props.loginPage);
 const RegisterPage = new Login(props.registerPage);
 const MessengerPage = new Messenger(props.messengerNarrow);
 const MessengerPageExpanded = new Messenger(props.messengerExpanded);
-const ProfilePage = new Profile({...props.profile, mainView: true});
-const ProfilePageEditPassword = new Profile({...props.profile, passwordView: true});
-const ProfilePageEditData = new Profile({...props.profile, dataView: true});
+const ProfilePage = new Profile({ ...props.profile, mainView: true });
+const ProfilePageEditPassword = new Profile({
+  ...props.profile,
+  passwordView: true,
+});
+const ProfilePageEditData = new Profile({ ...props.profile, dataView: true });
 
 const mockRouter = () => {
-  let page: Nullable<Block<{}>> = null;
-  const path = location.pathname;
+  let page: Nullable<Block<object>> = null;
+  // eslint-disable-next-line no-restricted-globals
+  const { hash } = location;
 
-  switch (path) {
-    case '/':
+  switch (hash) {
+    case '':
       page = MainPage;
       break;
-    case '/400':
+    case '#400':
       page = Page400;
       break;
-    case '/500':
+    case '#500':
       page = Page500;
       break;
-    case '/login':
+    case '#login':
       page = LoginPage;
       break;
-    case '/register':
+    case '#register':
       page = RegisterPage;
       break;
-    case '/messenger':
+    case '#messenger':
       page = MessengerPageExpanded;
       break;
-    case '/messenger-narrow':
+    case '#messenger-narrow':
       page = MessengerPage;
       break;
-    case '/profile':
+    case '#profile':
       page = ProfilePage;
       break;
-    case '/profile-password':
+    case '#profile-password':
       page = ProfilePageEditPassword;
       break;
-    case '/profile-data':
+    case '#profile-data':
       page = ProfilePageEditData;
       break;
     default:
@@ -96,11 +100,10 @@ const mockRouter = () => {
 
 document.addEventListener('DOMContentLoaded', () => {
   mockRouter();
+  window.addEventListener('hashchange', mockRouter);
 
   const el = document.querySelector('.feed__messages-feed');
-  if (el && el.lastElementChild) {
+  if (el?.lastElementChild) {
     el.lastElementChild.scrollIntoView();
   }
 });
-
-

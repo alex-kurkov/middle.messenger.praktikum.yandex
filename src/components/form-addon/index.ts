@@ -1,1 +1,1 @@
-export { FormAddon as default } from './formAddon'
+export { FormAddon as default } from './formAddon';

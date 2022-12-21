@@ -14,7 +14,7 @@ import sound from 'bundle-text:./sound.hbs';
 enum IconTypes {
   CLOSE = 'close',
   ADD_PERSON = 'addPerson',
-  AVATAT_EDIT = 'avatarEdit',
+  AVATAR_EDIT = 'avatarEdit',
   CLIP = 'clip',
   CHAT_SETTINGS = 'chatSettings',
   EXPAND = 'expand',
@@ -30,34 +30,32 @@ interface IconProps {
 }
 
 export class Icon extends Block<IconProps> {
-  constructor(props: IconProps) {
-    super(props);
-  }
+  static componentName = 'Icon';
 
   render() {
     if (!this.props.type) {
-      return '<span>не могу отобразить иконку без поля type</span>'
+      return '<span>не могу отобразить иконку без поля type</span>';
     }
     switch (this.props.type) {
-      case 'close':
+      case IconTypes.CLOSE:
         return close;
-      case 'clip':
+      case IconTypes.CLIP:
         return clip;
-      case 'addPerson':
+      case IconTypes.ADD_PERSON:
         return addPerson;
-      case 'avatarEdit':
+      case IconTypes.AVATAR_EDIT:
         return avatarEdit;
-      case 'chatSettings':
+      case IconTypes.CHAT_SETTINGS:
         return chatSettings;
-      case 'expand':
+      case IconTypes.EXPAND:
         return expand;
-      case 'send':
+      case IconTypes.SEND:
         return send;
-      case 'search':
+      case IconTypes.SEARCH:
         return search;
-      case 'settings':
+      case IconTypes.SETTINGS:
         return settings;
-      case 'sound':
+      case IconTypes.SOUND:
         return sound;
       default:
         return close;

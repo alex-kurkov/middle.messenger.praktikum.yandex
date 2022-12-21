@@ -1,10 +1,22 @@
 import { InputProps } from 'components/input/input';
 import Block from './Block';
-import Validator, { ValidateRuleType } from './Validator';
+import Validator from './Validator';
 
-export default class ValidatorController<P extends {}> extends Validator {
-  renderErrors: boolean = false;
-  block: Block<P>;
+interface State {
+  errors: Record<string, string>;
+  values: Record<string, string>;
+}
+
+export default class ValidatorController<P extends object> extends Validator {
+  renderErrors = false;
+
+  private block: Block<P>;
+
+  state: State = {
+    errors: {},
+    values: {},
+  };
+
   controlledInputs: InputProps[];
 
   constructor(block: Block<P>, inputs: InputProps[], renderErrors: boolean) {
@@ -21,39 +33,37 @@ export default class ValidatorController<P extends {}> extends Validator {
       inputs: this.controlledInputs,
     });
 
-    const state = this.controlledInputs.reduce(
+    const newState: State = this.controlledInputs.reduce(
       (state, input) => {
         const value: string = input.value ? input.value : '';
-        const error: string = this.validate(input.name!, value);
+        const error: string = this.validate(input.name, value);
         return {
           errors: {
             ...state.errors,
-            [input.name!]: error,
+            [input.name]: error,
           },
           values: {
             ...state.values,
-            [input.name!]: value,
+            [input.name]: value,
           },
         };
       },
-      { errors: {}, values: {} }
+      { errors: {}, values: {} },
     );
 
-    this.block.setState(state);
+    this.state = newState;
   }
 
   enrichInputs(inputs: InputProps[]): InputProps[] {
-      return inputs.map((input) => {
-      return {
-        ...input,
-        onBlur: (e: InputEvent) =>
-          this.block.eventBus.emit(Block.EVENTS.INPUT_BLURRED, e!.target!),
-        onChange: (e: InputEvent) =>
-          this.block.eventBus.emit(Block.EVENTS.INPUT_CHANGED, e!.target!),
-        onFocus: (e: InputEvent) =>
-          this.block.eventBus.emit(Block.EVENTS.INPUT_FOCUSED, e!.target!),
-      };
-    });
+    return inputs.map((input) => ({
+      ...input,
+      onBlur: (e: InputEvent) =>
+        this.block.eventBus.emit(Block.EVENTS.INPUT_BLURRED, e.target),
+      onChange: (e: InputEvent) =>
+        this.block.eventBus.emit(Block.EVENTS.INPUT_CHANGED, e.target),
+      onFocus: (e: InputEvent) =>
+        this.block.eventBus.emit(Block.EVENTS.INPUT_FOCUSED, e.target),
+    }));
   }
 
   get inputs() {
@@ -61,74 +71,78 @@ export default class ValidatorController<P extends {}> extends Validator {
   }
 
   get errors() {
-    return this.block.state.errors;
+    return this.state.errors;
+  }
+
+  get values() {
+    return this.state.values;
   }
 
   get hasErrors() {
-    const errorsArr: string[] = Array.from(
-      Object.values(this.block.state.errors)
-    );
+    const errorsArr: string[] = Array.from(Object.values(this.state.errors));
     return errorsArr.some((error: string) => error.length);
   }
 
-  renderErrorText(inputName: ValidateRuleType, error: string): void {
+  renderErrorText(inputName: string, error: string): void {
     if (!this.renderErrors) {
       return;
     }
-    const inputRef = inputName + '_inputRef';
+    const inputRef = `${inputName}_inputRef`;
     this.block.refs.formRef.refs[inputRef]?.refs?.error?.setProps({
       error,
     });
   }
 
   handleFormChange(target: HTMLInputElement): void {
-    const inputName: ValidateRuleType = target.name as ValidateRuleType;
+    const inputName: string = target.name;
     const error = this.validate(inputName, target.value);
-    this.block.state.errors[inputName] = error;
-    this.block.state.values[inputName] = target.value;
+    this.state.errors[inputName] = error;
+    this.state.values[inputName] = target.value;
 
     this.renderErrorText(inputName, error);
   }
+
   handleInputBlur(target: HTMLInputElement) {
-    const inputName: ValidateRuleType = target.name as ValidateRuleType;
+    const inputName: string = target.name;
     this.renderErrorText(inputName, '');
     console.log('catch eventBus input blur');
   }
-  handleInputFocus(target: HTMLInputElement) {
-    const inputName: ValidateRuleType = target.name as ValidateRuleType;
+
+  handleInputFocus = (target: HTMLInputElement) => {
+    const inputName: string = target.name;
     const error = this.validate(inputName, target.value);
-    this.block.state.errors[inputName] = error;
-    this.block.state.values[inputName] = target.value;
+    this.state.errors[inputName] = error;
+    this.state.values[inputName] = target.value;
 
     this.renderErrorText(inputName, error);
-  }
+  };
 
   registerListeners() {
     this.block.eventBus.on(
       Block.EVENTS.INPUT_CHANGED,
-      this.handleFormChange.bind(this)
+      this.handleFormChange.bind(this) as () => void,
     );
     this.block.eventBus.on(
       Block.EVENTS.INPUT_BLURRED,
-      this.handleInputBlur.bind(this)
+      this.handleInputBlur.bind(this) as () => void,
     );
     this.block.eventBus.on(
       Block.EVENTS.INPUT_FOCUSED,
-      this.handleInputFocus.bind(this)
+      this.handleInputFocus.bind(this) as () => void,
     );
   }
 
-  validate(ruleType: ValidateRuleType, value: string): string {
+  validate(ruleType: string, value: string): string {
     let errorMessage = super.validate(ruleType, value);
 
     const { Messages, ValidateRules } = Validator;
 
     if (
       !(
-        ruleType === ValidateRules.NEW_PASSWORD ||
-        ruleType === ValidateRules.REPEAT_PASSWORD
-      ) ||
-      errorMessage.length
+        ruleType === ValidateRules.NEW_PASSWORD
+        || ruleType === ValidateRules.REPEAT_PASSWORD
+      )
+      || errorMessage.length
     ) {
       return errorMessage;
     }
@@ -138,7 +152,7 @@ export default class ValidatorController<P extends {}> extends Validator {
       // Отличный от старого
       // ------------------------
       case ValidateRules.NEW_PASSWORD:
-        if (value === this.block.state.values.oldPassword) {
+        if (value === this.state.values.oldPassword) {
           errorMessage = Messages.PASSWORDS_SHOULD_NOT_MATCH;
           break;
         }
@@ -148,7 +162,7 @@ export default class ValidatorController<P extends {}> extends Validator {
       // Такой же, как и password
       // ------------------------
       case ValidateRules.REPEAT_PASSWORD:
-        if (value !== this.block.state.values.password) {
+        if (value !== this.state.values.password) {
           errorMessage = Messages.PASSWORDS_SHOULD_MATCH;
           break;
         }
