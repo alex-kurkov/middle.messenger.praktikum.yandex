@@ -3,14 +3,16 @@ import Handlebars, { HelperOptions } from 'handlebars';
 import Block from './Block';
 
 interface BlockConstructable<Props extends any> {
+  componentName: string;
   new(props: Props): Block<object>;
 }
 
 export default function registerComponent<Props extends object>(
   Component: BlockConstructable<Props>,
 ) {
+  
   Handlebars.registerHelper(
-    Component.name,
+    Component.componentName,
     function (
       this: Props,
       { hash: { ref, ...hash }, data, fn }: HelperOptions
