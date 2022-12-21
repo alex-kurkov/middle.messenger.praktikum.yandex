@@ -1,18 +1,20 @@
-/* eslint-disable no-param-reassign */
+/* eslint-disable */
 import Handlebars, { HelperOptions } from 'handlebars';
 import Block from './Block';
 
-interface BlockConstructable<Props extends object> {
-  new(props: Props): Block<Props>;
-  
+interface BlockConstructable<Props extends any> {
+  new(props: Props): Block<object>;
 }
 
 export default function registerComponent<Props extends object>(
-  Component: BlockConstructable<object>,
+  Component: BlockConstructable<Props>,
 ) {
   Handlebars.registerHelper(
-    Component.componentName,
-    function (this: Props, { hash: { ref, ...hash }, data, fn }: HelperOptions) {
+    Component.name,
+    function (
+      this: Props,
+      { hash: { ref, ...hash }, data, fn }: HelperOptions
+    ) {
       if (!data.root.children) {
         data.root.children = {};
       }
@@ -25,7 +27,10 @@ export default function registerComponent<Props extends object>(
 
       (Object.keys(hash) as []).forEach((key: keyof Props) => {
         if (this[key] && typeof this[key] === 'string') {
-          hash[key] = hash[key].replace(new RegExp(`{{${String(key)}}}`, 'i'), this[key]);
+          hash[key] = hash[key].replace(
+            new RegExp(`{{${String(key)}}}`, 'i'),
+            this[key]
+          );
         }
       });
 
@@ -40,6 +45,6 @@ export default function registerComponent<Props extends object>(
       const contents = fn ? fn(this) : '';
 
       return `<div data-id="${component.id}">${contents}</div>`;
-    },
+    }
   );
 }

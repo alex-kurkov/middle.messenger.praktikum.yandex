@@ -7,8 +7,8 @@ interface MessengerProps {
   feedEmpty: boolean;
   inputs: InputProps[];
   // TODO Lookup models for chats and chatMessages from API when adding logic...
-  chats: [];
-  chatMessages: [];
+  chats: MSNChat[];
+  chatMessages: MSNChatMessages;
 }
 
 export class Messenger extends Block<MessengerProps> {
