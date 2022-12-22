@@ -1,0 +1,11 @@
+.main {
+  width: 100%;
+  background: var(--feed-gradient);
+  height: 100vh;
+  overflow: hidden;
+
+  &_layout_feed {
+    display: flex;
+    flex-wrap: nowrap;
+  }
+}

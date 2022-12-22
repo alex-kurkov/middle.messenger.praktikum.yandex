@@ -1,0 +1,25 @@
+<label class="label {{#if required}}label_required{{/if}} flex-vertical-left text text_size_m text_weight_thin">
+  {{#if labelText}}
+    <span>
+      {{labelText}}
+    </span>
+  {{/if}}
+    {{{Input
+        ref=ref
+        name=name
+        type=type
+        id=id
+        required=required
+        placeholder=placeholder
+        value=value
+        onChange=onChange
+        onFocus=onFocus
+        onBlur=onBlur
+        autocomplete=autocomplete
+        accept=accept
+    }}}
+  {{{ErrorComponent 
+    error=error
+    ref="error"
+  }}}
+</label>

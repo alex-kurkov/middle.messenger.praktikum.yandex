@@ -3,9 +3,10 @@
   "version": "1.0.13",
   "description": "Учебный проект Yandex Praktikum Middle Frontend Developer",
   "scripts": {
-    "dev": "parcel src/pages/*.hbs --no-cache --open",
-    "build": "parcel build src/pages/*.hbs --no-cache",
-    "start": "npm run build && node server.js"
+    "dev": "parcel src/index.html --no-cache --open",
+    "build": "parcel build src/index.html --no-cache",
+    "start": "npm run build && node server.js",
+    "lint": "node_modules/.bin/eslint . --fix"
   },
   "repository": {
     "type": "git",
@@ -21,14 +22,34 @@
     "url": "https://github.com/alex-kurkov/middle.messenger.praktikum.yandex/issues"
   },
   "homepage": "https://github.com/alex-kurkov/middle.messenger.praktikum.yandex#readme",
+  "alias": {
+    "core": "./src/core",
+    "components": "./src/components",
+    "helpers": "./src/helpers",
+    "pages": "./src/pages"
+  },
+  "dependencies": {
+    "handlebars": "4.7.7",
+    "nanoid": "4.0.0"
+  },
   "devDependencies": {
-    "@anikin/parcel-transformer-handlebars": "=1.0.9",
-    "autoprefixer": "=10.4.13",
-    "dotenv": "^16.0.3",
-    "express": "~4.18.2",
-    "parcel": "=2.8.0",
-    "postcss-import": "=15.0.0",
-    "postcss-nested": "=6.0.0",
-    "postcss-simple-vars": "=7.0.1"
+    "@parcel/transformer-inline-string": "2.4.0",
+    "@types/node": "18.11.16",
+    "@typescript-eslint/eslint-plugin": "5.47.0",
+    "@typescript-eslint/parser": "5.47.0",
+    "autoprefixer": "10.4.13",
+    "dotenv": "16.0.3",
+    "eslint": "8.30.0",
+    "eslint-config-airbnb": "19.0.4",
+    "express": "4.18.2",
+    "parcel": "2.8.0",
+    "postcss": "8.4.12",
+    "postcss-import": "15.0.0",
+    "postcss-modules": "4.3.1",
+    "postcss-nested": "6.0.0",
+    "postcss-simple-vars": "7.0.1",
+    "stylelint": "14.16.0",
+    "stylelint-config-standard": "29.0.0",
+    "typescript": "4.6.2"
   }
 }

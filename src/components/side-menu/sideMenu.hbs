@@ -1,0 +1,45 @@
+<section class="side-menu flex-vertical-left
+  {{#if expanded}}side-menu_expanded{{/if}}
+">
+  <div class="side-menu__search flex-centered" >
+    {{#if expanded}}
+      <div class="side-menu__search_expanded">
+          {{{Input name="search" class="side-menu__input" }}}
+        <div class="side-menu__search-icon_expanded icon icon_medium">{{{Icon type="search"}}}</div>
+      </div>
+    {{else}}
+      <div class="side-menu__search-icon icon icon_large">{{{Icon type="search"}}}</div>
+    {{/if}}
+  </div>
+
+  <ul class="side-menu__chats">
+      {{#each chats }}
+      <li>
+        {{{MenuMessage 
+          expanded=@root.expanded
+          active=active 
+          avatar=avatar 
+          unread_count=unread_count
+          last_message=last_message
+          lastIsMine=lastIsMine
+          title=title
+          id=id
+          files=files
+        }}}
+      </li>
+      {{/each}}
+  </ul>
+
+  <div class="side-menu__footer flex-centered">
+    {{#if expanded}}
+      <ul class="side-menu__icons-wrap flex-row-spaced">
+        <li><div class="side-menu__footer-icon icon icon_large flex-centered">{{{Icon type="sound"}}}</div></li>
+        <li><div class="side-menu__footer-icon icon icon_large flex-centered">{{{Icon type="addPerson"}}}</div></li>
+        <li><div class="side-menu__footer-icon icon icon_large flex-centered">{{{Icon type="settings"}}}</div></li>
+        <li><div class="side-menu__footer-icon icon icon_large flex-centered">{{{Icon type="expand"}}}</div></li>
+      </ul>
+    {{else}}
+      <div class="side-menu__footer-icon icon icon_large flex-centered">{{{Icon type="expand"}}}</div>
+    {{/if}}
+  </div>
+</section>

@@ -1,0 +1,89 @@
+<section class="profile-edit flex-vertical-left">
+  <h1 class="profile-edit__title text text_size_m text_weight_bold">
+    {{user.display_name}}
+  </h1>
+
+  {{#if mainView}}
+    {{#with user}}
+      <img
+        class="profile-edit__avatar"
+        width="300"
+        height="300"
+        src={{avatar}}
+        alt="Аватар пользователя {{first_name}}"
+      />
+      <ul class="profile-edit__data-wrap flex-vertical-left">
+        <li>
+          <div
+            class="profile-edit__data-label text text_size_m text_weight_regular"
+          >
+            Имя
+          </div>
+          <div class="profile-edit__data text text_size_m text_weight_regular">
+            {{first_name}} {{second_name}}
+          </div>
+        </li>
+        <li>
+          <div
+            class="profile-edit__data-label text text_size_m text_weight_regular"
+          >
+            Email
+          </div>
+          <div class="profile-edit__data text text_size_m text_weight_regular">
+            {{email}}
+          </div>
+        </li>
+        <li>
+          <div
+            class="profile-edit__data-label text text_size_m text_weight_regular"
+          >
+            Телефон
+          </div>
+          <div class="profile-edit__data text text_size_m text_weight_regular">
+            {{phone}}
+          </div>
+        </li>
+      </ul>
+    {{/with}}
+
+    {{#each profileEditButtons}}
+      <a class="profile-edit__link" href={{link}}>
+        {{{Button type=type name=name text=text}}}
+      </a>
+    {{/each}}
+  {{/if}}
+
+  {{#if passwordView}}
+    <img
+      class="profile-edit__avatar"
+      width="300"
+      height="300"
+      src={{user.avatar}}
+      alt="Аватар пользователя {{user.display_name}}."
+    />
+    {{#with editPasswordForm}}
+      {{{ProfileEditPassword inputs=inputs formButton=formButton}}}
+    {{/with}}
+  {{/if}}
+
+  {{#if dataView}}
+    <label
+      class="profile-edit__avatar-label"
+      for="avatar-input"
+      style="width: 100px; height: 100px;"
+    >
+      <div class="profile-edit__avatar-thumb"></div>
+      <div class="profile-edit__avatar-edit-icon icon icon_large">
+        {{{Icon type="avatarEdit"}}}
+      </div>
+    </label>
+    {{#with avatarInput}}
+      {{{Input type=type name=name id=id accept=accept}}}
+    {{/with}}
+    {{#with editPersonalDataForm}}
+    {{{ProfileEditData
+      inputs=inputs formButton=formButton
+    }}}
+    {{/with}}
+  {{/if}}
+</section>

@@ -1,18 +1,21 @@
 .text {
-  font-family: Montserrat, Open Sans, Arial, sans-serif;
+  font-family: Montserrat, "Open Sans", Arial, sans-serif;
 
   &_size_xs {
     font-size: 12px;
     line-height: 1.2;
   }
+
   &_size_s {
     font-size: 14px;
     line-height: 1.2;
   }
+
   &_size_m {
     font-size: 18px;
     line-height: 1.2;
   }
+
   &_size_l {
     font-size: 28px;
     line-height: 1.2;
@@ -21,14 +24,20 @@
   &_weight_thin {
     font-weight: 300;
   }
+
   &_weight_regular {
     font-weight: 400;
   }
+
   &_weight_bold {
     font-weight: 700;
+  }
+
+  &_centered {
+    text-align: center;
   }
 }
 
 .text-link {
-  color: $accent;
+  color: var(--accent);
 }

@@ -1,0 +1,39 @@
+<form class="form" action="" name="">
+  <fieldset class="form__fieldset text text_size_m text_weight_regular">
+    <legend class="form__legend">
+      {{formTitle}}
+    </legend>
+    {{#each inputs}}
+      {{#with this}}
+        {{{InputField
+          labelText=labelText
+          name=name
+          type=type
+          id=id
+          required=required
+          placeholder=placeholder
+          value=value
+          error=error
+          onChange=onChange
+          onFocus=onFocus
+          onBlur=onBlur
+          autocomplete=autocomplete
+          accept=accept
+          ref=ref
+          errorRef=errorRef
+        }}}
+      {{/with}}
+    {{/each}}
+  </fieldset>
+  {{#if addon}}
+    <div class="form__addon text text_size_m text_weight_regular">
+      <span>{{addon.text}}</span>
+      <a class="text-link" href={{addon.link}}>
+        <span>{{addon.linkText}}</span>
+      </a>
+    </div>
+  {{/if}}
+  {{#if formButton}}
+    {{{Button ref="submitButton" text=formButton.text}}}
+  {{/if}}
+</form>

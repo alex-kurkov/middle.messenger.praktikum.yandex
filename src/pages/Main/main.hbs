@@ -1,0 +1,21 @@
+{{#Layout class="flex-centered gap_size_l"}}
+  {{#Modal}}
+    <h1 class="text text_size_l text_weight_bold text_centered m_s">
+      {{title}}
+    </h1>
+    <nav>
+      <ul class="flex-centered gap_size_m">
+        {{#each links}}
+          <li class="flex-centered w_l00">
+            <p class="text text_size_xs text_weight_regular text_centered">
+              {{labelText}}
+            </p>
+            <a class="text text_size_xl text-link w_l00" href={{pageUrl}}>
+              {{{Button text=text}}}
+            </a>
+          </li>
+        {{/each}}
+      </ul>
+    </nav>
+  {{/Modal}}
+{{/Layout}}

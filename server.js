@@ -1,5 +1,6 @@
-require("dotenv").config();
-const express = require("express");
+/* eslint-disable @typescript-eslint/no-var-requires */
+require('dotenv').config();
+const express = require('express');
 
 const PORT = process.env.NODE_PORT || 3000;
 

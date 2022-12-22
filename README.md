@@ -2,6 +2,15 @@
 
 [![Netlify Status](https://api.netlify.com/api/v1/badges/71857107-645a-426d-9e52-b4f0b73253ff/deploy-status)](https://app.netlify.com/sites/voluble-marshmallow-b07071/deploys)
 
+## SPRINT_2 UPDATES
+
+- внедрен TS
+- добавлены eslint, stylelint
+- добавлена live-валидация на инпуты форм приложения (класс ValidatorController наследующий и расширяющий класс Validator). Помимо лайв-рендера ошибок, по сабмиту происходит вывод в консоль объектов данных и ошибок
+- добавлен класс Fetch, реализующий базовые методы сетевых CRUD-запросов
+- для удобства навигации реализован временный роутер, работающий в качестве хендлера события 'hashchange' и рендерящий в DOM разные страницы в зависимости от содержания хеша
+- соответсвенно, генерация всех страниц - программная. Рендер - динамический
+
 ## Сайт, макет, код
 
 - макет приложения в приложении Фигма [здесь](https://www.figma.com/file/jbEHoHxmQfW9PpMG2SCI96/YAP_messenger?t=lqSEdEbcNCIGZbhK-6)
@@ -41,6 +50,9 @@ npm run start
 
 - html
 - css
-- постпроцессор postcss с плагинами: autoprefixer, -nested, -import, -simple-vars
+- typescript
+- постпроцессор postcss с плагинами: -nested, -import
 - шаблонизатор handlebars
 - node-сервер express
+- eslint
+- stylelint
