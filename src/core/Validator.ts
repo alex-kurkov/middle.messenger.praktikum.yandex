@@ -130,7 +130,7 @@ export default class Validator {
 
       // ------------------------
       // от 8 до 40 символов, обязательно хотя бы одна заглавная
-      // буква и цифра!DONE
+      // буква и цифра
       // ------------------------
       case ValidateRules.PASSWORD:
         if (value.length === 0) {

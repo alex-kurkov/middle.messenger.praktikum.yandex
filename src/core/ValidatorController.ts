@@ -7,10 +7,16 @@ interface State {
   values: Record<string, string>;
 }
 
-export default class ValidatorController<P extends object> extends Validator {
+type ValidatorControllerProps = {
+  block: Block<object>,
+  inputs: InputProps[],
+  renderErrors: boolean, 
+}
+
+export default class ValidatorController<P extends ValidatorControllerProps> extends Validator {
   renderErrors = false;
 
-  private block: Block<P>;
+  private block: Block<object>;
 
   state: State = {
     errors: {},
@@ -19,8 +25,9 @@ export default class ValidatorController<P extends object> extends Validator {
 
   controlledInputs: InputProps[];
 
-  constructor(block: Block<P>, inputs: InputProps[], renderErrors: boolean) {
+  constructor(props: P) {
     super();
+    const { block, renderErrors, inputs } = props;
     this.block = block;
     this.renderErrors = renderErrors;
     this.controlledInputs = this.enrichInputs(inputs);
@@ -48,7 +55,7 @@ export default class ValidatorController<P extends object> extends Validator {
           },
         };
       },
-      { errors: {}, values: {} },
+      { errors: {}, values: {} }
     );
 
     this.state = newState;
@@ -120,15 +127,15 @@ export default class ValidatorController<P extends object> extends Validator {
   registerListeners() {
     this.block.eventBus.on(
       Block.EVENTS.INPUT_CHANGED,
-      this.handleFormChange.bind(this) as () => void,
+      this.handleFormChange.bind(this) as () => void
     );
     this.block.eventBus.on(
       Block.EVENTS.INPUT_BLURRED,
-      this.handleInputBlur.bind(this) as () => void,
+      this.handleInputBlur.bind(this) as () => void
     );
     this.block.eventBus.on(
       Block.EVENTS.INPUT_FOCUSED,
-      this.handleInputFocus.bind(this) as () => void,
+      this.handleInputFocus.bind(this) as () => void
     );
   }
 
@@ -137,13 +144,7 @@ export default class ValidatorController<P extends object> extends Validator {
 
     const { Messages, ValidateRules } = Validator;
 
-    if (
-      !(
-        ruleType === ValidateRules.NEW_PASSWORD
-        || ruleType === ValidateRules.REPEAT_PASSWORD
-      )
-      || errorMessage.length
-    ) {
+    if (errorMessage.length) {
       return errorMessage;
     }
 
