@@ -8,6 +8,13 @@ interface State {
 }
 
 export default class ValidatorController extends Validator {
+  static EVENTS = {
+    INPUT_CHANGED: 'form:input-event-did-change',
+    INPUT_BLURRED: 'form:input-blur-did-blur',
+    INPUT_FOCUSED: 'form:input-focus-did-focus',
+    FORM_SUBMIT: 'form:did-submit',
+  };
+
   renderErrors = false;
 
   private block: Block<object>;
@@ -19,7 +26,11 @@ export default class ValidatorController extends Validator {
 
   controlledInputs: InputProps[];
 
-  constructor(block: Block<object>,  inputs: InputProps[], renderErrors: boolean) {
+  constructor(
+    block: Block<object>,
+    inputs: InputProps[],
+    renderErrors: boolean
+  ) {
     super();
     this.block = block;
     this.renderErrors = renderErrors;
@@ -58,11 +69,11 @@ export default class ValidatorController extends Validator {
     return inputs.map((input) => ({
       ...input,
       onBlur: (e: InputEvent) =>
-        this.block.eventBus.emit(Block.EVENTS.INPUT_BLURRED, e.target),
+        this.block.eventBus.emit(ValidatorController.EVENTS.INPUT_BLURRED, e.target),
       onChange: (e: InputEvent) =>
-        this.block.eventBus.emit(Block.EVENTS.INPUT_CHANGED, e.target),
+        this.block.eventBus.emit(ValidatorController.EVENTS.INPUT_CHANGED, e.target),
       onFocus: (e: InputEvent) =>
-        this.block.eventBus.emit(Block.EVENTS.INPUT_FOCUSED, e.target),
+        this.block.eventBus.emit(ValidatorController.EVENTS.INPUT_FOCUSED, e.target),
     }));
   }
 
@@ -119,15 +130,15 @@ export default class ValidatorController extends Validator {
 
   registerListeners() {
     this.block.eventBus.on(
-      Block.EVENTS.INPUT_CHANGED,
+      ValidatorController.EVENTS.INPUT_CHANGED,
       this.handleFormChange.bind(this) as () => void
     );
     this.block.eventBus.on(
-      Block.EVENTS.INPUT_BLURRED,
+      ValidatorController.EVENTS.INPUT_BLURRED,
       this.handleInputBlur.bind(this) as () => void
     );
     this.block.eventBus.on(
-      Block.EVENTS.INPUT_FOCUSED,
+      ValidatorController.EVENTS.INPUT_FOCUSED,
       this.handleInputFocus.bind(this) as () => void
     );
   }

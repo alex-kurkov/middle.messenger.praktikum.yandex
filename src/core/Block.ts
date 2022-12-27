@@ -14,10 +14,6 @@ export default class Block<P extends object> {
     FLOW_CDM: 'flow:component-did-mount',
     FLOW_CDU: 'flow:component-did-update',
     FLOW_RENDER: 'flow:render',
-    INPUT_CHANGED: 'form:input-event-did-change',
-    INPUT_BLURRED: 'form:input-blur-did-blur',
-    INPUT_FOCUSED: 'form:input-focus-did-focus',
-    FORM_SUBMIT: 'form:did-submit',
   } as const;
 
   public id = nanoid(6);

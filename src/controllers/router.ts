@@ -1,6 +1,19 @@
 import { Router } from 'core';
+import { Login, Main, Profile, Messenger, NotFound } from 'pages';
 import props from '../mock-data/pages-props';
-import { Login, Main, Profile, Messenger, NotFound, Pathnames } from '../pages';
+
+enum Pathnames {
+  MAIN = '/',
+  LOGIN = '/login',
+  REGISTER = '/register',
+  NOT_FOUND = '/400',
+  ERROR = '/500',
+  MESSENGER = '/messenger',
+  MESSENGER_NARROW = '/messenger-narrow',
+  PROFILE = '/profile',
+  PROFILE_PASSWORD = '/profile-password',
+  PROFILE_DATA = '/profile-data',
+}
 
 const router = new Router('#app');
 
