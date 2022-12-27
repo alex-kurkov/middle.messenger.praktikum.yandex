@@ -3,9 +3,9 @@ import { BlockConstructable } from './registerComponent';
 
 export default class Router {
   static __instance: Nullable<Router> = null;
-  routes: Route[] = [];
+  routes: Route<object>[] = [];
   history: History = window.history;
-  private _currentRoute: Nullable<Route> = null;
+  private _currentRoute: Nullable<Route<object>> = null;
   rootQuery?: string;
 
   constructor(rootQuery: string) {
@@ -16,16 +16,24 @@ export default class Router {
     this.rootQuery = rootQuery;
   }
 
-  use(pathname: string, block: BlockConstructable<object>): Router {
-    const route = new Route(pathname, block, { rootQuery: this.rootQuery });
+  use(
+    pathname: string,
+    view: BlockConstructable<any>,
+    viewProps: object
+  ): Router {
+    const route = new Route(pathname, view, {
+      rootQuery: this.rootQuery,
+      ...viewProps,
+    });
     this.routes.push(route);
     return this;
   }
 
   start(): void {
     window.onpopstate = () => {
-      setTimeout(() => this._onRoute(window.location.pathname), 0);
+      this._onRoute(window.location.pathname);
       // this._onRoute(event.currentTarget.location.pathname);
+      // this.go(window.location.pathname);
     };
     this._onRoute(window.location.pathname);
   }
@@ -57,7 +65,7 @@ export default class Router {
     route.render();
   }
 
-  getRoute(pathname: string): Route | undefined {
+  getRoute(pathname: string): Route<object> | undefined {
     return this.routes.find((route) => route.match(pathname));
   }
 }

@@ -1,8 +1,7 @@
-/* eslint-disable */
 import Handlebars, { HelperOptions } from 'handlebars';
 import Block from './Block';
 
-export interface BlockConstructable<Props extends any> {
+export interface BlockConstructable<Props extends object> {
   componentName: string;
   new(props: Props): Block<object>;
 }

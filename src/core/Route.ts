@@ -7,16 +7,16 @@ interface RouteProps {
   rootQuery?: string;
 }
 
-export default class Route {
+export default class Route<P extends object> {
   private _pathname = '';
   private _block: Nullable<Block<object>> = null;
   private _blockClass: BlockConstructable<object>;
-  private _props: RouteProps;
+  private _props: RouteProps & P;
 
   constructor(
     pathname: string,
     view: BlockConstructable<object>,
-    props: RouteProps
+    props: RouteProps & P
   ) {
     this._pathname = pathname;
     this._props = props;
@@ -38,6 +38,7 @@ export default class Route {
 
   match(pathname: string): boolean {
     return isEqual(pathname, this._pathname);
+    return pathname === this._pathname;
   }
 
   render() {

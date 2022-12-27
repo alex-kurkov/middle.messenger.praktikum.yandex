@@ -28,7 +28,8 @@ export class Feed extends Block<FeedProps> {
       submitButton
         .getContent()
         .addEventListener('click', () =>
-          this.eventBus.emit(Block.EVENTS.FORM_SUBMIT));
+          this.eventBus.emit(Block.EVENTS.FORM_SUBMIT)
+        );
     }
   }
 

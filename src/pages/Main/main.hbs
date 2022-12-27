@@ -10,12 +10,13 @@
             <p class="text text_size_xs text_weight_regular text_centered">
               {{labelText}}
             </p>
-            <a class="text text_size_xl text-link w_l00" href={{pageUrl}}>
+            {{#Link to=pageUrl}}
               {{{Button text=text}}}
-            </a>
+            {{/Link}}
           </li>
         {{/each}}
       </ul>
     </nav>
+    {{{Link text="new Link to nowhere" to="/nowhere" }}}
   {{/Modal}}
 {{/Layout}}

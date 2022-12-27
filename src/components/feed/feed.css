@@ -12,7 +12,8 @@
 
   &__info-text-link {
     color: var(--accent);
-    pointer-events: all;
+    cursor: pointer;
+
   }
 
   &__title-wrap {

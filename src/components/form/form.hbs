@@ -28,9 +28,14 @@
   {{#if addon}}
     <div class="form__addon text text_size_m text_weight_regular">
       <span>{{addon.text}}</span>
-      <a class="text-link" href={{addon.link}}>
-        <span>{{addon.linkText}}</span>
-      </a>
+
+{{#Link to=addon.link }}
+        <span class="text-link">{{addon.linkText}}</span>
+{{/Link}}
+
+
+
+
     </div>
   {{/if}}
   {{#if formButton}}

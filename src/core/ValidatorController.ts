@@ -7,13 +7,7 @@ interface State {
   values: Record<string, string>;
 }
 
-type ValidatorControllerProps = {
-  block: Block<object>,
-  inputs: InputProps[],
-  renderErrors: boolean, 
-}
-
-export default class ValidatorController<P extends ValidatorControllerProps> extends Validator {
+export default class ValidatorController extends Validator {
   renderErrors = false;
 
   private block: Block<object>;
@@ -25,9 +19,8 @@ export default class ValidatorController<P extends ValidatorControllerProps> ext
 
   controlledInputs: InputProps[];
 
-  constructor(props: P) {
+  constructor(block: Block<object>,  inputs: InputProps[], renderErrors: boolean) {
     super();
-    const { block, renderErrors, inputs } = props;
     this.block = block;
     this.renderErrors = renderErrors;
     this.controlledInputs = this.enrichInputs(inputs);
@@ -144,7 +137,13 @@ export default class ValidatorController<P extends ValidatorControllerProps> ext
 
     const { Messages, ValidateRules } = Validator;
 
-    if (errorMessage.length) {
+    if (
+      !(
+        ruleType === ValidateRules.NEW_PASSWORD ||
+        ruleType === ValidateRules.REPEAT_PASSWORD
+      ) ||
+      errorMessage.length
+    ) {
       return errorMessage;
     }
 
