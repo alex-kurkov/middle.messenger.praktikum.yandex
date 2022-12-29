@@ -20,7 +20,23 @@ enum REJECT_MESSAGES {
 }
 
 export default class Fetch {
-  get = (url: string | URL, options: RequestOptions = {}) => {
+  protected readonly baseUrl: string;
+  protected readonly authHeaders: Nullable<{
+    mode: string;
+    credentials: string;
+  }> = null;
+
+  constructor(baseUrl: string, withAuthCookies?: boolean) {
+    this.baseUrl = baseUrl;
+    if (withAuthCookies) {
+      this.authHeaders = {
+        'mode': 'cors',
+        'credentials': 'include',
+      };
+    }
+  }
+
+  get = (url: string, options: RequestOptions = {}) => {
     if (options?.data) {
       // eslint-disable-next-line no-param-reassign
       url = this.addQueries(options.data, url);
@@ -28,23 +44,23 @@ export default class Fetch {
     return this.request(
       url,
       { ...options, method: METHODS.GET },
-      options.timeout,
+      options.timeout
     );
   };
 
-  post = (url: string | URL, options: RequestOptions = {}) =>
+  post = (url: string, options: RequestOptions = {}) =>
     this.request(url, { ...options, method: METHODS.POST }, options.timeout);
 
-  put = (url: string | URL, options: RequestOptions = {}) =>
+  put = (url: string, options: RequestOptions = {}) =>
     this.request(url, { ...options, method: METHODS.PUT }, options.timeout);
 
-  delete = (url: string | URL, options: RequestOptions = {}) =>
+  delete = (url: string, options: RequestOptions = {}) =>
     this.request(url, { ...options, method: METHODS.DELETE }, options.timeout);
 
   request = (
-    url: string | URL,
+    url: string,
     options: RequestOptions & { method: string },
-    timeout = 5000,
+    timeout = 5000
   ): Promise<XMLHttpRequest> => {
     const { method, headers = {}, data } = options;
 
@@ -61,6 +77,9 @@ export default class Fetch {
       const xhr = new XMLHttpRequest();
       xhr.open(method, url);
 
+      if (this.authHeaders) {
+        this.setHeaders(xhr, this.authHeaders);
+      }
       if (headers) {
         this.setHeaders(xhr, headers);
       }
@@ -81,21 +100,21 @@ export default class Fetch {
       if (method === METHODS.GET || !data) {
         xhr.send();
       } else {
-        xhr.send(data as Document);
+        xhr.send(data as Document | FormData);
       }
     });
   };
 
   private setHeaders(
     xhr: XMLHttpRequest,
-    headers: Record<string, string>,
+    headers: Record<string, string>
   ): void {
     Object.keys(headers).forEach((name) => {
       xhr.setRequestHeader(name, headers[name]);
     });
   }
 
-  private addQueries(data = {}, url: string | URL): string | URL {
+  private addQueries(data = {}, url: string): string {
     if (typeof data !== 'object') {
       throw new Error(REJECT_MESSAGES.DATA_NO_OBJECT);
     }
@@ -105,15 +124,9 @@ export default class Fetch {
       return '';
     }
 
-    if (typeof url === 'string') {
-      const queries = dataEntries.map(
-        ([key, value]): string => `${key}=${value.toString()}`,
-      );
-      return `${url}?${queries.join('&')}`;
-    }
-    dataEntries.forEach(([key, value]) => {
-      url.searchParams.append(key, value.toString());
-    });
-    return url;
+    const queries = dataEntries.map(
+      ([key, value]): string => `${key}=${value.toString()}`
+    );
+    return `${url}?${queries.join('&')}`;
   }
 }

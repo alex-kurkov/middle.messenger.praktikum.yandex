@@ -17,7 +17,7 @@ declare global {
       content: string;
     };
     active: boolean;
-  }
+  };
 
   export type MSNChatMessage = {
     user: {
@@ -33,12 +33,24 @@ declare global {
     isFile?: boolean;
     url?: typeof Blob | string | URL;
   };
+
   export type MSNChatMessages = {
     id: string | number;
     title: string;
     avatar: typeof Blob | string | URL;
     unread_count: Nullable<number>;
     messages: MSNChatMessage[];
+  };
+
+  export type MSNUser = {
+    first_name: string;
+    second_name: string;
+    display_name: string;
+    login: string;
+    email: string;
+    phone: string;
+    id: string;
+    avatar: string;
   };
 }
 
