@@ -3,6 +3,7 @@ import ValidatorController from 'core/ValidatorController';
 import './profileEditPassword.css';
 import template from 'bundle-text:./profileEditPassword.hbs';
 import { InputProps } from 'components/input/input';
+import { withLiveValidator } from '../../services/class-decorators/with-live-validator';
 
 interface ProfileEditProps {
   formTitle?: string;
@@ -12,27 +13,10 @@ interface ProfileEditProps {
   };
 }
 
+// @ts-ignore
+@withLiveValidator
 export class ProfileEditPassword extends Block<Omit<ProfileEditProps, 'inputs'>> {
   static componentName = 'ProfileEditPassword';
-
-  constructor(props: ProfileEditProps) {
-    super(props);
-
-    const validator = new ValidatorController(this, props.inputs, true);
-
-    this.eventBus.on(Block.EVENTS.FORM_SUBMIT, () => {
-      console.log('Ошибки: ', validator.errors);
-      console.log('Данные: ', this.state.values);
-    });
-
-    const { submitButton } = this.refs.formRef.refs;
-    if (submitButton) {
-      submitButton
-        .getContent()
-        .addEventListener('click', () =>
-          this.eventBus.emit(Block.EVENTS.FORM_SUBMIT));
-    }
-  }
 
   render() {
     return template;

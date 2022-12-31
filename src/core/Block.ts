@@ -51,7 +51,10 @@ export default class Block<P extends object> {
   private _registerEvents(eventBus: EventBus<BlockEvents>) {
     eventBus.on(Block.EVENTS.INIT, this.init.bind(this));
     eventBus.on(Block.EVENTS.FLOW_CDM, this._componentDidMount.bind(this));
-    eventBus.on(Block.EVENTS.FLOW_CDU, this._componentDidUpdate.bind(this) as () => void);
+    eventBus.on(
+      Block.EVENTS.FLOW_CDU,
+      this._componentDidUpdate.bind(this) as () => void
+    );
     eventBus.on(Block.EVENTS.FLOW_RENDER, this._render.bind(this));
   }
 
@@ -164,14 +167,14 @@ export default class Block<P extends object> {
         throw new Error('Нет доступа');
       },
     }) as unknown as P;
-  }
+  };
 
   _createDocumentElement(tagName: string) {
     return document.createElement(tagName);
   }
 
   removeEvents() {
-    const { events } = this.props as {events: object};
+    const { events } = this.props as { events: object };
 
     if (!events || !this._element) {
       return;
@@ -185,7 +188,7 @@ export default class Block<P extends object> {
   }
 
   addEvents() {
-    const { events } = this.props as {events: object};
+    const { events } = this.props as { events: object };
 
     if (!events) {
       return;

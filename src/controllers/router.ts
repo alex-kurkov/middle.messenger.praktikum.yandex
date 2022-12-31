@@ -28,11 +28,11 @@ router
   .use(Pathnames.PROFILE, Profile, { ...props.profile, mainView: true })
   .use(Pathnames.PROFILE_DATA, Profile, {
     ...props.profile,
-    passwordView: true,
+    dataView: true,
   })
   .use(Pathnames.PROFILE_PASSWORD, Profile, {
     ...props.profile,
-    dataView: true,
+    passwordView: true,
   });
 
 export default router;

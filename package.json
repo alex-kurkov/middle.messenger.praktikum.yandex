@@ -28,7 +28,8 @@
     "helpers": "./src/helpers",
     "pages": "./src/pages",
     "controllers": "./src/controllers",
-    "utils": "./src/utils"
+    "utils": "./src/utils",
+    "services": "./src/services"
   },
   "dependencies": {
     "handlebars": "4.7.7",

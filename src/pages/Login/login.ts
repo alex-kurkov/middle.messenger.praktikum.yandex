@@ -1,7 +1,7 @@
 import Block from 'core/Block';
 import template from 'bundle-text:./login.hbs';
 import { InputProps } from 'components/input/input';
-import ValidatorController from 'core/ValidatorController';
+import { withLiveValidator } from '../../services/class-decorators/with-live-validator';
 
 interface LoginProps {
   formTitle: string;
@@ -16,27 +16,11 @@ interface LoginProps {
     linkText: string;
   };
 }
+
+// @ts-ignore
+@withLiveValidator
 export class Login extends Block<LoginProps> {
   static componentName = 'Login';
-
-  constructor(props: LoginProps) {
-    super(props);
-
-    const validator = new ValidatorController(this, props.inputs, true);
-
-    this.eventBus.on(Block.EVENTS.FORM_SUBMIT, () => {
-      console.log('Ошибки: ', validator.errors);
-      console.log('Данные: ', validator.values);
-    });
-
-    const { submitButton } = this.refs.formRef.refs;
-    if (submitButton) {
-      submitButton
-        .getContent()
-        .addEventListener('click', () =>
-          this.eventBus.emit(Block.EVENTS.FORM_SUBMIT));
-    }
-  }
 
   render() {
     return template;
