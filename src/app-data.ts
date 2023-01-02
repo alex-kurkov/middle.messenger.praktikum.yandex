@@ -1,7 +1,7 @@
 /* eslint-disable max-len */
 import { nanoid } from 'nanoid';
-import avatar1 from '../assets/avatar-template.png';
-import avatar2 from '../assets/pear-avatar.png';
+import avatar1 from './assets/avatar-template.png';
+import avatar2 from './assets/pear-avatar.png';
 
 export const chats = [
   {
@@ -255,7 +255,7 @@ export default {
     title: 'Страницы проекта',
   },
   loginPage: {
-    formName: 'login',
+    formName: 'signin',
     formTitle: 'Вход',
     inputs: [
       {
@@ -289,7 +289,7 @@ export default {
   },
   registerPage: {
     formTitle: 'Регистрация',
-    formName: 'register',
+    formName: 'signup',
     formButton: {
       text: 'Зарегистрироваться',
     },
@@ -381,6 +381,7 @@ export default {
     },
   },
   messenger: {
+    formName: 'message',
     inputs: [
       {
         type: 'text',
@@ -437,7 +438,7 @@ export default {
       inputs: [
         {
           type: 'text',
-          value: 'Иван',
+          value: '',
           labelText: 'Имя',
           name: 'first_name',
           required: false,
@@ -446,7 +447,7 @@ export default {
         },
         {
           type: 'text',
-          value: 'Иванов',
+          value: '',
           labelText: 'Фамилия',
           name: 'second_name',
           required: false,

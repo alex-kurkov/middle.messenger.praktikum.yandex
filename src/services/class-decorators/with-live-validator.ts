@@ -1,4 +1,4 @@
-import { InputProps } from 'components/input/input';
+import { formSubmitController } from 'controllers/form-submit-controller';
 import { Block, ValidatorController } from 'core';
 
 export function withLiveValidator<P extends { inputs: InputProps[] }>(
@@ -10,11 +10,11 @@ export function withLiveValidator<P extends { inputs: InputProps[] }>(
       const validator = new ValidatorController(this, props.inputs, true);
 
       this.eventBus.on(ValidatorController.EVENTS.FORM_SUBMIT, () => {
-        console.log('Ошибки: ', validator.errors);
-        console.log('Данные: ', validator.values);
+        formSubmitController.handleFormSubmit(this.refs.formRef.getContent(), validator);
       });
 
-      const { submitButton } = this.refs.formRef.refs;
+      const submitButton = this.refs.formRef.refs.submitButton || this.refs.submitButton;
+
       if (submitButton) {
         submitButton
           .getContent()

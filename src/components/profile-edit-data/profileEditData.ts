@@ -1,5 +1,4 @@
 import Block from 'core/Block';
-import { InputProps } from 'components/input/input';
 import { withLiveValidator } from '../../services/class-decorators/with-live-validator';
 import template from 'bundle-text:./profileEditData.hbs';
 import './profileEditData.css';

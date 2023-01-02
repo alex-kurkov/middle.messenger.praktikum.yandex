@@ -1,4 +1,3 @@
-import { InputProps } from 'components/input/input';
 import Block from './Block';
 import Validator from './Validator';
 
@@ -92,6 +91,11 @@ export default class ValidatorController extends Validator {
   get hasErrors() {
     const errorsArr: string[] = Array.from(Object.values(this.state.errors));
     return errorsArr.some((error: string) => error.length);
+  }
+
+  showAllErrors() {
+    const errors: Array<[string, string]>= Array.from(Object.entries(this.state.errors));
+    errors.forEach(([e, text]) => this.renderErrorText(e, text));
   }
 
   renderErrorText(inputName: string, error: string): void {

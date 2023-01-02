@@ -1,5 +1,4 @@
 import template from 'bundle-text:./profile.hbs';
-import { InputProps } from 'components/input/input';
 import router from 'controllers/router';
 import Block from '../../core/Block';
 

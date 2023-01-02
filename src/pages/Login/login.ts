@@ -1,6 +1,5 @@
 import Block from 'core/Block';
 import template from 'bundle-text:./login.hbs';
-import { InputProps } from 'components/input/input';
 import { withLiveValidator } from '../../services/class-decorators/with-live-validator';
 
 interface LoginProps {

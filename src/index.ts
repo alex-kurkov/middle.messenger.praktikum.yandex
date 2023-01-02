@@ -2,7 +2,7 @@ import './app.css';
 import { store } from 'core';
 import { registerAllComponents } from 'helpers/registerConponents';
 import router from 'controllers/router';
-import { chats, chatMessages } from './mock-data/pages-props';
+import { chats, chatMessages } from './app-data';
 import avatar1 from './assets/avatar-template.png';
 
 

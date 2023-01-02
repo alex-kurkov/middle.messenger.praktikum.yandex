@@ -12,6 +12,24 @@ declare global {
       blur?: (e: InputEvent) => void;
     };
   };
+  export type InputProps = {
+    onChange?: (e: InputEvent) => void;
+    onFocus?: (e: InputEvent) => void;
+    onBlur?: (e: InputEvent) => void;
+    type?: string;
+    placeholder?: string;
+    name: string;
+    value?: Nullable<string>;
+    error?: Nullable<string>;
+    autocomplete?: string;
+    accept?: 'string';
+    class?: string;
+    required?: boolean;
+    id?: string;
+    labelText?: string;
+    ref?: string;
+    errorRef?: string;
+  }
 }
 
 export {};

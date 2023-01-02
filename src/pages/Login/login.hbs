@@ -1,6 +1,12 @@
 {{#Layout class="flex-centered"}}
   {{#Modal}}
-    {{{Form ref="formRef" inputs=inputs formTitle=formTitle formButton=formButton}}}
+    {{{Form 
+      ref="formRef" 
+      inputs=inputs 
+      formTitle=formTitle 
+      formButton=formButton
+      formName=formName
+      }}}
     {{{FormAddon addon=addon}}}
   {{/Modal}}
 {{/Layout}}

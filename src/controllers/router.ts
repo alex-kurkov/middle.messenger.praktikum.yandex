@@ -1,6 +1,6 @@
 import { Router } from 'core';
 import { Login, Main, Profile, Messenger, NotFound } from 'pages';
-import props from '../mock-data/pages-props';
+import props from '../app-data';
 
 enum Pathnames {
   MAIN = '/',
