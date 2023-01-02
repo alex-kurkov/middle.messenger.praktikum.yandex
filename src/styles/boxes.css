@@ -49,3 +49,10 @@
 .w_l00 {
   width: 100%;
 }
+
+.pl_s {
+  padding-left: 10px;
+}
+.pr_s {
+  padding-right: 10px;
+}
