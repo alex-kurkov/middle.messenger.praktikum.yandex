@@ -125,6 +125,7 @@ export default class Block<P extends object> {
     }
     this._element = newElement as HTMLElement;
     this.addEvents();
+    this.eventBus.emit(Block.EVENTS.FLOW_CDM);
   }
 
   protected render(): string {

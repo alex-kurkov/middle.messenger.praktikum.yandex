@@ -9,7 +9,6 @@ enum Pathnames {
   NOT_FOUND = '/400',
   ERROR = '/500',
   MESSENGER = '/messenger',
-  MESSENGER_NARROW = '/messenger-narrow',
   PROFILE = '/profile',
   PROFILE_PASSWORD = '/profile-password',
   PROFILE_DATA = '/profile-data',
@@ -23,8 +22,7 @@ router
   .use(Pathnames.REGISTER, Login, props.registerPage)
   .use(Pathnames.ERROR, NotFound, props.page500)
   .use(Pathnames.NOT_FOUND, NotFound, props.page400)
-  .use(Pathnames.MESSENGER, Messenger, props.messengerExpanded)
-  .use(Pathnames.MESSENGER_NARROW, Messenger, props.messengerNarrow)
+  .use(Pathnames.MESSENGER, Messenger, props.messenger)
   .use(Pathnames.PROFILE, Profile, { ...props.profile, mainView: true })
   .use(Pathnames.PROFILE_DATA, Profile, {
     ...props.profile,

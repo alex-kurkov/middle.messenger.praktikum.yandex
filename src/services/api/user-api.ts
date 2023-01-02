@@ -2,7 +2,7 @@ import { Fetch } from 'core';
 
 export const fetchUser = new Fetch('ya-praktikum.tech/api/v2/user', true);
 
-export class userAPI {
+export class UserAPI {
   createUser(user: Omit<MSNUser, 'id' | 'avatar'>): Promise<XMLHttpRequest> {
     return fetchUser.put('/profile', { data: user });
   }

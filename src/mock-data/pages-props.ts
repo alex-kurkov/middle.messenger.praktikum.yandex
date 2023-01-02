@@ -3,7 +3,7 @@ import { nanoid } from 'nanoid';
 import avatar1 from '../assets/avatar-template.png';
 import avatar2 from '../assets/pear-avatar.png';
 
-const chats = [
+export const chats = [
   {
     id: 123,
     title: 'Илья Весенний',
@@ -85,7 +85,7 @@ const chats = [
   },
 ];
 
-const chatMessages = {
+export const chatMessages = {
   id: 123,
   title: 'Илья Весенний',
   avatar: avatar1,
@@ -210,6 +210,7 @@ const chatMessages = {
   ],
 };
 
+
 export default {
   page400: {
     title: '400',
@@ -226,11 +227,6 @@ export default {
   mainPage: {
     links: [
       {
-        pageUrl: '/messenger-narrow',
-        text: 'Мессенджер',
-        labelText: 'Лента сообщений с узким меню, не выбран чат',
-      },
-      {
         pageUrl: '/messenger',
         text: 'Мессенджер',
         labelText: 'Лента сообщений с раскрытым меню',
@@ -244,12 +240,6 @@ export default {
         labelText:
           'Регистрация + разное состояние :focus (на поле пароль), autocomplete и пример ошибки валидации',
         text: 'Регистрация',
-      },
-      {
-        pageUrl: '/profile',
-        labelText:
-          'Страница своего профиля - кнопки редактирования кликабельны',
-        text: 'Профиль',
       },
       {
         pageUrl: '/400',
@@ -390,26 +380,7 @@ export default {
       linkText: 'Войти',
     },
   },
-  messengerNarrow: {
-    sideMenuExpanded: false,
-    feedEmpty: true,
-    chats,
-    chatMessages,
-    inputs: [
-      {
-        type: 'text',
-        name: 'message',
-        placeholder: 'Введите сообщение',
-        ref: 'message_inputRef',
-        id: nanoid(4),
-      },
-    ],
-  },
-  messengerExpanded: {
-    sideMenuExpanded: true,
-    feedEmpty: false,
-    chats,
-    chatMessages,
+  messenger: {
     inputs: [
       {
         type: 'text',
@@ -540,14 +511,5 @@ export default {
         link: '/login',
       },
     ],
-    user: {
-      first_name: 'Илья Сергеевич',
-      second_name: 'Джонсонов',
-      display_name: 'Илья Весенний',
-      avatar: avatar1,
-      email: 'my@email.com',
-      login: 'userLogin',
-      phone: '8(911)-222-33-22',
-    },
   },
 };

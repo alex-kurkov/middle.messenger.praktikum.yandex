@@ -16,6 +16,9 @@ import ErrorComponent from 'components/error';
 import ProfileEditData from 'components/profile-edit-data';
 import ProfileEditPassword from 'components/profile-edit-password';
 import Link from 'components/link';
+import FeedTitle from 'components/feed-title';
+import ChatMessagesList from 'components/chat-messages-list';
+import { NewMessage } from 'components/new-message/new-message';
 
 export function registerAllComponents(): void {
   registerComponent(Button);
@@ -30,7 +33,10 @@ export function registerAllComponents(): void {
   registerComponent(SideMenu);
   registerComponent(MenuMessage);
   registerComponent(Feed);
+  registerComponent(FeedTitle);
   registerComponent(FeedMessage);
+  registerComponent(ChatMessagesList);
+  registerComponent(NewMessage);
   registerComponent(ProfileEdit);
   registerComponent(ProfileEditData);
   registerComponent(ProfileEditPassword);

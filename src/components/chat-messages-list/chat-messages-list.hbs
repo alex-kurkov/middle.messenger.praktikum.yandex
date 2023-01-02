@@ -1,0 +1,19 @@
+<div>
+      {{@log this}}
+
+  {{#if chatMessages}}
+    <ul class="chat-messages flex-vertical-left">
+      {{#each chatMessages.messages}}
+        <li class="chat-messages__list-item">
+          {{{FeedMessage user=user time=time content=content isFile=isFile url=url}}}
+        </li>
+      {{/each}}
+    </ul>
+  {{else}}
+    <div class="feed__info-text flex-centered text text_size_m text_weight_regular">Выберите чат, чтобы отправить сообщение, или 
+      {{#Link to="/"}}
+        <span class="feed__info-text-link" href="#">создайте новый</span>
+      {{/Link}}
+    </div>
+  {{/if}}
+</div>

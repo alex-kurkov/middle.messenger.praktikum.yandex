@@ -1,11 +1,12 @@
 import { EventBus } from ".";
 
+
 export enum StoreEvents {
   UPDATED = 'flow:store_did_update'
 }
 
 class Store extends EventBus {
-  private state: object = {};
+  private state: MSNStore = {};
   __instance: Nullable<Store> = null;
 
   constructor() {
@@ -16,8 +17,13 @@ class Store extends EventBus {
     this.__instance = this;
   }
 
-  public getState(): typeof this.state {
-    return this.state;
+  init(initialState: MSNStore) {
+    this.state = initialState;
+    this.emit(StoreEvents.UPDATED);
+  }
+
+  public getState(): MSNStore {
+      return this.state;
   }
 
   public setState(path: string, value: unknown): void {

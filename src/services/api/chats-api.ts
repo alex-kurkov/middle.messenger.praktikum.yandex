@@ -2,7 +2,7 @@ import { Fetch } from 'core';
 
 export const fetchChats = new Fetch('ya-praktikum.tech/api/v2/chats', true);
 
-export class chatsAPI {
+export class ChatsAPI {
   requestChats(
     offset?: number,
     limit?: number,

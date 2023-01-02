@@ -1,5 +1,6 @@
 import template from 'bundle-text:./profile.hbs';
 import { InputProps } from 'components/input/input';
+import router from 'controllers/router';
 import Block from '../../core/Block';
 
 interface ProfileProps {
@@ -41,6 +42,15 @@ interface ProfileProps {
 
 export class Profile extends Block<ProfileProps> {
   static componentName = 'Profile';
+
+  componentDidMount(): void {
+    const CloseIcon = this.getContent().querySelector('[data-ref="closeIcon"]');
+    if (CloseIcon) {
+      CloseIcon.addEventListener('click', () => {
+        router.go('/messenger');
+      });
+    }
+  }
 
   render() {
     return template;

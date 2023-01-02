@@ -1,0 +1,7 @@
+<div class="feed-title">
+  <img class="feed-title__avatar" src={{user.avatar}} alt="Аватар пользователя {{title}}.">
+  <div class="feed-title__title text text_size_m text_weight_regular">{{user.display_name}}</div>
+  {{#Link to="/profile"}}
+    <div class="feed-title__chat-settigs icon icon_medium flex-centered" data-ref="profileIcon">{{{Icon type="chatSettings"}}}</div>
+  {{/Link}}
+</div>

@@ -2,7 +2,7 @@ import { Fetch } from 'core';
 
 export const fetchAuth = new Fetch('ya-praktikum.tech/api/v2/auth', true);
 
-export class authAPI {
+export class AuthAPI {
   requestSignup(user: Omit<MSNUser, 'id' | 'avatar'>): Promise<XMLHttpRequest> {
     return fetchAuth.post('/signup', { data: user });
   }

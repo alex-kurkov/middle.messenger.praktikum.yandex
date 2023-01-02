@@ -2,7 +2,7 @@ import { Fetch } from 'core';
 
 export const fetchChatsCommon = new Fetch('ya-praktikum.tech/api/v2/chats', true);
 
-export class chatsCommonAPI {
+export class ChatsCommonAPI {
   requestCommonChat(id: number): Promise<XMLHttpRequest> {
     return fetchChatsCommon.get(`/${id}/common`, {
       data: { id },
