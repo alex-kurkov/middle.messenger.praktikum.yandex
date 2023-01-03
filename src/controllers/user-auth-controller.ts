@@ -1,30 +1,37 @@
-import { store } from "core";
-import { AuthAPI } from "services/api";
-import router from "./router";
+import { store } from 'core';
+import { authApi } from 'services/api';
+import router from './router';
 
-const authApi = new AuthAPI();
-
-export class UserAuthController {
-
+class UserAuthController {
   // @handleError(handler)
-  public async register(user: Omit<MSNUser, "id" | "avatar">) {
-    try {
+  public async auth(pathname = '/messenger') {
+    // TODO loader start
+    await authApi.requestUserInfo().then((xhr) => {
+      if (xhr.status === 200) {
+        const user = JSON.parse(xhr.response);
+        window.localStorage.setItem('isLoggedIn', 'true');
+        store.setState('user', user);
+        router.go(pathname);
+        return Promise.resolve();
+      } else {
+        throw new Error(xhr.response);
+      }
+    });
+  }
 
-      // TODO loader start
-
-      await authApi
-        .requestSignup(user)
-        .then((data) => {
-          console.log(data);
-          store.setState('user', data);
-          router.go('/messenger');
-        })
-    }
-    catch (e) {
-      console.log(e);
-    }
-    finally {
-      // TODO loader stop
-    }
+  public async logout () {
+    // TODO loader start
+    await authApi.requestLogout().then((xhr) => {
+      if (xhr.status === 200) {
+        window.localStorage.removeItem('isLoggedIn');
+        router.go('/login');
+        store.setState('user', null);
+        return;
+      } else {
+        throw new Error(xhr.response);
+      }
+    });
   }
 }
+
+export const userAuthController = new UserAuthController();

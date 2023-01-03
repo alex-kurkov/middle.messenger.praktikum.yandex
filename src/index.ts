@@ -3,6 +3,7 @@ import { store } from 'core';
 import { registerAllComponents } from 'utils/registerConponents';
 import router from 'controllers/router';
 import { chats, chatMessages } from './app-data';
+import { userAuthController } from 'controllers/user-auth-controller';
 
 store.init({
   user: null,
@@ -17,7 +18,9 @@ registerAllComponents();
 document.addEventListener('DOMContentLoaded', () => {
   router.start();
 
-  // if (!store.getState().user) {
-  //   router.go('./login')
-  // }
+  if (!window.localStorage.getItem('isLoggedIn')) {
+    router.go('/login');
+  } else {
+    userAuthController.auth(router.currentPathname);
+  }
 });

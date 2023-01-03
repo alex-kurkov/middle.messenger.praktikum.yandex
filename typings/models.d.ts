@@ -45,12 +45,12 @@ declare global {
   export type MSNUser = Nullable<{
     first_name: string;
     second_name: string;
-    display_name: string;
+    display_name?: Nullable<string>;
     login: string;
     email: string;
     phone: string;
     id?: string;
-    avatar: string;
+    avatar: Nullable<string>;
   }>;
 }
 

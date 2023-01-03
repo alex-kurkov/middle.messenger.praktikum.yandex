@@ -13,7 +13,6 @@ class AuthAPI {
     login: string;
     password: string;
   }): Promise<XMLHttpRequest> {
-    console.log(fetchAuth);
     return fetchAuth.post('/signin', { data });
   }
 

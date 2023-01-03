@@ -23,6 +23,10 @@ export default class Route<P extends object> {
     this._blockClass = view;
   }
 
+  get pathname(): string {
+    return this._pathname;
+  }
+
   navigate(pathname: string) {
     if (this.match(pathname)) {
       this._pathname = pathname;
@@ -31,20 +35,17 @@ export default class Route<P extends object> {
   }
 
   leave() {
-    if (this._block) {
-      this._block.hide();
-    }
+    this._block?.hide();
   }
 
   match(pathname: string): boolean {
-    return pathname === this._pathname;
+    return isEqual(pathname, this._pathname);
   }
 
   render() {
     if (!this._block) {
       this._block = new this._blockClass(this._props);
       renderDOM(this._props.rootQuery, this._block);
-      return;
     }
     this._block.show();
   }

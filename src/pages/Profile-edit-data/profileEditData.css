@@ -23,7 +23,6 @@
     width: 100px;
     height: 100px;
     filter: blur(4px);
-    background: url(../../assets/avatar-template.png);
     background-position: center;
     background-size: cover;
   }

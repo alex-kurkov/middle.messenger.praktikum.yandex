@@ -1,4 +1,5 @@
 import { registerComponent } from 'core';
+import Avatar from 'components/avatar/avatar';
 import Button from 'components/button';
 import Input from 'components/input';
 import Layout from 'components/layout';
@@ -18,6 +19,7 @@ import ChatMessagesList from 'components/chat-messages-list';
 import NewMessage from 'components/new-message/new-message';
 
 export function registerAllComponents(): void {
+  registerComponent(Avatar);
   registerComponent(Button);
   registerComponent(Input);
   registerComponent(InputField);

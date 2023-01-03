@@ -1,6 +1,6 @@
-import { store, ValidatorController } from 'core';
+import { ValidatorController } from 'core';
 import { authApi } from 'services/api';
-import router from './router';
+import { userAuthController } from './user-auth-controller';
 
 // eslint-disable-next-line no-shadow
 enum FormNames {
@@ -67,21 +67,11 @@ class FormSubmitController {
       .requestSignin(values)
       .then((xhr) => {
         if (xhr.status === 200) {
-          return authApi.requestUserInfo();
+          return userAuthController.auth('/messenger');
         } else {
           throw new Error(xhr.response);
         }
       })
-      .then((xhr) => {
-        if (xhr.status === 200) {
-          const user = JSON.parse(xhr.response);
-          store.setState('user', user);
-          router.go('/messenger');
-        } else {
-          throw new Error(xhr.response);
-        }
-      })
-      
   }
 
   private submitSignUp(values: Omit<MSNUser, 'id' | 'avatar'>) {

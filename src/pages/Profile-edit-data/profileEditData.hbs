@@ -1,19 +1,25 @@
 {{#Layout class="main_layout_feed"}}
   {{#Modal}}
     <section class="profile-edit-data flex-vertical-left">
-    <h1 class="profile-edit-data__title text text_size_m text_weight_bold">
-      {{user.display_name}}
-    </h1>
-    <label
-      class="profile-edit-data__avatar-label"
-      for="avatar-input"
-      style="width: 100px; height: 100px;"
-    >
-      <div class="profile-edit-data__avatar-thumb"></div>
-      <div class="profile-edit-data__avatar-edit-icon icon icon_large">
-        {{{Icon type="avatarEdit"}}}
-      </div>
-    </label>
+      <h1 class="profile-edit-data__title text text_size_m text_weight_bold">
+        {{user.first_name}} {{user.second_name}}
+      </h1>
+      <label
+        class="profile-edit-data__avatar-label"
+        for="avatar-input"
+        style="width: 100px; height: 100px;"
+      >
+        <div class="profile-edit-data__avatar-thumb" style="background-image: url(
+          {{#if user.avatar}}
+            {{user.avater}}
+          {{else}}  
+            {{avatarTemplate}}
+          {{/if}}
+          );"></div>
+        <div class="profile-edit-data__avatar-edit-icon icon icon_large">
+          {{{Icon type="avatarEdit"}}}
+        </div>
+      </label>
 
       {{#with avatarInput}}
         {{{Input type=type name=name id=id accept=accept}}}

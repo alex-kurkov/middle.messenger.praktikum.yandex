@@ -2,15 +2,19 @@
   {{#Modal}}
     <section class="profile flex-vertical-left">
       <h1 class="profile__title text text_size_m text_weight_bold">
-        {{user.display_name}}
+        {{user.first_name}} {{user.second_name}}
       </h1>
-      {{#with user}}
+   
         <img
           class="profile__avatar"
           width="300"
           height="300"
-          src={{avatar}}
-          alt="Аватар пользователя {{first_name}}"
+          src={{#if user.avatar}}
+                {{user.avater}}
+              {{else}}
+                {{avatarTemplate}}
+              {{/if}}
+          alt="Аватар пользователя {{user.first_name}} {{user.second_name}}"
         />
         <ul class="profile__data-wrap flex-vertical-left">
           <li>
@@ -22,7 +26,7 @@
             <div
               class="profile__data text text_size_m text_weight_regular"
             >
-              {{first_name}} {{second_name}}
+              {{user.first_name}} {{user.second_name}}
             </div>
           </li>
           <li>
@@ -34,7 +38,7 @@
             <div
               class="profile__data text text_size_m text_weight_regular"
             >
-              {{email}}
+              {{user.email}}
             </div>
           </li>
           <li>
@@ -46,11 +50,11 @@
             <div
               class="profile__data text text_size_m text_weight_regular"
             >
-              {{phone}}
+              {{user.phone}}
             </div>
           </li>
         </ul>
-      {{/with}}
+
       {{#Link to="/profile-data"}}
         <div class="profile__link">
           {{{Button text="Редактировать данные"}}}
