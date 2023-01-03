@@ -6,7 +6,7 @@ declare global {
 
   export type BlockEvents = {
     events: {
-      click?: () => void;
+      click?: (e: MouseEvent | undefined) => void;
       input?: (e: InputEvent) => void;
       focus?: (e: InputEvent) => void;
       blur?: (e: InputEvent) => void;

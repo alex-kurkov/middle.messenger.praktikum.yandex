@@ -210,7 +210,6 @@ export const chatMessages = {
   ],
 };
 
-
 export default {
   page400: {
     title: '400',
@@ -392,36 +391,7 @@ export default {
       },
     ],
   },
-  profile: {
-    editPasswordForm: {
-      formTitle: null,
-      formName: 'editPassword',
-      formButton: {
-        text: 'Сохранить',
-      },
-      inputs: [
-        {
-          type: 'password',
-          labelText: 'Старый пароль',
-          name: 'oldPassword',
-          required: true,
-          ref: 'oldPassword_inputRef',
-          errorRef: 'oldPassword_errorRef',
-          id: nanoid(7),
-        },
-        {
-          type: 'password',
-          labelText: 'Новый пароль',
-          name: 'newPassword',
-          required: true,
-          error: '',
-          ref: 'newPassword_inputRef',
-          errorRef: 'newPassword_errorRef',
-          id: nanoid(7),
-        },
-      ],
-      addon: null,
-    },
+  profileDataPage: {
     avatarInput: {
       type: 'file',
       name: 'avatar',
@@ -429,7 +399,6 @@ export default {
       id: 'avatar-input',
       accept: 'image/*',
     },
-    editPersonalDataForm: {
       formTitle: null,
       formName: 'editPersonalData',
       formButton: {
@@ -492,25 +461,33 @@ export default {
       ],
       addon: null,
     },
-    profileEditButtons: [
+  profilePasswordPage: {
+    formTitle: null,
+    formName: 'editPassword',
+    formButton: {
+      text: 'Сохранить',
+    },
+    inputs: [
       {
-        type: 'button',
-        name: 'edit',
-        text: 'Редактировать',
-        link: '/profile-data',
+        type: 'password',
+        labelText: 'Старый пароль',
+        name: 'oldPassword',
+        required: true,
+        ref: 'oldPassword_inputRef',
+        errorRef: 'oldPassword_errorRef',
+        id: nanoid(7),
       },
       {
-        type: 'button',
-        name: 'edit',
-        text: 'Изменить_пароль',
-        link: '/profile-password',
-      },
-      {
-        type: 'button',
-        name: 'edit',
-        text: 'Выйти',
-        link: '/login',
+        type: 'password',
+        labelText: 'Новый пароль',
+        name: 'newPassword',
+        required: true,
+        error: '',
+        ref: 'newPassword_inputRef',
+        errorRef: 'newPassword_errorRef',
+        id: nanoid(7),
       },
     ],
+    addon: null,
   },
 };

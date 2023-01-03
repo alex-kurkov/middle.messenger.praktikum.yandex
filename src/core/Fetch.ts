@@ -1,6 +1,6 @@
 export interface RequestOptions {
   timeout?: number;
-  data?: object;
+  data?: any;
   headers?: Record<string, string>;
 }
 enum METHODS {
@@ -26,14 +26,14 @@ export default class Fetch {
     credentials: string;
   }> = null;
 
-  constructor(baseUrl: string, withAuthCookies?: boolean) {
+  constructor(baseUrl: string) {
     this.baseUrl = baseUrl;
-    if (withAuthCookies) {
-      this.authHeaders = {
-        'mode': 'cors',
-        'credentials': 'include',
-      };
-    }
+    // if (withAuthCookies) {
+    //   this.authHeaders = {
+    //     mode: 'cors',
+    //     credentials: 'include',
+    //   };
+    // }
   }
 
   get = (url: string, options: RequestOptions = {}) => {
@@ -75,8 +75,8 @@ export default class Fetch {
       }
 
       const xhr = new XMLHttpRequest();
-      xhr.open(method, url);
-
+      xhr.open(method, `${this.baseUrl}${url}`);
+      xhr.withCredentials = true;
       if (this.authHeaders) {
         this.setHeaders(xhr, this.authHeaders);
       }
@@ -99,8 +99,12 @@ export default class Fetch {
 
       if (method === METHODS.GET || !data) {
         xhr.send();
+      } else if (data instanceof FormData) {
+        xhr.setRequestHeader('Content-Type', 'multipart/form-data');
+        xhr.send(data);
       } else {
-        xhr.send(data as Document | FormData);
+        xhr.setRequestHeader('Content-Type', 'application/json; charset=utf-8');
+        xhr.send(JSON.stringify(data));
       }
     });
   };

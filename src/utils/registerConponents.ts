@@ -11,14 +11,11 @@ import MenuMessage from 'components/menu-message';
 import Feed from 'components/feed';
 import FeedMessage from 'components/feed-message';
 import InputField from 'components/input-field';
-import ProfileEdit from 'components/profile-edit';
 import ErrorComponent from 'components/error';
-import ProfileEditData from 'components/profile-edit-data';
-import ProfileEditPassword from 'components/profile-edit-password';
 import Link from 'components/link';
 import FeedTitle from 'components/feed-title';
 import ChatMessagesList from 'components/chat-messages-list';
-import { NewMessage } from 'components/new-message/new-message';
+import NewMessage from 'components/new-message/new-message';
 
 export function registerAllComponents(): void {
   registerComponent(Button);
@@ -37,8 +34,5 @@ export function registerAllComponents(): void {
   registerComponent(FeedMessage);
   registerComponent(ChatMessagesList);
   registerComponent(NewMessage);
-  registerComponent(ProfileEdit);
-  registerComponent(ProfileEditData);
-  registerComponent(ProfileEditPassword);
   registerComponent(Link);
 }

@@ -1,21 +1,11 @@
 import './app.css';
 import { store } from 'core';
-import { registerAllComponents } from 'helpers/registerConponents';
+import { registerAllComponents } from 'utils/registerConponents';
 import router from 'controllers/router';
 import { chats, chatMessages } from './app-data';
-import avatar1 from './assets/avatar-template.png';
-
 
 store.init({
-  user: {
-    first_name: 'Илья Сергеевич',
-    second_name: 'Джонсонов',
-    display_name: 'Илья Весенний',
-    avatar: avatar1,
-    email: 'my@email.com',
-    login: 'userLogin',
-    phone: '8(911)-222-33-22',
-  },
+  user: null,
   interface: {
     sideMenuExpanded: false,
   },
@@ -26,4 +16,8 @@ registerAllComponents();
 
 document.addEventListener('DOMContentLoaded', () => {
   router.start();
+
+  // if (!store.getState().user) {
+  //   router.go('./login')
+  // }
 });

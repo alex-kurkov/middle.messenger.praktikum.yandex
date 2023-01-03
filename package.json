@@ -25,7 +25,6 @@
   "alias": {
     "core": "./src/core",
     "components": "./src/components",
-    "helpers": "./src/helpers",
     "pages": "./src/pages",
     "controllers": "./src/controllers",
     "utils": "./src/utils",

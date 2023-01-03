@@ -37,7 +37,6 @@ export default class Route<P extends object> {
   }
 
   match(pathname: string): boolean {
-    return isEqual(pathname, this._pathname);
     return pathname === this._pathname;
   }
 

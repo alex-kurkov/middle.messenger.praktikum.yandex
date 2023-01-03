@@ -2,18 +2,14 @@ import Block from 'core/Block';
 import { withLiveValidator } from '../../services/class-decorators/with-live-validator';
 import template from 'bundle-text:./profileEditData.hbs';
 import './profileEditData.css';
-
-interface ProfileEditProps {
-  inputs: InputProps[];
-  formButton: {
-    text: string;
-  };
-}
+import { withUser } from 'services/class-decorators/store-connectors';
 
 // @ts-ignore
 @withLiveValidator
-export class ProfileEditData extends Block<Omit<ProfileEditProps, 'inputs'>> {
-  static componentName = 'ProfileEditData';
+// @ts-ignore
+@withUser
+export class ProfileEditDataPage extends Block<object> {
+  static componentName = 'ProfileEditDataPage';
 
   render() {
     return template;

@@ -1,8 +1,10 @@
 import { Fetch } from 'core';
 
-export const fetchAuth = new Fetch('ya-praktikum.tech/api/v2/auth', true);
+export const fetchAuth = new Fetch(
+  'https://ya-praktikum.tech/api/v2/auth',
+);
 
-export class AuthAPI {
+class AuthAPI {
   requestSignup(user: Omit<MSNUser, 'id' | 'avatar'>): Promise<XMLHttpRequest> {
     return fetchAuth.post('/signup', { data: user });
   }
@@ -11,6 +13,7 @@ export class AuthAPI {
     login: string;
     password: string;
   }): Promise<XMLHttpRequest> {
+    console.log(fetchAuth);
     return fetchAuth.post('/signin', { data });
   }
 
@@ -22,3 +25,5 @@ export class AuthAPI {
     return fetchAuth.post('/logout');
   }
 }
+
+export default new AuthAPI();

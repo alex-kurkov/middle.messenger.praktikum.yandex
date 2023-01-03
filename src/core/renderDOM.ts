@@ -6,6 +6,6 @@ export default function renderDOM(rootSelector = '#app', block: Block<object>) {
     throw new Error('no root element found');
   }
 
-  root.innerHTML = '';
+  // root.innerHTML = '';
   root.appendChild(block.getContent());
 }

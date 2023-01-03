@@ -6,13 +6,16 @@ import './button.css';
 interface ButtonProps {
   text?: string;
   onClick?: () => void;
+  refName?: string;
 }
 
-export class Button extends Block<Pick<ButtonProps, 'text'> & BlockEvents> {
+export class Button extends Block<
+  Pick<ButtonProps, 'text' | 'refName'> & BlockEvents
+> {
   static componentName = 'Button';
 
-  constructor({ text, onClick }: ButtonProps) {
-    super({ text, events: { click: onClick } });
+  constructor({ text, refName, onClick }: ButtonProps) {
+    super({ text, refName, events: { click: onClick } });
   }
 
   protected render(): string {

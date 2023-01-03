@@ -1,5 +1,7 @@
-export { default as Login } from './Login';
-export { default as Main } from './Main';
-export { default as Profile } from './Profile';
-export { default as Messenger } from './Messenger';
-export { default as NotFound } from './NotFound';
+export { default as LoginPage } from './Login';
+export { default as MainPage } from './Main';
+export { default as ProfilePage } from './Profile';
+export { default as ProfileEditDataPage } from './Profile-edit-data';
+export { default as ProfileEditPasswordPage } from './Profile-edit-password';
+export { default as MessengerPage } from './Messenger';
+export { default as NotFoundPage } from './NotFound';

@@ -1,14 +1,67 @@
 {{#Layout class="main_layout_feed"}}
-    {{#Modal}}
-        {{{ProfileEdit 
-            mainView=mainView 
-            dataView=dataView
-            passwordView=passwordView
-            user=user
-            editPasswordForm=editPasswordForm
-            avatarInput=avatarInput
-            editPersonalDataForm=editPersonalDataForm
-            profileEditButtons=profileEditButtons
-        }}}
-    {{/Modal}}
+  {{#Modal}}
+    <section class="profile flex-vertical-left">
+      <h1 class="profile__title text text_size_m text_weight_bold">
+        {{user.display_name}}
+      </h1>
+      {{#with user}}
+        <img
+          class="profile__avatar"
+          width="300"
+          height="300"
+          src={{avatar}}
+          alt="Аватар пользователя {{first_name}}"
+        />
+        <ul class="profile__data-wrap flex-vertical-left">
+          <li>
+            <div
+              class="profile__data-label text text_size_m text_weight_regular"
+            >
+              Имя
+            </div>
+            <div
+              class="profile__data text text_size_m text_weight_regular"
+            >
+              {{first_name}} {{second_name}}
+            </div>
+          </li>
+          <li>
+            <div
+              class="profile__data-label text text_size_m text_weight_regular"
+            >
+              Email
+            </div>
+            <div
+              class="profile__data text text_size_m text_weight_regular"
+            >
+              {{email}}
+            </div>
+          </li>
+          <li>
+            <div
+              class="profile__data-label text text_size_m text_weight_regular"
+            >
+              Телефон
+            </div>
+            <div
+              class="profile__data text text_size_m text_weight_regular"
+            >
+              {{phone}}
+            </div>
+          </li>
+        </ul>
+      {{/with}}
+      {{#Link to="/profile-data"}}
+        <div class="profile__link">
+          {{{Button text="Редактировать данные"}}}
+        </div>
+      {{/Link}}
+      {{#Link to="/profile-password"}}
+        <div class="profile__link">
+          {{{Button text="Изменить пароль"}}}
+        </div>
+      {{/Link}}
+      {{{Button text="Выйти" refName="logoutBtn"}}}
+    </section>
+  {{/Modal}}
 {{/Layout}}

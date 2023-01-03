@@ -1,56 +1,42 @@
 import template from 'bundle-text:./profile.hbs';
 import router from 'controllers/router';
+import { store } from 'core';
+import { authApi } from 'services/api';
+import { withUser } from 'services/class-decorators/store-connectors';
 import Block from '../../core/Block';
+import './profile.css'
 
-interface ProfileProps {
-  avatarInput: {
-    type: string;
-    name: string;
-    required: boolean;
-    id: string;
-    accept: string;
-  };
-  editPasswordForm: {
-    formTitle?: null;
-    formName?: string;
-    formButton: {
-      text: string;
-    };
-    inputs: InputProps[];
-    addon?: null;
-  };
-  editPersonalDataForm: {
-    formTitle?: null;
-    formName?: string;
-    formButton: {
-      text: string;
-    };
-    inputs: InputProps[];
-    addon?: null;
-  };
-  profileEditButtons: {
-    type: string;
-    name: string;
-    text: string;
-    link: string;
-  }[];
-  mainView?: boolean;
-  passwordView?: boolean;
-  dataView?: boolean;
-}
 
-export class Profile extends Block<ProfileProps> {
+//@ts-ignore
+@withUser
+export class Profile extends Block<object> {
   static componentName = 'Profile';
 
-  componentDidMount(): void {
+
+  constructor(props: object) {
+    super(props);
     const CloseIcon = this.getContent().querySelector('[data-ref="closeIcon"]');
     if (CloseIcon) {
       CloseIcon.addEventListener('click', () => {
         router.go('/messenger');
       });
     }
-  }
+    const LogoutBtn = this.getContent().querySelector('[data-ref="logoutBtn"]');
 
+    if (LogoutBtn) {
+      LogoutBtn.addEventListener('click', () => {
+        authApi.requestLogout().then((xhr) => {
+          if (xhr.status === 200) {
+            store.setState('user', null);
+            router.go('/login');
+            return;
+          } else {
+            throw new Error(xhr.response);
+          }
+        });
+      });
+    }
+  }
   render() {
     return template;
   }

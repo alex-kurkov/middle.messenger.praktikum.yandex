@@ -7,6 +7,7 @@ export default class Router {
   history: History = window.history;
   private _currentRoute: Nullable<Route<object>> = null;
   rootQuery?: string;
+  _pathnames: string[] = [];
 
   constructor(rootQuery: string) {
     if (Router.__instance) {
@@ -18,7 +19,7 @@ export default class Router {
 
   use(
     pathname: string,
-    view: BlockConstructable<any>,
+    view: BlockConstructable<object>,
     viewProps: object
   ): Router {
     const route = new Route(pathname, view, {
@@ -26,11 +27,13 @@ export default class Router {
       ...viewProps,
     });
     this.routes.push(route);
+    this._pathnames.push(pathname);
     return this;
   }
 
   start(): void {
-    window.onpopstate = () => {
+    window.onpopstate = (event) => {
+      event.preventDefault();
       this._onRoute(window.location.pathname);
       // this._onRoute(event.currentTarget.location.pathname);
       // this.go(window.location.pathname);
@@ -45,10 +48,14 @@ export default class Router {
 
   back() {
     this.history.back();
+    const pathname = this._hasRoute(window.location.pathname);
+    this._onRoute(pathname);
   }
 
   forward() {
     this.history.forward();
+    const pathname = this._hasRoute(window.location.pathname);
+    this._onRoute(pathname);
   }
 
   private _onRoute(pathname: string): void {
@@ -67,5 +74,11 @@ export default class Router {
 
   getRoute(pathname: string): Route<object> | undefined {
     return this.routes.find((route) => route.match(pathname));
+  }
+  private _hasRoute(pathname: string) {
+    if (!this._pathnames.includes(pathname)) {
+      return '400';
+    }
+    return pathname;
   }
 }

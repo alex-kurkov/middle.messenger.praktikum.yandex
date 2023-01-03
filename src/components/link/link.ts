@@ -5,18 +5,22 @@ import './link.css';
 
 interface LinkProps {
   text?: string;
-  to: string;
+  to?: string;
+  onClick?: () => void;
 }
 
-export class Link extends Block<Pick<LinkProps, 'text'> & BlockEvents> {
+export class Link extends Block<Pick<LinkProps, 'text' | 'to' > & BlockEvents> {
   static componentName = 'Link';
 
   constructor({ text, to }: LinkProps) {
     super({
       text,
       events: {
-        click: () => {
-          router.go(to);
+        click: (e?: MouseEvent) => {
+          e?.preventDefault();
+          if (to) {
+            router.go(to);
+          }
         },
       },
     });

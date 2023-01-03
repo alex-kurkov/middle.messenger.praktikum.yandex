@@ -1,4 +1,6 @@
-import { ValidatorController } from 'core';
+import { store, ValidatorController } from 'core';
+import { authApi } from 'services/api';
+import router from './router';
 
 // eslint-disable-next-line no-shadow
 enum FormNames {
@@ -6,6 +8,8 @@ enum FormNames {
   SIGNUP = 'signup',
   MESSAGE = 'message',
   SEARCH = 'search',
+  EDIT_PASSWORD = 'editPassword',
+  EDIT_DATA = 'editData'
 }
 
 class FormSubmitController {
@@ -30,25 +34,62 @@ class FormSubmitController {
       return;
     }
 
-    
     switch (formNode.name) {
       case FormNames.SIGNIN:
-        console.log(FormNames.SIGNIN);
+        this.submitSignIn(
+          validator.values as { login: string; password: string }
+        );
         break;
       case FormNames.SIGNUP:
-        console.log(FormNames.SIGNUP);
+        this.submitSignUp(
+          validator.values as Omit<MSNUser, 'id' | 'avatar'>
+        )
         break;
       case FormNames.MESSAGE:
         console.log(FormNames.MESSAGE);
         break;
       case FormNames.SEARCH:
-        console.log(FormNames.SEARCH
-          );
+        console.log(FormNames.SEARCH);
+        break;
+      case FormNames.EDIT_DATA:
+        console.log(FormNames.SEARCH);
+        break;
+      case FormNames.EDIT_PASSWORD:
+        console.log(FormNames.SEARCH);
         break;
       default:
         throw new Error(`не найдена форма с именем ${formNode.name}`);
     }
   }
+
+  private submitSignIn(values: { login: string; password: string }) {
+    authApi
+      .requestSignin(values)
+      .then((xhr) => {
+        if (xhr.status === 200) {
+          return authApi.requestUserInfo();
+        } else {
+          throw new Error(xhr.response);
+        }
+      })
+      .then((xhr) => {
+        if (xhr.status === 200) {
+          const user = JSON.parse(xhr.response);
+          store.setState('user', user);
+          router.go('/messenger');
+        } else {
+          throw new Error(xhr.response);
+        }
+      })
+      
+  }
+
+  private submitSignUp(values: Omit<MSNUser, 'id' | 'avatar'>) {
+    authApi
+      .requestSignup(values)
+      .then(xhr => console.log(xhr.response))
+  }
+
 }
 
 export const formSubmitController = new FormSubmitController();
