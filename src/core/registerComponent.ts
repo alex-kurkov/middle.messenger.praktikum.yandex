@@ -1,19 +1,20 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import Handlebars, { HelperOptions } from 'handlebars';
 import Block from './Block';
 
-export interface BlockConstructable<Props extends object> {
+export interface BlockConstructable<P extends {[key: string]: any}> {
   componentName: string;
-  new(props: Props): Block<Props>;
+  new (props: P): Block<P>;
 }
 
-export default function registerComponent<Props extends object>(
-  Component: BlockConstructable<Props>,
+export default function registerComponent<P extends {[key: string]: any} | object>(
+  Component: BlockConstructable<P>,
 ) {
   
   Handlebars.registerHelper(
     Component.componentName,
     function (
-      this: Props,
+      this: P,
       { hash: { ref, ...hash }, data, fn }: HelperOptions
     ) {
       if (!data.root.children) {
@@ -26,7 +27,7 @@ export default function registerComponent<Props extends object>(
 
       const { children, refs } = data.root;
 
-      (Object.keys(hash) as []).forEach((key: keyof Props) => {
+      (Object.keys(hash) as []).forEach((key: keyof P) => {
         if (this[key] && typeof this[key] === 'string') {
           hash[key] = hash[key].replace(
             new RegExp(`{{${String(key)}}}`, 'i'),

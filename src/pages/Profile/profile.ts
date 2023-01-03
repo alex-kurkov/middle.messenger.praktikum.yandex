@@ -14,16 +14,12 @@ export class Profile<
   static componentName = 'Profile';
 
   constructor(props: P) {
-    super({...props, avatarTemplate});
-
-    const LogoutBtn = this.getContent().querySelector('[data-ref="logoutBtn"]');
-
-    LogoutBtn?.addEventListener('click', userAuthController.logout);
+    const handleLogout = () => userAuthController.logout()
+    super({ ...props, avatarTemplate, handleLogout });
   }
-
+  
   componentDidMount(): void {
     const CloseIcon = this.getContent().querySelector('[data-ref="closeIcon"]');
-
     if (CloseIcon) {
       CloseIcon.addEventListener('click', () => {
         router.go('/messenger');

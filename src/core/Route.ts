@@ -3,20 +3,17 @@ import { BlockConstructable } from './registerComponent';
 import renderDOM from './renderDOM';
 import { isEqual } from 'utils/isEqual';
 
-interface RouteProps {
-  rootQuery?: string;
-}
 
-export default class Route<P extends object> {
+export default class Route<P extends {[key: string]: any}>  {
   private _pathname = '';
-  private _block: Nullable<Block<object>> = null;
-  private _blockClass: BlockConstructable<object>;
-  private _props: RouteProps & P;
+  private _block: Nullable<Block<P>> = null;
+  private _blockClass: BlockConstructable<P>;
+  private _props: P;
 
   constructor(
     pathname: string,
-    view: BlockConstructable<object>,
-    props: RouteProps & P
+    view: BlockConstructable<P>,
+    props: P
   ) {
     this._pathname = pathname;
     this._props = props;

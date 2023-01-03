@@ -1,11 +1,11 @@
 import { Route } from '.';
 import { BlockConstructable } from './registerComponent';
 
-export default class Router {
-  static __instance: Nullable<Router> = null;
-  routes: Route<object>[] = [];
+export default class Router<P extends { [key: string]: any }> {
+  static __instance: Nullable<Router<any>> = null;
+  routes: Route<P>[] = [];
   history: History = window.history;
-  private _currentRoute: Nullable<Route<object>> = null;
+  private _currentRoute: Nullable<Route<P>> = null;
   rootQuery?: string;
 
   constructor(rootQuery: string) {
@@ -18,13 +18,13 @@ export default class Router {
 
   use(
     pathname: string,
-    view: BlockConstructable<object>,
-    viewProps: object
-  ): Router {
+    view: BlockConstructable<any>,
+    viewProps: P
+  ): Router<P> {
     const route = new Route(pathname, view, {
       rootQuery: this.rootQuery,
       ...viewProps,
-    });
+    } as P);
     this.routes.push(route);
     return this;
   }
@@ -52,7 +52,6 @@ export default class Router {
   }
 
   private _onRoute(pathname: string): void {
-
     const route = this.getRoute(pathname);
 
     if (!route) {
@@ -72,11 +71,11 @@ export default class Router {
     route.render();
   }
 
-  getRoute(pathname: string): Route<object> | undefined {
+  getRoute(pathname: string): Route<P> | undefined {
     return this.routes.find((route) => route.match(pathname));
   }
 
-  get currentPathname(): string | undefined{
+  get currentPathname(): string | undefined {
     return this._currentRoute?.pathname;
   }
 }
