@@ -1,14 +1,14 @@
 <section class="side-menu flex-vertical-left
-  {{#if interface.sideMenuExpanded}}side-menu_expanded{{/if}}
+  {{#if sideMenuExpanded}}side-menu_expanded{{/if}}
 ">
   <div class="side-menu__search flex-centered" >
-    {{#if interface.sideMenuExpanded}}
+    {{#if sideMenuExpanded}}
       <div class="side-menu__search_expanded">
           {{{Input name="search" class="side-menu__input" }}}
         <div class="side-menu__search-icon_expanded icon icon_medium">{{{Icon type="search"}}}</div>
       </div>
     {{else}}
-      <div class="side-menu__search-icon icon icon_large">{{{Icon type="search"}}}</div>
+      <div class="side-menu__search-icon icon icon_large">{{{Icon onClick=expandSideMenu type="search"}}}</div>
     {{/if}}
   </div>
 
@@ -16,7 +16,7 @@
       {{#each chats }}
       <li>
         {{{MenuMessage 
-          expanded=@root/interface/sideMenuExpanded
+          expanded=@root/sideMenuExpanded
           active=active 
           avatar=avatar 
           unread_count=unread_count
@@ -32,12 +32,12 @@
 
   <div class="side-menu__footer flex-centered">
       <ul class="side-menu__icons-wrap flex-row-spaced">
-        {{#if interface.sideMenuExpanded}}
-          <li><div class="side-menu__footer-icon icon icon_large flex-centered">{{{Icon type="sound"}}}</div></li>
-          <li><div class="side-menu__footer-icon icon icon_large flex-centered">{{{Icon type="addPerson"}}}</div></li>
-          <li><div class="side-menu__footer-icon icon icon_large flex-centered">{{{Icon type="settings"}}}</div></li>
+        {{#if sideMenuExpanded}}
+          <li><div class="side-menu__footer-icon icon icon_large flex-centered">{{{Icon onClick=toggleSound type="sound"}}}</div></li>
+          <li><div class="side-menu__footer-icon icon icon_large flex-centered">{{{Icon onClick=addChat type="addPerson"}}}</div></li>
+          <li><div class="side-menu__footer-icon icon icon_large flex-centered">{{{Icon onClick=goToProfilePage type="settings"}}}</div></li>
         {{/if}}
-        <li><div class="side-menu__footer-icon icon icon_large flex-centered" data-ref="toggleMenu">{{{Icon type="expand"}}}</div></li>
+        <li><div class="side-menu__footer-icon icon icon_large flex-centered" data-ref="toggleMenu">{{{Icon onClick=toggleSideMenu type="expand"}}}</div></li>
       </ul>
   </div>
 </section>

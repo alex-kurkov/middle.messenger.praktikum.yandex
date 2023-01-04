@@ -16,6 +16,13 @@ class InterfaceController {
       sideMenuExpanded: !currentInterfaceState?.sideMenuExpanded,
     });
   }
+  
+  public expandSideMenu(): void {
+    store.setState('interface', {
+      ...store.getState().interface,
+      sideMenuExpanded: true,
+    });
+  }
 }
 
 export const interfaceController = new InterfaceController();

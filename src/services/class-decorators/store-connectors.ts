@@ -27,6 +27,6 @@ function connect(mapStateToProps: (state: MSNStore) => object) {
 }
 
 export const withUser = connect((s) => ({ user: s.user }));
-export const withInterface = connect((s) => ({ interface: s.interface }));
+export const withSideMenu = connect((s) => ({ sideMenuExpanded: s.interface?.sideMenuExpanded }));
 export const withChats = connect((s) => ({ chats: s.chats }));
 export const withChatMessages = connect((s) => ({ chatMessages: s.chatMessages }));
