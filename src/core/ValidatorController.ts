@@ -110,6 +110,11 @@ export default class ValidatorController extends Validator {
 
   handleFormChange(target: HTMLInputElement): void {
     const inputName: string = target.name;
+    if (!target.required && target.value === '') {
+          this.state.errors[inputName] = '';
+          this.state.values[inputName] = '';
+      return;
+    }
     const error = this.validate(inputName, target.value);
     this.state.errors[inputName] = error;
     this.state.values[inputName] = target.value;
@@ -125,6 +130,11 @@ export default class ValidatorController extends Validator {
 
   handleInputFocus = (target: HTMLInputElement) => {
     const inputName: string = target.name;
+        if (!target.required && target.value === '') {
+          this.state.errors[inputName] = '';
+          this.state.values[inputName] = '';
+          return;
+        }
     const error = this.validate(inputName, target.value);
     this.state.errors[inputName] = error;
     this.state.values[inputName] = target.value;

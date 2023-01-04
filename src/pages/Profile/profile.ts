@@ -15,17 +15,16 @@ export class Profile<
 
   constructor(props: P) {
     const handleLogout = () => userAuthController.logout()
-    super({ ...props, avatarTemplate, handleLogout });
+    super({
+      ...props,
+      avatarTemplate,
+      handleLogout,
+      handleCloseIconClick: () => {
+        router.go('/messenger');
+      },
+    });
   }
   
-  componentDidMount(): void {
-    const CloseIcon = this.getContent().querySelector('[data-ref="closeIcon"]');
-    if (CloseIcon) {
-      CloseIcon.addEventListener('click', () => {
-        router.go('/messenger');
-      });
-    }
-  }
   render() {
     return template;
   }

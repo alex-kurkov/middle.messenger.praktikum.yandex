@@ -1,5 +1,6 @@
 import { store } from 'core';
 import { authApi } from 'services/api';
+import { getStaticFile } from 'utils/getStaticFile';
 import router from './router';
 
 class UserAuthController {
@@ -10,7 +11,10 @@ class UserAuthController {
       if (xhr.status === 200) {
         const user = JSON.parse(xhr.response);
         window.localStorage.setItem('isLoggedIn', 'true');
-        store.setState('user', user);
+        store.setState('user', {
+          ...user,
+          avatar: getStaticFile(user.avatar),
+        });
         router.go(pathname);
         return Promise.resolve();
       } else {

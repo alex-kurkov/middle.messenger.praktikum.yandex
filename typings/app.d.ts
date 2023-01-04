@@ -16,6 +16,7 @@ declare global {
     onChange?: (e: InputEvent) => void;
     onFocus?: (e: InputEvent) => void;
     onBlur?: (e: InputEvent) => void;
+    onFileChange?: (e: InputEvent) => void;
     type?: string;
     placeholder?: string;
     name: string;

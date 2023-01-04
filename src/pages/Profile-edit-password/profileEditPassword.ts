@@ -19,18 +19,15 @@ export class ProfileEditPasswordPage<
     super({
       ...props,
       avatarTemplate,
+      handleCloseIconClick: () => {
+        router.go('/profile');
+      },
       handleSubmit: () => {
         this.eventBus.emit(ValidatorController.EVENTS.FORM_SUBMIT);
-      }
+      },
     });
   }
 
-  componentDidMount(): void {
-    const CloseIcon = this.getContent().querySelector('[data-ref="closeIcon"]');
-    CloseIcon?.addEventListener('click', () => {
-      router.go('/profile');
-    });
-  }
   render() {
     return template;
   }

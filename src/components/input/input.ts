@@ -3,12 +3,16 @@ import template from 'bundle-text:./input.hbs';
 import './input.css';
 
 export class Input extends Block<
-  Omit<InputProps, 'onChange' | 'onFocus' | 'onBlur'> & BlockEvents
+  Omit<InputProps, 'onChange' | 'onFocus' | 'onBlur' > &
+    BlockEvents
 > {
   static componentName = 'Input';
 
   constructor({
-    onChange, onFocus, onBlur, ...props
+    onChange,
+    onFocus,
+    onBlur,
+    ...props
   }: InputProps) {
     super({
       ...props,

@@ -1,16 +1,11 @@
 import { Fetch } from 'core';
 
-export const fetchUser = new Fetch('ya-praktikum.tech/api/v2/user', true);
+export const fetchUser = new Fetch('https://ya-praktikum.tech/api/v2/user');
 
-export class UserAPI {
+class UserAPI {
   createUser(user: Omit<MSNUser, 'id' | 'avatar'>): Promise<XMLHttpRequest> {
     return fetchUser.put('/profile', { data: user });
   }
-
-  // e: InputEvent
-  // const image = e.target.files[0] - first file(input без multiple) | e.target.value
-  // const formData = new FormData();
-  // formData.set(`avatar`, image, image.name);
 
   createAvatar(formData: FormData): Promise<XMLHttpRequest> {
     return fetchUser.put('/profile/avatar', { data: formData });
@@ -28,3 +23,5 @@ export class UserAPI {
     return fetchUser.post('/search', { data: { login } });
   }
 }
+
+export default new UserAPI()

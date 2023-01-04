@@ -8,6 +8,10 @@
     height: 40px;
   }
 
+  &__image {
+    border-radius: 50%;
+  }
+
   &__fallback {
     border-radius: 50%;
     height: inherit;

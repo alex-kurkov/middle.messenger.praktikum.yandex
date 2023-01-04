@@ -1,6 +1,7 @@
 import { ValidatorController } from 'core';
 import { authApi } from 'services/api';
 import { userAuthController } from './user-auth-controller';
+import { userChangeController } from './user-change-controller';
 
 // eslint-disable-next-line no-shadow
 enum FormNames {
@@ -40,9 +41,7 @@ class FormSubmitController {
         );
         break;
       case FormNames.SIGNUP:
-        this.submitSignUp(
-          validator.values as Omit<MSNUser, 'id' | 'avatar'>
-        )
+        this.submitSignUp(validator.values as Omit<MSNUser, 'id' | 'avatar'>);
         break;
       case FormNames.MESSAGE:
         console.log(FormNames.MESSAGE);
@@ -51,10 +50,15 @@ class FormSubmitController {
         console.log(FormNames.SEARCH);
         break;
       case FormNames.EDIT_DATA:
-        console.log(FormNames.EDIT_DATA);
+        this.submitChangeUserData(validator.values);
         break;
       case FormNames.EDIT_PASSWORD:
-        console.log(FormNames.EDIT_PASSWORD);
+        this.submitChangePassword(
+          validator.values as {
+            oldPassword: string;
+            newPassword: string;
+          }
+        );
         break;
       default:
         throw new Error(`не найдена форма с именем ${formNode.name}`);
@@ -62,21 +66,31 @@ class FormSubmitController {
   }
 
   private submitSignIn(values: { login: string; password: string }) {
-    authApi
-      .requestSignin(values)
-      .then((xhr) => {
-        if (xhr.status === 200) {
-          return userAuthController.auth('/messenger');
-        } else {
-          throw new Error(xhr.response);
-        }
-      })
+    authApi.requestSignin(values).then((xhr) => {
+      if (xhr.status === 200) {
+        return userAuthController.auth('/messenger');
+      } else {
+        throw new Error(xhr.response);
+      }
+    });
   }
 
   private submitSignUp(values: Omit<MSNUser, 'id' | 'avatar'>) {
-    authApi
-      .requestSignup(values)
-      .then(xhr => console.log(xhr.response))
+    authApi.requestSignup(values).then((xhr) => {
+      console.log(xhr.response);
+      return Promise.resolve(xhr.response);
+    });
+  }
+
+  private submitChangeUserData(values: Omit<MSNUser, 'id' | 'avatar'>) {
+    userChangeController.changeUserData(values);
+  }
+
+  private submitChangePassword(values: {
+    oldPassword: string;
+    newPassword: string;
+  }) {
+    userChangeController.changePassword(values);
   }
 
 }

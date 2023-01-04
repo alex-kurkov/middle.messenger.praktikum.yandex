@@ -12,7 +12,7 @@ enum METHODS {
 
 enum REJECT_MESSAGES {
   NO_METHOD = 'не передан метод',
-  NO_URL = 'не передан метод',
+  NO_URL = 'не передан URL',
   DATA_NO_OBJECT = 'поле data должно быть объектом',
   REQUEST_ABORTED = 'запрос отменен',
   REQUEST_TIMEOUTED = 'запрос превысил таймаут',
@@ -69,7 +69,7 @@ export default class Fetch {
         reject(REJECT_MESSAGES.NO_METHOD);
         return;
       }
-      if (!url) {
+      if (typeof url !== 'string') {
         reject(REJECT_MESSAGES.NO_URL);
         return;
       }
@@ -100,7 +100,8 @@ export default class Fetch {
       if (method === METHODS.GET || !data) {
         xhr.send();
       } else if (data instanceof FormData) {
-        xhr.setRequestHeader('Content-Type', 'multipart/form-data');
+        // xhr.setRequestHeader('content-type', 'multipart/form-data');
+        console.log('inside form send')
         xhr.send(data);
       } else {
         xhr.setRequestHeader('Content-Type', 'application/json; charset=utf-8');
