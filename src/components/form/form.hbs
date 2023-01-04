@@ -27,18 +27,17 @@
   </fieldset>
   {{#if addon}}
     <div class="form__addon text text_size_m text_weight_regular">
-      <span>{{addon.text}}</span>
-
-{{#Link to=addon.link }}
-        <span class="text-link">{{addon.linkText}}</span>
-{{/Link}}
-
-
-
-
+      <span>
+        {{addon.text}}
+      </span>
+      {{#Link to=addon.link}}
+        <span class="text-link">
+          {{addon.linkText}}
+        </span>
+      {{/Link}}
     </div>
   {{/if}}
   {{#if formButton}}
-    {{{Button ref="submitButton" text=formButton.text}}}
+    {{{Button ref="submitButton" onClick=handleSubmit text=formButton.text}}}
   {{/if}}
 </form>

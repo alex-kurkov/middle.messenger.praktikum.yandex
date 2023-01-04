@@ -9,7 +9,7 @@ enum FormNames {
   MESSAGE = 'message',
   SEARCH = 'search',
   EDIT_PASSWORD = 'editPassword',
-  EDIT_DATA = 'editData'
+  EDIT_DATA = 'editData',
 }
 
 class FormSubmitController {
@@ -28,7 +28,6 @@ class FormSubmitController {
     // console.log('Ошибки: ', validator.errors);
     // console.log('Данные: ', validator.values);
     // console.log('Форма: ', formNode);
-
     if (validator.hasErrors) {
       validator.showAllErrors();
       return;
@@ -52,10 +51,10 @@ class FormSubmitController {
         console.log(FormNames.SEARCH);
         break;
       case FormNames.EDIT_DATA:
-        console.log(FormNames.SEARCH);
+        console.log(FormNames.EDIT_DATA);
         break;
       case FormNames.EDIT_PASSWORD:
-        console.log(FormNames.SEARCH);
+        console.log(FormNames.EDIT_PASSWORD);
         break;
       default:
         throw new Error(`не найдена форма с именем ${formNode.name}`);

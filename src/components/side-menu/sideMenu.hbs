@@ -2,10 +2,16 @@
   {{#if sideMenuExpanded}}side-menu_expanded{{/if}}
 ">
   <div class="side-menu__search flex-centered" >
+      {{@log this}}
     {{#if sideMenuExpanded}}
       <div class="side-menu__search_expanded">
-          {{{Input name="search" class="side-menu__input" }}}
-        <div class="side-menu__search-icon_expanded icon icon_medium">{{{Icon type="search"}}}</div>
+          {{{Form 
+            inputs=inputs 
+            ref="formRef" 
+            formButton=false 
+            formName="search"
+            }}}
+        <div class="side-menu__search-icon_expanded icon icon_medium">{{{Icon onClick=handleSearch type="search"}}}</div>
       </div>
     {{else}}
       <div class="side-menu__search-icon icon icon_large">{{{Icon onClick=expandSideMenu type="search"}}}</div>

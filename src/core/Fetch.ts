@@ -94,7 +94,7 @@ export default class Fetch {
         reject(new Error(REJECT_MESSAGES.REQUEST_TIMEOUTED));
 
       xhr.onprogress = () => {
-        console.log('progress...');
+        console.log('XMLHttpRequest in progress...');
       };
 
       if (method === METHODS.GET || !data) {

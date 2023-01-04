@@ -10,18 +10,10 @@ export function withLiveValidator<P extends { inputs: InputProps[] }>(
       const validator = new ValidatorController(this, props.inputs, true);
 
       this.eventBus.on(ValidatorController.EVENTS.FORM_SUBMIT, () => {
-        formSubmitController.handleFormSubmit(this.refs.formRef.getContent(), validator);
+        const form: HTMLFormElement =
+          this.refs.formRef.getContent() as HTMLFormElement;
+        formSubmitController.handleFormSubmit(form, validator);
       });
-
-      const submitButton = this.refs.formRef.refs.submitButton || this.refs.submitButton;
-
-      if (submitButton) {
-        submitButton
-          .getContent()
-          .addEventListener('click', () =>
-            this.eventBus.emit(ValidatorController.EVENTS.FORM_SUBMIT)
-          );
-      }
     }
-  }
+  };
 }

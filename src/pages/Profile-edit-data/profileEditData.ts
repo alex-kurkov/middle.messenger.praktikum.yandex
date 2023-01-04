@@ -5,6 +5,7 @@ import './profileEditData.css';
 import { withUser } from 'services/class-decorators/store-connectors';
 import avatarTemplate from '../../assets/avatar-template.jpg';
 import router from 'controllers/router';
+import { ValidatorController } from 'core';
 
 // @ts-ignore
 @withLiveValidator
@@ -14,7 +15,13 @@ export class ProfileEditDataPage<P extends { user: MSNUser }> extends Block<P> {
   static componentName = 'ProfileEditDataPage';
 
   constructor(props: P) {
-    super({ ...props, avatarTemplate });
+    super({
+      ...props,
+      avatarTemplate,
+      handleSubmit: () => {
+        this.eventBus.emit(ValidatorController.EVENTS.FORM_SUBMIT);
+      },
+    });
   }
 
   componentDidMount(): void {

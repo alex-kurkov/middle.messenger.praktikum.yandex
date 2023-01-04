@@ -7,17 +7,24 @@ import {
 } from '../../services/class-decorators/store-connectors';
 import { interfaceController } from 'controllers/interface-controller';
 import router from 'controllers/router';
+import { withLiveValidator } from 'services/class-decorators/with-live-validator';
+import { ValidatorController } from 'core';
 
 // @ts-ignore
 @withSideMenu
 // @ts-ignore
 @withChats
+// @ts-ignore
+@withLiveValidator
 export class SideMenu extends Block<object> {
   static componentName = 'SideMenu';
 
   constructor(props: object) {
     const expandSideMenu = interfaceController.expandSideMenu;
     const toggleSideMenu = interfaceController.toggleSideMenu;
+    const handleSearch = () => {
+        this.eventBus.emit(ValidatorController.EVENTS.FORM_SUBMIT);
+    }
     const goToProfilePage = () => {
       router.go('/profile');
     };
@@ -35,6 +42,7 @@ export class SideMenu extends Block<object> {
       addChat,
       expandSideMenu,
       goToProfilePage,
+      handleSearch,
     });
   }
 
