@@ -2,7 +2,7 @@ import './app.css';
 import { store } from 'core';
 import { registerAllComponents } from 'utils/registerConponents';
 import router from 'controllers/router';
-import { chats, chatMessages } from './app-data';
+import { chats, chatMessages, activeChat } from './app-data';
 import { userAuthController } from 'controllers/user-auth-controller';
 
 store.init({
@@ -12,6 +12,7 @@ store.init({
   },
   chats,
   chatMessages,
+  activeChat,
 });
 registerAllComponents();
 

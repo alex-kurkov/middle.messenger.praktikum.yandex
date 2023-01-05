@@ -1,6 +1,7 @@
 <div class="feed-title">
-  {{{Avatar size="s"}}}
-  <div class="feed-title__title text text_size_m text_weight_regular">{{user.first_name}} {{user.second_name}}</div>
+{{@log this}}
+  {{{Avatar size="s" avatar=activeChat.avatar abbr=abbr}}}
+  <div class="feed-title__title text text_size_m text_weight_regular">{{activeChat.title}}</div>
   {{#Link to="/profile"}}
     <div class="feed-title__chat-settigs icon icon_medium flex-centered" data-ref="profileIcon">{{{Icon type="chatSettings"}}}</div>
   {{/Link}}

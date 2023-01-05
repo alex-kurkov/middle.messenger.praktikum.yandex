@@ -1,9 +1,9 @@
 <div class="avatar avatar_size_{{size}}">
-  {{#if user.avatar}}
+  {{#if avatar}}
     <img
       class="avatar__image avatar_size_{{size}}"
-      src={{user.avatar}}
-      alt="Аватар пользователя {{user.first_name}} {{user.second_name}}."
+      src={{avatar}}
+      alt="Аватар чата"
     />
   {{else}}
     <div class="avatar__fallback flex-centered">

@@ -5,6 +5,7 @@ declare global {
     };
     user?: MSNUser;
     chats?: MSNChat[];
+    activeChat: MSNChat,
     chatMessages?: {
       id?: number;
       title?: string;

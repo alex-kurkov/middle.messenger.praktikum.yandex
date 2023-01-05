@@ -3,6 +3,28 @@ import { nanoid } from 'nanoid';
 import avatar1 from './assets/avatar-template.png';
 import avatar2 from './assets/pear-avatar.png';
 
+
+export const activeChat = {
+  id: 'hohoihoiho',
+  title: 'Какой-то активный чат',
+  avatar: avatar1,
+  unread_count: null,
+  last_message: {
+    user: {
+      first_name: 'Petya',
+      second_name: 'Pupkin',
+      avatar: avatar1,
+      email: 'my@email.com',
+      login: 'userLogin',
+      phone: '8(911)-222-33-22',
+    },
+    time: '13:30',
+    content: 'Привет. Как вчера все прошло?)) Надеюсь, что укпрукгпукр',
+  },
+  active: true
+};
+
+
 export const chats = [
   {
     id: 123,

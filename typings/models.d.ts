@@ -1,6 +1,6 @@
 declare global {
   export type MSNChat = {
-    id: number;
+    id: number | string;
     title: string;
     avatar: typeof Blob | string | URL;
     unread_count: Nullable<number>;
