@@ -26,7 +26,7 @@ export class SideMenu extends Block<object> {
       router.go('/profile');
     };
     const addChat = () => {
-      console.log('chat add process');
+      interfaceController.showAddChatDialog()
     };
     const toggleSound = () => {
       console.log('sound toggled');

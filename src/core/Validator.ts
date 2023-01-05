@@ -11,6 +11,7 @@ export default class Validator {
     SECOND_NAME: 'second_name',
     DISPLAY_NAME: 'display_name',
     MESSAGE: 'message',
+    CHAT_TITLE: 'title',
   };
 
   static RE = {
@@ -101,6 +102,21 @@ export default class Validator {
         break;
 
       // ------------------------
+      // от 3 до 20 символов
+      // ------------------------
+
+      case ValidateRules.CHAT_TITLE:
+       if (value.length < 3) {
+         errorMessage = Messages.GREATER_THAN_3;
+         break;
+       }
+        if (value.length > 20) {
+          errorMessage = Messages.LESS_THAN_40;
+          break;
+        }
+        break;
+
+      // ------------------------
       // от 3 до 20 символов, латиница, может содержать цифры,
       // но не состоять из них, без пробелов, без
       // спецсимволов(допустимы дефис и нижнее подчёркивание).
@@ -142,8 +158,8 @@ export default class Validator {
           break;
         }
         if (
-          !RE.HAS_DIGIT_REGEX.test(value)
-          && !RE.HAS_CAPITAL_REGEX.test(value)
+          !RE.HAS_DIGIT_REGEX.test(value) &&
+          !RE.HAS_CAPITAL_REGEX.test(value)
         ) {
           errorMessage = Messages.HAS_CAP_AND_DIGIT;
           break;
@@ -179,8 +195,8 @@ export default class Validator {
           break;
         }
         if (
-          !RE.HAS_DIGIT_REGEX.test(value)
-          && !RE.HAS_CAPITAL_REGEX.test(value)
+          !RE.HAS_DIGIT_REGEX.test(value) &&
+          !RE.HAS_CAPITAL_REGEX.test(value)
         ) {
           errorMessage = Messages.HAS_CAP_AND_DIGIT;
           break;
@@ -216,8 +232,8 @@ export default class Validator {
           break;
         }
         if (
-          !RE.HAS_DIGIT_REGEX.test(value)
-          && !RE.HAS_CAPITAL_REGEX.test(value)
+          !RE.HAS_DIGIT_REGEX.test(value) &&
+          !RE.HAS_CAPITAL_REGEX.test(value)
         ) {
           errorMessage = Messages.HAS_CAP_AND_DIGIT;
           break;
@@ -253,8 +269,8 @@ export default class Validator {
           break;
         }
         if (
-          !RE.HAS_DIGIT_REGEX.test(value)
-          && !RE.HAS_CAPITAL_REGEX.test(value)
+          !RE.HAS_DIGIT_REGEX.test(value) &&
+          !RE.HAS_CAPITAL_REGEX.test(value)
         ) {
           errorMessage = Messages.HAS_CAP_AND_DIGIT;
           break;

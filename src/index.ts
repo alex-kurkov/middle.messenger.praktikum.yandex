@@ -9,10 +9,12 @@ store.init({
   user: null,
   interface: {
     sideMenuExpanded: false,
+    addChatDialogVisible: false,
   },
   chats,
   chatMessages,
   activeChat,
+  newChats: [],
 });
 registerAllComponents();
 

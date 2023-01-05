@@ -1,6 +1,6 @@
 import { Fetch } from 'core';
 
-export const fetchChatsCommon = new Fetch('ya-praktikum.tech/api/v2/chats', true);
+export const fetchChatsCommon = new Fetch('ya-praktikum.tech/api/v2/chats');
 
 export class ChatsCommonAPI {
   requestCommonChat(id: number): Promise<XMLHttpRequest> {

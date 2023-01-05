@@ -1,0 +1,34 @@
+.chat-add-dialog {
+  position: fixed;
+  top: 0;
+  left: 0;
+  border: none;
+  width: 100%;
+  height: 100vh;
+  background-color: var(--light-gray-half-opacity);
+  display: flex;
+
+  &_hidden {
+    display: none;
+  }
+
+  &__content {
+    position: relative;
+    width: var(--modal-content-width);
+    background-color: var(--dark-gray);
+    padding: 10px 10px 20px;
+  }
+
+  & legend {
+    color: var(--base-white);
+    margin-bottom: 20px;
+  }
+
+  & .error {
+        color: var(--base-white);
+  }
+
+  & path {
+    fill: var(--base-white);
+  }
+}

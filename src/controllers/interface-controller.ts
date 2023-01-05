@@ -23,6 +23,19 @@ class InterfaceController {
       sideMenuExpanded: true,
     });
   }
+
+  public showAddChatDialog():void {
+    store.setState('interface', {
+      ...store.getState().interface,
+      addChatDialogVisible: true,
+    });
+  }
+  public hideAddChatDialog():void {
+    store.setState('interface', {
+      ...store.getState().interface,
+      addChatDialogVisible: false,
+    });
+  }
 }
 
 export const interfaceController = new InterfaceController();

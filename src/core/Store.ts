@@ -29,6 +29,7 @@ class Store extends EventBus {
   public setState(path: string, value: unknown): void {
     this.set(this.state, path, value);
     this.emit(StoreEvents.UPDATED);
+    console.log('STATE:', this.state)
   }
 
   private set(state: typeof this.state, path: string, value: unknown): void {

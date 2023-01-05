@@ -3,7 +3,6 @@ import { nanoid } from 'nanoid';
 import avatar1 from './assets/avatar-template.png';
 import avatar2 from './assets/pear-avatar.png';
 
-
 export const activeChat = {
   id: 'hohoihoiho',
   title: 'Какой-то активный чат',
@@ -21,9 +20,8 @@ export const activeChat = {
     time: '13:30',
     content: 'Привет. Как вчера все прошло?)) Надеюсь, что укпрукгпукр',
   },
-  active: true
+  active: true,
 };
-
 
 export const chats = [
   {
@@ -402,6 +400,25 @@ export default {
     },
   },
   messenger: {
+    addChatForm: {
+      formName: 'addChat',
+      formTitle: 'Создать чат',
+      inputs: [
+        {
+          type: 'text',
+          name: 'title',
+          labelText: null,
+          id: nanoid(4),
+          required: true,
+          placeholder: 'Введите название чата',
+          ref: 'title_inputRef',
+          errorRef: 'title_errorRef',
+        },
+      ],
+      formButton: {
+        text: 'Добавить',
+      },
+    },
     messageForm: {
       formName: 'message',
       inputs: [

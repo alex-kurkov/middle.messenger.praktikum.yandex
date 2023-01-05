@@ -1,4 +1,14 @@
-{{#Layout class="main_layout_feed"}}
-    {{{ SideMenu inputs=searchForm.inputs}}}
-    {{{ Feed inputs=messageForm.inputs }}}
-{{/Layout}}
+<div>
+    {{#Layout class="main_layout_feed"}}
+        {{{ SideMenu inputs=searchForm.inputs}}}
+        {{{ Feed inputs=messageForm.inputs }}}
+    {{/Layout}}
+    {{#with addChatForm}}
+    {{{ ChatAddDialog
+        inputs=inputs 
+        formTitle=formTitle 
+        formButton=formButton
+        formName=formName
+      }}}
+    {{/with}}
+<div>

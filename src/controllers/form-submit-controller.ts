@@ -1,5 +1,6 @@
 import { ValidatorController } from 'core';
 import { authApi } from 'services/api';
+import { chatCommonController } from './chat-common-controller';
 import { userAuthController } from './user-auth-controller';
 import { userChangeController } from './user-change-controller';
 
@@ -11,6 +12,7 @@ enum FormNames {
   SEARCH = 'search',
   EDIT_PASSWORD = 'editPassword',
   EDIT_DATA = 'editData',
+  ADD_CHAT = 'addChat',
 }
 
 class FormSubmitController {
@@ -28,8 +30,9 @@ class FormSubmitController {
   ): void {
     // console.log('Ошибки: ', validator.errors);
     // console.log('Данные: ', validator.values);
-    // console.log('Форма: ', formNode);
-    console.log(validator)
+    console.log('Форма: ', formNode);
+    console.log(validator);
+
     if (validator.hasErrors) {
       validator.showAllErrors();
       return;
@@ -61,6 +64,14 @@ class FormSubmitController {
           }
         );
         break;
+      case FormNames.ADD_CHAT:
+        this.submitAddChat(
+          validator.values as {
+            title: string;
+          }
+        );
+
+        break;
       default:
         throw new Error(`не найдена форма с именем ${formNode.name}`);
     }
@@ -78,7 +89,6 @@ class FormSubmitController {
 
   private submitSignUp(values: Omit<MSNUser, 'id' | 'avatar'>) {
     authApi.requestSignup(values).then((xhr) => {
-      console.log(xhr.response);
       return Promise.resolve(xhr.response);
     });
   }
@@ -94,6 +104,9 @@ class FormSubmitController {
     userChangeController.changePassword(values);
   }
 
+  private submitAddChat(values: { title: string }) {
+    chatCommonController.addChat(values.title);
+  }
 }
 
 export const formSubmitController = new FormSubmitController();

@@ -34,8 +34,10 @@ export const withAvatar = connect((s) => ({ avatar: s.user?.avatar }));
 export const withSideMenu = connect((s) => ({
   sideMenuExpanded: s.interface?.sideMenuExpanded,
 }));
+export const withAddChatDialog = connect((s) => ({
+  addChatDialogVisible: s.interface?.addChatDialogVisible,
+}));
 export const withChats = connect((s) => ({ chats: s.chats }));
 export const withChatMessages = connect((s) => ({
   chatMessages: s.chatMessages,
 }));
-
