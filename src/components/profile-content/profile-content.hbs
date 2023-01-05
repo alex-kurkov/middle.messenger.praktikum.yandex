@@ -1,0 +1,66 @@
+<section class="profile flex-vertical-left">
+  <h1 class="profile__title text text_size_m text_weight_bold">
+    {{user.first_name}} {{user.second_name}}
+  </h1>
+    <img
+      class="profile__avatar"
+      width="300"
+      height="300"
+      src="{{#if user.avatar}}
+            {{user.avatar}}
+          {{else}}
+            {{avatarTemplate}}
+          {{/if}}"
+      alt="Аватар пользователя {{user.first_name}} {{user.second_name}}"
+    />
+    <ul class="profile__data-wrap flex-vertical-left">
+      <li>
+        <div
+          class="profile__data-label text text_size_m text_weight_regular"
+        >
+          Имя
+        </div>
+        <div
+          class="profile__data text text_size_m text_weight_regular"
+        >
+          {{user.first_name}} {{user.second_name}}
+        </div>
+      </li>
+      <li>
+        <div
+          class="profile__data-label text text_size_m text_weight_regular"
+        >
+          Email
+        </div>
+        <div
+          class="profile__data text text_size_m text_weight_regular"
+        >
+          {{user.email}}
+        </div>
+      </li>
+      <li>
+        <div
+          class="profile__data-label text text_size_m text_weight_regular"
+        >
+          Телефон
+        </div>
+        <div
+          class="profile__data text text_size_m text_weight_regular"
+        >
+          {{user.phone}}
+        </div>
+      </li>
+    </ul>
+
+  {{#Link to="/profile-data"}}
+    <div class="profile__link">
+      {{{Button text="Редактировать данные"}}}
+    </div>
+  {{/Link}}
+  {{#Link to="/profile-password"}}
+    <div class="profile__link">
+      {{{Button text="Изменить пароль"}}}
+    </div>
+  {{/Link}}
+  {{{Button onClick=handleLogout text="Выйти" refName="logoutBtn"}}}
+</section>

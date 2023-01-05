@@ -10,11 +10,8 @@ import router from 'controllers/router';
 import { withLiveValidator } from 'services/class-decorators/with-live-validator';
 import { ValidatorController } from 'core';
 
-// @ts-ignore
 @withSideMenu
-// @ts-ignore
 @withChats
-// @ts-ignore
 @withLiveValidator
 export class SideMenu extends Block<object> {
   static componentName = 'SideMenu';

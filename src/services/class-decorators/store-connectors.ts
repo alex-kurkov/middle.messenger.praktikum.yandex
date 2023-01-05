@@ -1,13 +1,15 @@
-import { Block } from 'core';
+//@ts-nocheck
 import { store } from 'core';
 import { StoreEvents } from 'core/Store';
 import { isEqual } from 'utils/isEqual';
 
 function connect(mapStateToProps: (state: MSNStore) => object) {
-  return function <T extends typeof Block>(Component: T): typeof Component {
-    // @ts-ignore
-    return class extends Component<object> {
-      constructor(props: any[]) {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  return function <C extends { new (...args: any[]): object }>(
+    ClassConstructor: C
+  ) {
+    return class extends ClassConstructor<object> {
+      constructor(props) {
         let state = mapStateToProps(store.getState());
 
         super({ ...props, ...state });
@@ -22,11 +24,16 @@ function connect(mapStateToProps: (state: MSNStore) => object) {
           state = newState;
         });
       }
-    } as typeof Component;
+    };
   };
 }
 
 export const withUser = connect((s) => ({ user: s.user }));
-export const withSideMenu = connect((s) => ({ sideMenuExpanded: s.interface?.sideMenuExpanded }));
+export const withAvatar = connect((s) => ({ avatar: s.user?.avatar }));
+export const withSideMenu = connect((s) => ({
+  sideMenuExpanded: s.interface?.sideMenuExpanded,
+}));
 export const withChats = connect((s) => ({ chats: s.chats }));
-export const withChatMessages = connect((s) => ({ chatMessages: s.chatMessages }));
+export const withChatMessages = connect((s) => ({
+  chatMessages: s.chatMessages,
+}));

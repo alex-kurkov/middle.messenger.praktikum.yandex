@@ -4,8 +4,6 @@ import template from 'bundle-text:./avatar.hbs';
 import { withUser } from '../../services/class-decorators/store-connectors';
 import { abbreviate } from '../../utils/abbreviate';
 
-
-// @ts-ignore
 @withUser
 export default class Avatar<P extends {user: MSNUser}> extends Block<P> {
   static componentName = 'Avatar';

@@ -54,7 +54,6 @@ class UserChangeController {
             ...user,
             avatar: getStaticFile(user.avatar),
           });
-          router.go('/profile-data');
           return;
         } else {
           throw new Error(xhr.response);

@@ -398,7 +398,7 @@ export default {
         {
           type: 'text',
           name: 'search',
-          placeholder: null,
+          placeholder: 'найти чат',
           ref: 'search_inputRef',
           id: nanoid(4),
         },
