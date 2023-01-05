@@ -39,14 +39,12 @@ export default class ValidatorController extends Validator {
   }
 
   init() {
-    this.block.setProps({
-      inputs: this.controlledInputs,
-    });
-
     const newState: State = this.controlledInputs.reduce(
       (state, input) => {
         const value: string = input.value ? input.value : '';
-        const error: string = this.validate(input.name, value);
+        const error: string = input.required
+          ? this.validate(input.name, value)
+          : '';
         return {
           errors: {
             ...state.errors,
@@ -62,6 +60,10 @@ export default class ValidatorController extends Validator {
     );
 
     this.state = newState;
+    this.block.setProps({
+      inputs: this.controlledInputs,
+    });
+
   }
 
   enrichInputs(inputs: InputProps[]): InputProps[] {

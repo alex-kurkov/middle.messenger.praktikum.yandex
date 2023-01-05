@@ -1,5 +1,6 @@
 import { store } from 'core';
 import userApi from 'services/api/user-api';
+import { addMissingUserValues } from 'utils/addMissingUserValues';
 import { getStaticFile } from 'utils/getStaticFile';
 import router from './router';
 
@@ -7,7 +8,14 @@ class UserChangeController {
   // @handleError(handler)
   public async changeUserData(values: Omit<MSNUser, 'id' | 'avatar'>) {
     // TODO loader start
-    await userApi.createUser(values).then((xhr) => {
+    const curUser = store.getState().user;
+    if (!curUser) {
+      throw new Error('user field is missing or null in store');
+    }
+
+    const normalizedValues = addMissingUserValues(curUser, values);
+
+    await userApi.createUser(normalizedValues).then((xhr) => {
       if (xhr.status === 200) {
         const user = JSON.parse(xhr.response);
         store.setState('user', {
