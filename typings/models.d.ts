@@ -26,6 +26,7 @@ declare global {
       email: string;
       login: string;
       phone: string;
+      id?: number;
     };
     time: string;
     content?: string;

@@ -90,6 +90,7 @@ export const chatMessages = {
       user: {
         first_name: 'Petya',
         second_name: 'Pupkin',
+        id: 35919,
         avatar: avatar1,
         email: 'my@email.com',
         login: 'userLogin',
@@ -114,6 +115,7 @@ export const chatMessages = {
     {
       user: {
         first_name: 'Petya',
+        id: 35919,
         second_name: 'Pupkin',
         avatar: avatar1,
         email: 'my@email.com',
@@ -122,7 +124,6 @@ export const chatMessages = {
       },
       time: '13:32',
       content: 'Все прошло так, как надо!',
-      isOwn: true,
     },
   ],
 };

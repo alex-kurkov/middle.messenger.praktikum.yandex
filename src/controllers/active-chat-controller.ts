@@ -55,7 +55,12 @@ class ActiveChatController {
     });
   }
 
-  public async deleteActiveChat(id: number) {
+  public async deleteActiveChat() {
+    const id = store.getState().activeChat?.chat?.id
+    if (!id) {
+      throw new Error('no active chat found')
+    }
+
     await chatsApi.deleteChat(id).then((xhr) => {
       if (xhr.status === 200) {
         this.resetActiveChat();

@@ -16,7 +16,8 @@ import { activeChatController } from 'controllers/active-chat-controller';
          interfaceController.hideEditChatDialog();
        },
        handleChatDelete: () => {
-         activeChatController.deleteActiveChat(props.chat.id);
+         console.log(this)
+         activeChatController.deleteActiveChat();
        },
      });
    }
