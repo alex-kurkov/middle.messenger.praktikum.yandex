@@ -9,10 +9,10 @@ interface LinkProps {
   onClick?: () => void;
 }
 
-export class Link extends Block<Pick<LinkProps, 'text' | 'to' > & BlockEvents> {
+export class Link extends Block<Pick<LinkProps, 'text' | 'to'> & BlockEvents> {
   static componentName = 'Link';
 
-  constructor({ text, to }: LinkProps) {
+  constructor({ text, to, onClick }: LinkProps) {
     super({
       text,
       events: {
@@ -21,6 +21,7 @@ export class Link extends Block<Pick<LinkProps, 'text' | 'to' > & BlockEvents> {
           if (to) {
             router.go(to);
           }
+          onClick?.apply(this)
         },
       },
     });

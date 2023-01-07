@@ -29,10 +29,12 @@ export default function registerComponent<P extends {[key: string]: any} | objec
 
       (Object.keys(hash) as []).forEach((key: keyof P) => {
         if (this[key] && typeof this[key] === 'string') {
-          hash[key] = hash[key].replace(
-            new RegExp(`{{${String(key)}}}`, 'i'),
-            this[key]
-          );
+
+            hash[key] = hash[key]?.replace(
+              new RegExp(`{{${String(key)}}}`, 'i'),
+              this[key]
+            );
+      
         }
       });
 

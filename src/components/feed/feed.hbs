@@ -1,4 +1,15 @@
-<section class="feed flex-vertical-left">
-  {{{FeedTitle}}}
-  {{{ChatMessagesList inputs=inputs}}}
+<section class="feed {{#if activeChat.chat}}flex-vertical-left{{else}}flex-centered{{/if}}">
+  {{#if activeChat.chat}}
+    {{{FeedTitle}}}
+    {{{ChatMessagesList inputs=inputs}}}
+  {{else}}
+      <p class="feed__empty-message text text_size_m text_weight_regular">
+        Выберите чат, чтобы отправить сообщение, или
+        {{#Link onClick=handleNewChatClick}}
+          <span class="feed__message-action text text_size_m text_weight_regular" href="#">
+            создайте новый
+          </span>
+        {{/Link}}
+      </p>
+  {{/if}}
 </section>
