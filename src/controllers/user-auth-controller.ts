@@ -1,6 +1,6 @@
 import { store } from 'core';
 import { authApi } from 'services/api';
-import { getStaticFile } from 'utils/getStaticFile';
+import { getStaticFilePath } from 'utils/getStaticFilePath';
 import router from './router';
 
 class UserAuthController {
@@ -13,7 +13,7 @@ class UserAuthController {
         window.localStorage.setItem('isLoggedIn', 'true');
         store.setState('user', {
           ...user,
-          avatar: getStaticFile(user.avatar),
+          avatar: getStaticFilePath(user.avatar),
         });
         router.go(pathname);
         return Promise.resolve();

@@ -1,7 +1,7 @@
 import { store } from 'core';
 import userApi from 'services/api/user-api';
 import { addMissingUserValues } from 'utils/addMissingUserValues';
-import { getStaticFile } from 'utils/getStaticFile';
+import { getStaticFilePath } from 'utils/getStaticFilePath';
 import router from './router';
 
 class UserChangeController {
@@ -20,7 +20,7 @@ class UserChangeController {
         const user = JSON.parse(xhr.response);
         store.setState('user', {
           ...user,
-          avatar: getStaticFile(user.avatar),
+          avatar: getStaticFilePath(user.avatar),
         });
         router.go('/messenger');
         return Promise.resolve();
@@ -60,7 +60,7 @@ class UserChangeController {
           const user = JSON.parse(xhr.response);
           store.setState('user', {
             ...user,
-            avatar: getStaticFile(user.avatar),
+            avatar: getStaticFilePath(user.avatar),
           });
           return;
         }

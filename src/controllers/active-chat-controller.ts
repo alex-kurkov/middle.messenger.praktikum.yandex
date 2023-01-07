@@ -3,7 +3,6 @@ import chatsCommonApi from 'services/api/chats-common-api';
 import chatsApi from 'services/api/chats-api';
 import { interfaceController } from './interface-controller';
 import { chatCommonController } from './chat-common-controller';
-import { getStaticFile } from 'utils/getStaticFile';
 
 class ActiveChatController {
   // @handleError(handler)
@@ -87,19 +86,18 @@ class ActiveChatController {
             const { id, avatar } = JSON.parse(xhr.response);
             
             const { activeChat, chats } = store.getState();
-            const fullAvatarPath = getStaticFile(avatar);
 
             store.setState('activeChat', {
               ...activeChat,
               chat: {
                 ...activeChat?.chat,
-                avatar: fullAvatarPath,
+                avatar,
               },
             });
 
             const updatedChats = chats?.map(chat => {
               if (chat.id === id) {
-                chat.avatar = fullAvatarPath;
+                chat.avatar = avatar;
               }
               return chat;
             });
