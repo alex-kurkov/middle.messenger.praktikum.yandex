@@ -7,7 +7,7 @@ import { activeChatController } from 'controllers/active-chat-controller';
 
  @withEditChatDialog
  @withActiveChat
- export class ChatEditDialog<P extends {activeChat: {chat: MSNChat}}> extends Block<P> {
+ export class ChatEditDialog<P extends {chat: MSNChat}> extends Block<P> {
    static componentName = 'ChatEditDialog';
    constructor(props: P) {
      super({
@@ -18,15 +18,18 @@ import { activeChatController } from 'controllers/active-chat-controller';
        handleAvatarChange: () => {
          console.log('handleAvatarChange');
        },
+       handleNewChatClick: () => {
+         console.log('handleNewChatClick');
+       },
        handleChatDelete: () => {
-         activeChatController.deleteActiveChat(this.props.activeChat.chat.id);
+         activeChatController.deleteActiveChat(props.chat.id);
        },
      });
    }
 
    componentDidMount(): void {
      this.setProps({
-       abbr: this.props.activeChat.chat?.title?.charAt(0).toUpperCase(),
+       abbr: this.props.chat?.title?.charAt(0).toUpperCase(),
      });
    }
    render() {

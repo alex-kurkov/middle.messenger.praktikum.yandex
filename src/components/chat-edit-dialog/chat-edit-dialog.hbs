@@ -8,14 +8,10 @@
     <div class="icon icon_small icon_fixed_topright" data-ref="closeIcon">
       {{{Icon type="close" onClick=closeDialog}}}
     </div>
-    <h2 class="text text_size_m">{{activeChat.chat.title}}</h2>
-
-    <p class="text text_size_s">
-      Аватар чата
-    </p>
+    <h2 class="text text_size_m">{{chat.title}}</h2>
 
     <div class="chat-edit-dialog__avatar-wrap flex-row-space-between">
-          {{{Avatar size="m" avatar=activeChat.chat.avatar abbr=activeChat.chat.title}}}
+          {{{Avatar size="m" avatar=chat.avatar abbr=chat.title}}}
           <label class="chat-edit-dialog__avatar-label flex-centered" for="chatAvatar">
             <div class="chat-edit-dialog__avatar-edit-icon icon icon_medium">
                 {{{Icon type="avatarEdit"}}}
@@ -23,18 +19,14 @@
             {{{Input onChange=handleAvatarChange id="chatAvatar" name="chatAvatar" type="file" accept="*/image"}}}
           </label>
     </div>
-    
-
-<p class="text text_size_s ">
-  Участники чата
-</p>
-    тут отдельный дропдаун блок - список пользователей с кнопкой удалить
-    {{{Button text="Добавить пользователя"}}}
-
-
-    тут отдельный блок с логикой добавления через поиск по логину и id 
-    {{{Button text="Добавить пользователя"}}}
-
+    {{#Clickable onClick=handleNewChatClick}}
+      <p
+        class="chat-edit-dialog__edit-users text text_size_m text_weight_regular"
+      >
+        Редактировать пользователей...
+      </p>
+    {{/Clickable}}
+    etypkbetpybmetpf
     {{{Button text="Удалить чат" onClick=handleChatDelete}}}
 
   </div>

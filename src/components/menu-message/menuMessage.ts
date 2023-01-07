@@ -5,14 +5,14 @@ import { activeChatController } from 'controllers/active-chat-controller';
 import { withActiveChat } from 'services/class-decorators/store-connectors';
 
 @withActiveChat
-export class MenuMessage<P extends MSNChat & {activeChat: {chat: MSNChat}}> extends Block<P> {
+export class MenuMessage<P extends MSNChat & {activeChat: MSNChat}> extends Block<P> {
   static componentName = 'MenuMessage';
 
   constructor(props: P) {
     super({
       ...props,
       abbr: props.title.charAt(0).toUpperCase(),
-      active: props.activeChat.chat?.id === props.id,
+      active: props.activeChat?.id === props.id,
       events: {
         click: () => {
           console.log(this)
