@@ -10,23 +10,8 @@
     </div>
     <h2 class="text text_size_m">{{chat.title}}</h2>
 
-    <div class="chat-edit-dialog__avatar-wrap flex-row-space-between">
-          {{{Avatar size="m" avatar=chat.avatar abbr=chat.title}}}
-          <label class="chat-edit-dialog__avatar-label flex-centered" for="chatAvatar">
-            <div class="chat-edit-dialog__avatar-edit-icon icon icon_medium">
-                {{{Icon type="avatarEdit"}}}
-            </div>
-            {{{Input onChange=handleAvatarChange id="chatAvatar" name="chatAvatar" type="file" accept="*/image"}}}
-          </label>
-    </div>
-    {{#Clickable onClick=handleNewChatClick}}
-      <p
-        class="chat-edit-dialog__edit-users text text_size_m text_weight_regular"
-      >
-        Редактировать пользователей...
-      </p>
-    {{/Clickable}}
-    etypkbetpybmetpf
+    {{{ChatAvatarEdit chat=chat}}}
+    {{{ChatUsersEdit}}}
     {{{Button text="Удалить чат" onClick=handleChatDelete}}}
 
   </div>

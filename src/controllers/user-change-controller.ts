@@ -63,9 +63,8 @@ class UserChangeController {
             avatar: getStaticFile(user.avatar),
           });
           return;
-        } else {
-          throw new Error(xhr.response);
         }
+        throw new Error(xhr.response);
       });
     }
   }

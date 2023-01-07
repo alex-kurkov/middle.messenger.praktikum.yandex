@@ -16,7 +16,7 @@ class InterfaceController {
       sideMenuExpanded: !currentInterfaceState?.sideMenuExpanded,
     });
   }
-  
+
   public expandSideMenu(): void {
     store.setState('interface', {
       ...store.getState().interface,
@@ -24,29 +24,35 @@ class InterfaceController {
     });
   }
 
-  public showAddChatDialog():void {
+  public showAddChatDialog(): void {
     store.setState('interface', {
       ...store.getState().interface,
       addChatDialogVisible: true,
     });
   }
-  public hideAddChatDialog():void {
+  public hideAddChatDialog(): void {
     store.setState('interface', {
       ...store.getState().interface,
       addChatDialogVisible: false,
     });
   }
 
-  public showEditChatDialog():void {
+  public showEditChatDialog(): void {
     store.setState('interface', {
       ...store.getState().interface,
       editChatDialog: true,
     });
   }
-  public hideEditChatDialog():void {
+  public hideEditChatDialog(): void {
     store.setState('interface', {
       ...store.getState().interface,
       editChatDialog: false,
+    });
+  }
+  public showChatUsersEdit(): void {
+    store.setState('interface', {
+      ...store.getState().interface,
+      chatUsersEditVisible: true,
     });
   }
 }

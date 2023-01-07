@@ -4,6 +4,7 @@ declare global {
       sideMenuExpanded: boolean;
       addChatDialogVisible: boolean;
       editChatDialog: boolean;
+      chatUsersEditVisible: boolean;
     };
     user?: MSNUser;
     chats?: MSNChat[];

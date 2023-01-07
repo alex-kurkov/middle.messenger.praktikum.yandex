@@ -12,6 +12,7 @@ store.init({
     sideMenuExpanded: true,
     addChatDialogVisible: false,
     editChatDialog: false,
+    chatUsersEditVisible: false,
   },
   chats: [],
   chatMessages,

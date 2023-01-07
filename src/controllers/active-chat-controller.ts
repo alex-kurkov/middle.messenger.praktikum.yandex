@@ -3,6 +3,7 @@ import chatsCommonApi from 'services/api/chats-common-api';
 import chatsApi from 'services/api/chats-api';
 import { interfaceController } from './interface-controller';
 import { chatCommonController } from './chat-common-controller';
+import { getStaticFile } from 'utils/getStaticFile';
 
 class ActiveChatController {
   // @handleError(handler)
@@ -60,7 +61,9 @@ class ActiveChatController {
       if (xhr.status === 200) {
         this.resetActiveChat();
         interfaceController.hideEditChatDialog();
-        const newChats = store.getState().chats?.filter(chat => chat.id !== id)
+        const newChats = store
+          .getState()
+          .chats?.filter((chat) => chat.id !== id);
         store.setState('chats', newChats);
         return Promise.resolve();
       }
@@ -68,6 +71,47 @@ class ActiveChatController {
         `Не удалось удалить чат с id: ${id}. Сообщение сервера: ${xhr.response}`
       );
     });
+  }
+
+  setActiveChatAvatar(chatId: number, e: Event) {
+    const fileInput = e.target as HTMLInputElement;
+    const files: FileList | null = fileInput.files;
+    if (files) { 
+      const image: File = files[0];
+      const formData = new FormData();
+      formData.set(`avatar`, image, image.name);
+      formData.set(`chatId`, chatId.toString());
+      chatsCommonApi.updateChatAvatar(formData)
+        .then((xhr) => {
+          if (xhr.status === 200) {
+            const { id, avatar } = JSON.parse(xhr.response);
+            
+            const { activeChat, chats } = store.getState();
+            const fullAvatarPath = getStaticFile(avatar);
+
+            store.setState('activeChat', {
+              ...activeChat,
+              chat: {
+                ...activeChat?.chat,
+                avatar: fullAvatarPath,
+              },
+            });
+
+            const updatedChats = chats?.map(chat => {
+              if (chat.id === id) {
+                chat.avatar = fullAvatarPath;
+              }
+              return chat;
+            });
+            
+            store.setState('chats', updatedChats);
+
+            return Promise.resolve;
+          }
+          throw new Error(xhr.response);
+      })
+
+    }
   }
 }
 

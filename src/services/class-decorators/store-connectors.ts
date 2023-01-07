@@ -30,6 +30,7 @@ function connect(mapStateToProps: (state: MSNStore) => object) {
 
 export const withUser = connect((s) => ({ user: s.user }));
 export const withActiveChat = connect((s) => ({ chat: s.activeChat?.chat }));
+export const withActiveChatUsers = connect((s) => ({ users: s.activeChat?.users }));
 export const withAvatar = connect((s) => ({ avatar: s.user?.avatar }));
 export const withSideMenu = connect((s) => ({
   sideMenuExpanded: s.interface?.sideMenuExpanded,
@@ -39,6 +40,9 @@ export const withAddChatDialog = connect((s) => ({
 }));
 export const withEditChatDialog = connect((s) => ({
   editChatDialogVisible: s.interface?.editChatDialog,
+}));
+export const withChatUsersEditVisible = connect((s) => ({
+  chatUsersEditVisible: s.interface?.chatUsersEditVisible,
 }));
 export const withChats = connect((s) => ({ chats: s.chats }));
 export const withChatMessages = connect((s) => ({

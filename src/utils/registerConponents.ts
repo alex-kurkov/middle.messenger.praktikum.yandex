@@ -23,7 +23,8 @@ import ProfileEditData from 'components/profile-edit-data';
 import ChatAddDialog from 'components/chat-add-dialog';
 import ChatEditDialog from 'components/chat-edit-dialog';
 import Clickable from 'components/clickable';
-
+import ChatUsersEdit from 'components/chat-users-edit';
+import ChatAvatarEdit from 'components/chat-avatar-edit';
 
 export function registerAllComponents(): void {
   registerComponent(Avatar);
@@ -50,4 +51,6 @@ export function registerAllComponents(): void {
   registerComponent(ChatAddDialog);
   registerComponent(ChatEditDialog);
   registerComponent(Clickable);
+  registerComponent(ChatUsersEdit);
+  registerComponent(ChatAvatarEdit);
 }

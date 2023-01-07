@@ -15,21 +15,9 @@ import { activeChatController } from 'controllers/active-chat-controller';
        closeDialog: () => {
          interfaceController.hideEditChatDialog();
        },
-       handleAvatarChange: () => {
-         console.log('handleAvatarChange');
-       },
-       handleNewChatClick: () => {
-         console.log('handleNewChatClick');
-       },
        handleChatDelete: () => {
          activeChatController.deleteActiveChat(props.chat.id);
        },
-     });
-   }
-
-   componentDidMount(): void {
-     this.setProps({
-       abbr: this.props.chat?.title?.charAt(0).toUpperCase(),
      });
    }
    render() {
