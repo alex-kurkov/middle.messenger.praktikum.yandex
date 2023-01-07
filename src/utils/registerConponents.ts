@@ -21,6 +21,7 @@ import ProfileContent from 'components/profile-content';
 import ProfileEditPassword from 'components/profile-edit-password';
 import ProfileEditData from 'components/profile-edit-data';
 import ChatAddDialog from 'components/chat-add-dialog';
+import ChatEditDialog from 'components/chat-edit-dialog';
 
 export function registerAllComponents(): void {
   registerComponent(Avatar);
@@ -45,4 +46,5 @@ export function registerAllComponents(): void {
   registerComponent(ProfileEditPassword);
   registerComponent(ProfileEditData);
   registerComponent(ChatAddDialog);
+  registerComponent(ChatEditDialog);
 }

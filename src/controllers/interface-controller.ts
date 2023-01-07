@@ -36,6 +36,19 @@ class InterfaceController {
       addChatDialogVisible: false,
     });
   }
+
+  public showEditChatDialog():void {
+    store.setState('interface', {
+      ...store.getState().interface,
+      editChatDialog: true,
+    });
+  }
+  public hideEditChatDialog():void {
+    store.setState('interface', {
+      ...store.getState().interface,
+      editChatDialog: false,
+    });
+  }
 }
 
 export const interfaceController = new InterfaceController();

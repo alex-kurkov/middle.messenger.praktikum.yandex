@@ -2,9 +2,14 @@
   width: 80px;
   height: 100vh;
   background: var(--menu-gradient);
+  flex-basis: 80px;
+  flex-grow: 80px;
+  flex-shrink: 1;
 
   &_expanded {
     width: 360px;
+    flex-basis: 360px;
+    flex-grow: 360px;
   }
 
   &__search {

@@ -4,9 +4,9 @@ export const fetchChats = new Fetch('https://ya-praktikum.tech/api/v2/chats');
 
 class ChatsAPI {
   requestChats(
-    offset: number,
-    limit: number,
-    title: string
+    offset = 0,
+    limit = 20,
+    title = '',
   ): Promise<XMLHttpRequest> {
     return fetchChats.get('', {
       data: { offset, limit, title },
@@ -18,7 +18,7 @@ class ChatsAPI {
   }
 
   deleteChat(id: number): Promise<XMLHttpRequest> {
-    return fetchChats.delete('', { data: { id } });
+    return fetchChats.delete('', { data: {chatId: id } });
   }
 }
 

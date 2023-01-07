@@ -1,7 +1,12 @@
 <div class="feed-title">
-  {{{Avatar size="s" avatar=activeChat.avatar abbr=abbr}}}
-  <div class="feed-title__title text text_size_m text_weight_regular">{{activeChat.title}}</div>
-  {{#Link to="/profile"}}
-    <div class="feed-title__chat-settigs icon icon_medium flex-centered" data-ref="profileIcon">{{{Icon type="chatSettings"}}}</div>
-  {{/Link}}
+  {{{Avatar size="s" avatar=activeChat.chat.avatar abbr=activeChat.chat.title}}}
+  <div class="feed-title__title text text_size_m text_weight_regular">
+    {{activeChat.chat.title}}
+  </div>
+  <div
+    class="feed-title__chat-settigs icon icon_medium flex-centered"
+    data-ref="profileIcon"
+  >
+    {{{Icon onClick=editChat type="chatSettings"}}}
+  </div>
 </div>

@@ -14,9 +14,25 @@
   justify-content: center;
 }
 
+.flex-row-centered {
+  display: flex;
+  flex-flow: row;
+  align-content: center;
+  align-items: center;
+  justify-content: center;
+}
+
 .flex-row-spaced {
   display: flex;
   justify-content: space-around;
+  align-content: center;
+  flex-flow: row;
+  align-items: center;
+}
+
+.flex-row-space-between {
+  display: flex;
+  justify-content: space-between;
   align-content: center;
   flex-flow: row;
   align-items: center;

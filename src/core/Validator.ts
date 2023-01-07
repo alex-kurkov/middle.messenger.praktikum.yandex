@@ -40,6 +40,7 @@ export default class Validator {
     EMAIL_INVALID: 'введите валидный email',
     PHONE_INVALID: 'в телефоне должно быть от 10 до 15 цифр',
     LESS_THAN_40: 'не больше 40 символов',
+    LESS_THAN_20: 'не больше 20 символов',
     LOGIN_INVALID: 'цифры(но не только), латиница, "-" и "_"',
     NAME_INVALID: 'с большой буквы, без пробелов, допустим "-"',
     MESSAGE_NOT_EMPTY: 'сообщение должно состоять как минимум из 1 символа...',
@@ -111,7 +112,7 @@ export default class Validator {
          break;
        }
         if (value.length > 20) {
-          errorMessage = Messages.LESS_THAN_40;
+          errorMessage = Messages.LESS_THAN_20;
           break;
         }
         break;

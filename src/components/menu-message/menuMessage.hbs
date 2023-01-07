@@ -1,15 +1,8 @@
 <article class="menu-message 
   {{#if active}}menu-message_active{{/if}}
 ">
-  
 <div class="menu-message__avatar flex-centered">
-  {{#if avatar}}
-    <img class="menu-message__image" src={{avatar}} alt="Аватар пользователя {{user.first_name}}">
-    {{else}}
-    <div class="menu-message__image text text_size_m text_weight_regular">
-      ML
-    </div>
-  {{/if}}
+  {{{Avatar size="m" avatar=avatar abbr=abbr}}}
   {{#if unread_count}}
     <div class="menu-message__tag flex-centered text text_size_s text_weight_regular ">
       {{unread_count}}
@@ -24,10 +17,18 @@
     <h3 class="menu-message__title text text_size_m text_weight_bold">{{title}}</h3>
     {{#if last_message}}
       <span class="menu-message__content text text_size_xs text_weight_regular ">
-        {{#if lastIsMine}}<strong>Вы: </strong>{{/if}}
         {{last_message.content}}
       </span>
       <time datetime="" class="menu-message__time text text_size_xs text_weight_regular ">{{last_message.time}}</time>
+    {{else}}
+
+
+<span class="menu-message__content text text_size_xs text_weight_regular">
+  Пока в этом чате не было сообщений...
+</span>
+
+
+
     {{/if}}
   </div>
 {{/if}}

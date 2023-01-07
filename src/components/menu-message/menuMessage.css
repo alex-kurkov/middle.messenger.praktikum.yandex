@@ -5,6 +5,10 @@
   flex-wrap: nowrap;
   overflow: hidden;
 
+  &:hover {
+    cursor: pointer;
+  }
+
   &_active {
     background-color: var(--light-gray-half-opacity);
   }

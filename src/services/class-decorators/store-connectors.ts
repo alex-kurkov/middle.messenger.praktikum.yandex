@@ -37,6 +37,9 @@ export const withSideMenu = connect((s) => ({
 export const withAddChatDialog = connect((s) => ({
   addChatDialogVisible: s.interface?.addChatDialogVisible,
 }));
+export const withEditChatDialog = connect((s) => ({
+  editChatDialogVisible: s.interface?.editChatDialog,
+}));
 export const withChats = connect((s) => ({ chats: s.chats }));
 export const withChatMessages = connect((s) => ({
   chatMessages: s.chatMessages,

@@ -1,10 +1,10 @@
 declare global {
   export type MSNChat = {
-    id: number | string;
+    id: number;
     title: string;
-    avatar: typeof Blob | string | URL;
+    avatar: Nullable<string>;
     unread_count: Nullable<number>;
-    last_message: {
+    last_message: Nullable<{
       user: {
         first_name: string;
         second_name: string;
@@ -15,8 +15,7 @@ declare global {
       };
       time: string;
       content: string;
-    };
-    active: boolean;
+    }>;
   };
 
   export type MSNChatMessage = {

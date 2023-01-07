@@ -3,11 +3,16 @@ declare global {
     interface?: {
       sideMenuExpanded: boolean;
       addChatDialogVisible: boolean;
+      editChatDialog: boolean;
     };
     user?: MSNUser;
     chats?: MSNChat[];
     newChats?: MSNChat[];
-    activeChat?: MSNChat,
+    activeChat?: {
+      chat: Nullable<MSNChat>,
+      token: Nullable<string>,
+      users: MSNUser[],
+    };
     chatMessages?: {
       id?: number;
       title?: string;

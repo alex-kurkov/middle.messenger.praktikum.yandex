@@ -1,5 +1,6 @@
 import { store } from 'core';
 import chatsApi from 'services/api/chats-api';
+import { activeChatController } from './active-chat-controller';
 import { interfaceController } from './interface-controller';
 
 class ChatCommonController {
@@ -7,9 +8,12 @@ class ChatCommonController {
   public async addChat(title: string) {
     await chatsApi.createChat(title).then((xhr) => {
       if (xhr.status === 200) {
-        this.getChats();
-        interfaceController.hideAddChatDialog();
-        return Promise.resolve();
+        this.getChats().then(() => {
+          interfaceController.hideAddChatDialog();
+          const { id } = JSON.parse(xhr.response);
+          activeChatController.setActiveChat(id);
+          interfaceController.showEditChatDialog();
+        });
       } else {
         throw new Error(xhr.response);
       }
@@ -17,13 +21,10 @@ class ChatCommonController {
   }
 
   public async getChats() {
-    await chatsApi.requestChats(0, 10, '').then((xhr) => {
+    await chatsApi.requestChats().then((xhr) => {
       if (xhr.status === 200) {
-      // renew application chatsList
-        console.log(xhr.response)
         const newChats = JSON.parse(xhr.response);
         store.setState('chats', newChats);
-  
         return Promise.resolve();
       } else {
         throw new Error(xhr.response);
