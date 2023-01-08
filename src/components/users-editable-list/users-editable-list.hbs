@@ -1,0 +1,24 @@
+<ul class="users-editable-list flex-vertical-left">
+  {{#each users as |user|}}{{/each}}
+
+  {{#each users as |user|}}
+
+    <li class="users-editable-list__listItem">
+      
+      {{#Clickable onClick=@root/onClick}}
+      <article 
+          id="{{user.id}}"
+          data-role="{{user.role}}" 
+          data-type="{{@root/type}}"
+          class="text text_size_m users-editable-list__article flex-row-space-between">
+        {{{Avatar size="s" avatar=user.avatar abbr=user.first_name}}}
+        <div class="users-editable-list__text-block">
+          <p class="text text_size_s">{{user.first_name}} {{user.second_name}}</p>        
+          <span class="text text_size_xs">{{user.login}}</span>
+          <span class="text text_size_xs users-editable-list__isAdmin-message" data-role="{{user.role}}"> ADMIN</span>
+        </div>
+      </article>
+      {{/Clickable}}
+    </li>
+  {{/each}}
+</ul>

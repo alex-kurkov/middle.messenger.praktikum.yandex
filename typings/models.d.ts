@@ -49,7 +49,7 @@ declare global {
     login: string;
     email: string;
     phone: string;
-    id?: string;
+    id: number;
     avatar: Nullable<string>;
   }>;
 }

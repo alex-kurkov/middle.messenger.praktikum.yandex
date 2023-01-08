@@ -15,7 +15,11 @@ class UserAuthController {
           ...user,
           avatar: getStaticFilePath(user.avatar),
         });
-        router.go(pathname);
+        if (pathname === '/login' || pathname === '/register') {
+          router.go('/messenger')
+        } else {
+          router.go(pathname);
+        }
         return Promise.resolve();
       } else {
         throw new Error(xhr.response);

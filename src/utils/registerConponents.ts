@@ -25,6 +25,8 @@ import ChatEditDialog from 'components/chat-edit-dialog';
 import Clickable from 'components/clickable';
 import ChatUsersEdit from 'components/chat-users-edit';
 import ChatAvatarEdit from 'components/chat-avatar-edit';
+import UsersSearch from 'components/users-search';
+import UsersEditableList from 'components/users-editable-list';
 
 export function registerAllComponents(): void {
   registerComponent(Avatar);
@@ -53,4 +55,6 @@ export function registerAllComponents(): void {
   registerComponent(Clickable);
   registerComponent(ChatUsersEdit);
   registerComponent(ChatAvatarEdit);
+  registerComponent(UsersSearch);
+  registerComponent(UsersEditableList);
 }

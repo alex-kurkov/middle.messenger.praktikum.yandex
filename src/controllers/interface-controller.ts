@@ -1,4 +1,5 @@
 import { store } from 'core';
+import { searchController } from './search-controller';
 
 class InterfaceController {
   __instance: Nullable<InterfaceController> = null;
@@ -48,6 +49,7 @@ class InterfaceController {
       ...store.getState().interface,
       editChatDialog: false,
     });
+    searchController.clearSearchUsers();
   }
   public showChatUsersEdit(): void {
     store.setState('interface', {

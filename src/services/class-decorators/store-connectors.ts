@@ -49,3 +49,6 @@ export const withChats = connect((s) => ({ chats: s.chats }));
 export const withChatMessages = connect((s) => ({
   chatMessages: s.chatMessages,
 }));
+export const withSearchUsers = connect((s) => ({
+  users: s.search?.users,
+}));

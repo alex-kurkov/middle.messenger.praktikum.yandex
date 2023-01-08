@@ -1,7 +1,9 @@
 <div>
-  {{#if chatUsersEditVisible}}
-  юзвери
-  {{else}}
-    {{{ Button text="Редактировать пользователей" onClick=showUsers }}}
-  {{/if}}
+    <p class="text text_size_m text_weight_regular">
+      Участники чата:
+    </p>
+
+    {{{UsersEditableList type="currentUsers" }}}
+
+    {{{UsersSearch}}}
 </div>

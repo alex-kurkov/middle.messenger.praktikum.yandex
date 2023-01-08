@@ -1,12 +1,33 @@
 import { EventBus } from ".";
+import { chatMessages } from "../app-data";
 
+const initialState: MSNStore = {
+  user: null,
+  interface: {
+    sideMenuExpanded: true,
+    addChatDialogVisible: false,
+    editChatDialog: false,
+    chatUsersEditVisible: false,
+  },
+  chats: [],
+  chatMessages,
+  activeChat: {
+    chat: null,
+    users: [],
+    token: null,
+  },
+  search: {
+    users: [],
+    chats: []
+  },
+}
 
 export enum StoreEvents {
   UPDATED = 'flow:store_did_update'
 }
 
 class Store extends EventBus {
-  private state: MSNStore = {};
+  private state = initialState;
   __instance: Nullable<Store> = null;
 
   constructor() {
@@ -17,19 +38,18 @@ class Store extends EventBus {
     this.__instance = this;
   }
 
-  init(initialState: MSNStore) {
-    this.state = initialState;
+  init() {
     this.emit(StoreEvents.UPDATED);
   }
 
   public getState(): MSNStore {
-      return this.state;
+    return this.state;
   }
 
   public setState(path: string, value: unknown): void {
     this.set(this.state, path, value);
     this.emit(StoreEvents.UPDATED);
-    console.log('STATE:', this.state)
+    console.log('STATE:', this.state);
   }
 
   private set(state: typeof this.state, path: string, value: unknown): void {

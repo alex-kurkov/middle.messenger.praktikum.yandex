@@ -2,27 +2,10 @@ import './app.css';
 import { store } from 'core';
 import { registerAllComponents } from 'utils/registerConponents';
 import router from 'controllers/router';
-import { chatMessages } from './app-data';
 import { userAuthController } from 'controllers/user-auth-controller';
 import { chatCommonController } from 'controllers/chat-common-controller';
 
-store.init({
-  user: null,
-  interface: {
-    sideMenuExpanded: true,
-    addChatDialogVisible: false,
-    editChatDialog: false,
-    chatUsersEditVisible: false,
-  },
-  chats: [],
-  chatMessages,
-  activeChat: {
-    chat: null,
-    users: [],
-    token: null,
-  },
-  newChats: [],
-});
+store.init();
 registerAllComponents();
 
 document.addEventListener('DOMContentLoaded', () => {

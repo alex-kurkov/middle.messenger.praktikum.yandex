@@ -15,7 +15,6 @@ export class MenuMessage<P extends MSNChat & {chat: MSNChat}> extends Block<P> {
       active: props.chat?.id === props.id,
       events: {
         click: () => {
-          console.log(this)
           activeChatController.setActiveChat(props.id);
         }
       }
