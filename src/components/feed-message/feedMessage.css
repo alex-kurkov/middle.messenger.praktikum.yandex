@@ -5,7 +5,7 @@
   background-color: var(--base-white);
   float: inline-start;
   border-radius: 0 20px 20px;
-  padding: 20px;
+  padding: 10px;
   position: relative;
   color: var(--black);
 
@@ -20,6 +20,19 @@
     background-color: transparent;
   }
 
+  &__title-wrap_reversed {
+    flex-flow: row-reverse;
+  }
+
+  &__text-box {
+    width: 100%;
+    height: 100%;
+    border-bottom: 1px solid var(--dark-gray);
+  }
+
+  &__text-box_reversed {
+    align-items: flex-end;
+  }
   &__time {
     color: var(--base-white);
     position: absolute;

@@ -14,12 +14,12 @@ const initialState: MSNStore = {
   activeChat: {
     chat: null,
     users: [],
-    token: null,
   },
   search: {
     users: [],
     chats: []
   },
+  socket: null
 }
 
 export enum StoreEvents {

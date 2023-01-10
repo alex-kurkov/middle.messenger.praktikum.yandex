@@ -1,4 +1,4 @@
-import { Fetch, store } from 'core';
+import { Fetch } from 'core';
 
 const fetchChatsCommon = new Fetch('https://ya-praktikum.tech/api/v2/chats');
 
@@ -15,7 +15,7 @@ class ChatsCommonAPI {
     });
   }
 
-  requestChatNewMessagesCount(id: number): Promise<XMLHttpRequest> {
+  requestUnreadCount(id: number): Promise<XMLHttpRequest> {
     return fetchChatsCommon.get(`/new/${id}`, {
       data: { id },
     });
@@ -27,16 +27,12 @@ class ChatsCommonAPI {
   }
 
   requestChatUsers(
+    id: number,
     offset = 0,
     limit = 10,
     name = '',
-    email= '',
+    email = ''
   ): Promise<XMLHttpRequest> {
-    const id = store.getState().activeChat?.chat?.id;
-    if (!id) {
-      throw new Error('no active chat found in STORE');
-    }
-
     return fetchChatsCommon.get(`/${id}/users`, {
       data: { offset, limit, name, email },
     });

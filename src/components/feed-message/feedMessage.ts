@@ -2,18 +2,33 @@ import Block from 'core/Block';
 import template from 'bundle-text:./feedMessage.hbs';
 import './feedMessage.css';
 import {
+  withActiveChatUsers,
   withOwnId,
 } from 'services/class-decorators/store-connectors';
 
 @withOwnId
-export class FeedMessage<P extends MSNChatMessage & {ownId: number}> extends Block<P> {
+@withActiveChatUsers
+export class FeedMessage<
+  P extends {
+    message: MSNChatMessage;
+    ownId: number;
+    isFile: boolean;
+    users: MSNUser[];
+    user: MSNUser;
+  }
+> extends Block<P> {
   static componentName = 'FeedMessage';
   constructor(props: P) {
-  super({
-    ...props,
-    isOwn: props.ownId === props.user?.id
-  })
-}
+    const { users, message } = props;
+    const messageUser = users.find((user) => user?.id === message.user_id);
+
+    super({
+      ...props,
+      isFile: !!message.file,
+      isOwn: props.ownId === message.user_id,
+      user: messageUser,
+    });
+  }
 
   render() {
     return template;

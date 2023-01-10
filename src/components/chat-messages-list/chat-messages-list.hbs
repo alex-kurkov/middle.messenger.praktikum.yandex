@@ -1,9 +1,9 @@
 <div class="chat-messages flex-vertical-left">
   {{#if chatMessages}}
     <ul class="chat-messages__messages flex-vertical-left">
-      {{#each chatMessages.messages}}
+      {{#each chatMessages as |message| }}
         <li class="chat-messages__list-item">
-          {{{FeedMessage user=user time=time content=content isFile=isFile url=url}}}
+          {{{FeedMessage message=message }}}
         </li>
       {{/each}}
     </ul>

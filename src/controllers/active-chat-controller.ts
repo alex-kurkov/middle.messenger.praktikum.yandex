@@ -2,7 +2,7 @@ import { store } from 'core';
 import chatsCommonApi from 'services/api/chats-common-api';
 import chatsApi from 'services/api/chats-api';
 import { interfaceController } from './interface-controller';
-import { chatCommonController } from './chat-common-controller';
+import { MessengerSocket } from 'services/messenger-socket/messenger-socket';
 
 class ActiveChatController {
   // @handleError(handler)
@@ -12,39 +12,66 @@ class ActiveChatController {
       return Promise.reject('провален поиск чатов в сторе... полностью...');
     }
 
-    const newActiveChat = chats.find((chat) => chat.id === id);
+    const newActiveChat: MSNChat | undefined = chats.find(
+      (chat) => chat.id === id
+    );
     if (!newActiveChat) {
       return Promise.reject(
         `Cреди загруженных чатов не найден чат с id: ${id}`
       );
     }
 
-    store.setState('activeChat', {
-      ...store.getState().activeChat,
-      chat: newActiveChat,
-    });
-    this.getChatUsers();
-    this.getMessengerToken();
-  }
-  
-  private getMessengerToken() {
-    const chatId = store.getState().activeChat.chat?.id;
-    if (!chatId) {
-      throw new Error('no active chat found');
-    }
+    let wss: Nullable<MessengerSocket> = null;
 
-    chatsCommonApi.requestChatToken(chatId).then((xhr) => {
+    this.getChatUsers(newActiveChat.id).then(() =>
+      this.getMessengerToken(newActiveChat.id)
+        .then((TOKEN) => {
+          const USER_ID = store.getState().user?.id;
+          const CHAT_ID = newActiveChat.id;
+          if (USER_ID && TOKEN && CHAT_ID) {
+            store.getState().socket?.close();
+
+            wss = new MessengerSocket(USER_ID, CHAT_ID, TOKEN);
+            console.dir(wss);
+            return Promise.resolve(wss);
+          } else {
+            throw new Error('unable to set socket connection');
+          }
+        })
+        .then(() => this.getUnreadCount(newActiveChat.id))
+        .then((unread_count) => {
+          store.setState('activeChat', {
+            ...store.getState().activeChat,
+            chat: { ...newActiveChat, unread_count },
+          });
+
+          store.setState('socket', wss);
+        })
+    );
+  }
+
+  private getMessengerToken(id: number) {
+    return chatsCommonApi.requestChatToken(id).then((xhr) => {
       if (xhr.status === 200) {
-        const token = JSON.parse(xhr.response);
-        const { activeChat } = store.getState();
-        store.setState('activeChat', { ...activeChat, token });
-        return Promise.resolve();
+        const token: string = JSON.parse(xhr.response).token;
+        return Promise.resolve(token);
       }
       return Promise.reject(
-        `Не удалось получить токен для чата с id: ${chatId}. Сообщение сервера: ${xhr.response}`
+        `Не удалось получить токен для чата с id: ${id}. Сообщение сервера: ${xhr.response}`
       );
     });
+  }
 
+  private getUnreadCount(id: number) {
+    return chatsCommonApi.requestUnreadCount(id).then((xhr) => {
+      if (xhr.status === 200) {
+        const { unread_count } = JSON.parse(xhr.response);
+        return Promise.resolve(unread_count);
+      }
+      return Promise.reject(
+        `Не удалось получить данные. Сообщение сервера: ${xhr.response}`
+      );
+    });
   }
 
   public resetActiveChat() {
@@ -53,6 +80,7 @@ class ActiveChatController {
       chatUsers: [],
       token: null,
     });
+    store.getState().socket?.close();
   }
 
   public async deleteActiveChat() {
@@ -115,16 +143,16 @@ class ActiveChatController {
     }
   }
 
-  public async getChatUsers() {
+  public async getChatUsers(id: number) {
     const users = store.getState().activeChat?.users;
     if (users && users?.length > 0) {
       return Promise.resolve(users);
     }
 
-    await chatsCommonApi.requestChatUsers().then((xhr) => {
+    await chatsCommonApi.requestChatUsers(id).then((xhr) => {
       if (xhr.status === 200) {
         const fetchedUsers = JSON.parse(xhr.response);
-        const {activeChat} = store.getState();
+        const { activeChat } = store.getState();
         store.setState('activeChat', { ...activeChat, users: fetchedUsers });
         return Promise.resolve(fetchedUsers);
       } else {

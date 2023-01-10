@@ -37,6 +37,13 @@
   flex-flow: row;
   align-items: center;
 }
+.flex-row-start {
+  display: flex;
+  justify-content: flex-start;
+  align-content: center;
+  flex-flow: row;
+  align-items: flex-start;
+}
 
 .gap_size_s {
   gap: 10px;

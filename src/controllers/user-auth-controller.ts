@@ -22,6 +22,7 @@ class UserAuthController {
         }
         return Promise.resolve();
       } else {
+        router.go('/login');
         throw new Error(xhr.response);
       }
     });

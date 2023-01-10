@@ -89,6 +89,7 @@ class FormSubmitController {
 
   private submitSignUp(values: Omit<MSNUser, 'id' | 'avatar'>) {
     authApi.requestSignup(values).then((xhr) => {
+      userAuthController.auth('/messenger');
       return Promise.resolve(xhr.response);
     });
   }

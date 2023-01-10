@@ -3,16 +3,23 @@
   feed-message_hasFile
 {{/if}}
 {{#if isOwn}}feed-message_isOwn{{/if}}">
-
-
+  <div class="flex-row-start gap_size_s pb_s {{#if isOwn}}
+  feed-message__title-wrap_reversed
+{{/if}}">
+    {{{Avatar size="s" avatar=user.avatar abbr=user.first_name}}}
+    <div class="feed-message__text-box flex-vertical-left {{#if isOwn}}feed-message__text-box_reversed{{/if}}">
+      <p class="text text_size_s text_weight_bold">{{user.first_name}} {{user.second_name}}</p>
+      <span class="text text_size_xs">{{user.login}}</span>    
+    </div>
+  </div>
   {{#if isFile}}
-    <img class="feed-message__image" src={{url}} alt="изображение чата" >
+    <img class="feed-message__image" src="{{url}}" alt="изображение чата" >
   {{else}}
     <div class="feed-message__text text text_size_s text_weight_regular ">
-      {{ this.content }}    
+      {{ message.content }}    
     </div>
   {{/if}}
 
-<time datetime="" class="feed-message__time text text_size_xs text_weight_regular ">{{time}}</time>
+<time datetime="" class="feed-message__time text text_size_xs text_weight_regular ">{{message.time}}</time>
 
 </article>

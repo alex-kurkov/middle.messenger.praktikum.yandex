@@ -1,3 +1,5 @@
+import { MessengerSocket } from "services/messenger-socket/messenger-socket";
+
 declare global {
   interface MSNStore {
     interface: {
@@ -10,7 +12,6 @@ declare global {
     chats: MSNChat[];
     activeChat: {
       chat: Nullable<MSNChat>,
-      token: Nullable<string>,
       users: MSNUser[],
     };
     chatMessages: {
@@ -23,7 +24,8 @@ declare global {
     search: {
       users: [],
       chats: [],
-    }
+    },
+    socket: Nullable<MessengerSocket>
   }
 }
 

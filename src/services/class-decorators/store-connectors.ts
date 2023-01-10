@@ -52,3 +52,6 @@ export const withChatMessages = connect((s) => ({
 export const withSearchUsers = connect((s) => ({
   users: s.search?.users,
 }));
+export const withSocketMessenger = connect((s) => ({
+  messenger: s.socket,
+}));
