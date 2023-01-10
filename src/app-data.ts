@@ -22,10 +22,9 @@ export const chatMessages = [
     time: '13:30',
     type: '',
     user_id: 35919,
-    content: 'Все прошло так, как надо!'
+    content: 'Все прошло так, как надо!',
   },
 ];
-
 
 export default {
   page400: {
@@ -216,17 +215,10 @@ export default {
         text: 'Добавить',
       },
     },
-    messageForm: {
-      formName: 'message',
-      inputs: [
-        {
-          type: 'text',
-          name: 'message',
-          placeholder: 'Введите сообщение',
-          ref: 'message_inputRef',
-          id: nanoid(4),
-        },
-      ],
+    messageInput: {
+      name: 'message',
+      placeholder: 'Введите сообщение',
+      id: nanoid(4),
     },
     searchForm: {
       formName: 'search',

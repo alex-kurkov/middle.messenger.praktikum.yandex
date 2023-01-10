@@ -57,6 +57,12 @@ class InterfaceController {
       chatUsersEditVisible: true,
     });
   }
+
+  scrollMessagesToTheLatter() {
+    document
+      .querySelector('.chat-messages__messages')
+      ?.lastElementChild?.scrollIntoView();
+  }
 }
 
 export const interfaceController = new InterfaceController();

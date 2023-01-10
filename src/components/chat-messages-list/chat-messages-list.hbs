@@ -1,5 +1,4 @@
 <div class="chat-messages flex-vertical-left">
-  {{#if chatMessages}}
     <ul class="chat-messages__messages flex-vertical-left">
       {{#each chatMessages as |message| }}
         <li class="chat-messages__list-item">
@@ -7,6 +6,4 @@
         </li>
       {{/each}}
     </ul>
-    {{{NewMessage inputs=inputs}}}
-  {{/if}}
 </div>

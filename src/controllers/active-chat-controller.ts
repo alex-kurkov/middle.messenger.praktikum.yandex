@@ -2,26 +2,27 @@ import { store } from 'core';
 import chatsCommonApi from 'services/api/chats-common-api';
 import chatsApi from 'services/api/chats-api';
 import { interfaceController } from './interface-controller';
-import { MessengerSocket } from 'services/messenger-socket/messenger-socket';
+import { MessengerSocket } from 'core/MessengerSocket';
 
 class ActiveChatController {
   // @handleError(handler)
-  public async setActiveChat(id: number) {
-    const { chats } = store.getState();
-    if (!chats) {
-      return Promise.reject('провален поиск чатов в сторе... полностью...');
-    }
-
-    const newActiveChat: MSNChat | undefined = chats.find(
+  public setActiveChat(id: number) {
+    const newActiveChat: MSNChat | undefined = store.getState().chats?.find(
       (chat) => chat.id === id
     );
+
     if (!newActiveChat) {
-      return Promise.reject(
-        `Cреди загруженных чатов не найден чат с id: ${id}`
+      throw new Error(
+        `провален поиск нужного чата в сторе... полностью... 
+        Cреди загруженных чатов не найден чат с id: ${id}`
       );
     }
-
-    let wss: Nullable<MessengerSocket> = null;
+    store.setState('activeChat', {
+      ...store.getState().activeChat,
+      chat: newActiveChat,
+      chatUsers: [],
+    });
+    store.setState('chatMessages', []);
 
     this.getChatUsers(newActiveChat.id).then(() =>
       this.getMessengerToken(newActiveChat.id)
@@ -30,22 +31,14 @@ class ActiveChatController {
           const CHAT_ID = newActiveChat.id;
           if (USER_ID && TOKEN && CHAT_ID) {
             store.getState().socket?.close();
+            store.setState(
+              'socket',
+              new MessengerSocket(USER_ID, CHAT_ID, TOKEN)
+            );
 
-            wss = new MessengerSocket(USER_ID, CHAT_ID, TOKEN);
-            console.dir(wss);
-            return Promise.resolve(wss);
           } else {
             throw new Error('unable to set socket connection');
           }
-        })
-        .then(() => this.getUnreadCount(newActiveChat.id))
-        .then((unread_count) => {
-          store.setState('activeChat', {
-            ...store.getState().activeChat,
-            chat: { ...newActiveChat, unread_count },
-          });
-
-          store.setState('socket', wss);
         })
     );
   }
@@ -62,17 +55,17 @@ class ActiveChatController {
     });
   }
 
-  private getUnreadCount(id: number) {
-    return chatsCommonApi.requestUnreadCount(id).then((xhr) => {
-      if (xhr.status === 200) {
-        const { unread_count } = JSON.parse(xhr.response);
-        return Promise.resolve(unread_count);
-      }
-      return Promise.reject(
-        `Не удалось получить данные. Сообщение сервера: ${xhr.response}`
-      );
-    });
-  }
+  // private getUnreadCount(id: number) {
+  //   return chatsCommonApi.requestUnreadCount(id).then((xhr) => {
+  //     if (xhr.status === 200) {
+  //       const { unread_count } = JSON.parse(xhr.response);
+  //       return Promise.resolve(unread_count);
+  //     }
+  //     return Promise.reject(
+  //       `Не удалось получить данные. Сообщение сервера: ${xhr.response}`
+  //     );
+  //   });
+  // }
 
   public resetActiveChat() {
     store.setState('activeChat', {
@@ -220,6 +213,8 @@ class ActiveChatController {
       }
     });
   }
+
 }
+
 
 export const activeChatController = new ActiveChatController();

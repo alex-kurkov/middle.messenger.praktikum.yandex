@@ -1,7 +1,7 @@
 <div>
     {{#Layout class="main_layout_feed"}}
         {{{ SideMenu inputs=searchForm.inputs}}}
-        {{{ Feed inputs=messageForm.inputs }}}
+        {{{ Feed messageInput=messageInput }}}
     {{/Layout}}
     {{#with addChatForm}}
     {{{ ChatAddDialog

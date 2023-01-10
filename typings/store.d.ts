@@ -11,21 +11,15 @@ declare global {
     user: MSNUser;
     chats: MSNChat[];
     activeChat: {
-      chat: Nullable<MSNChat>,
-      users: MSNUser[],
+      chat: Nullable<MSNChat>;
+      users: MSNUser[];
     };
-    chatMessages: {
-      id?: number;
-      title?: string;
-      avatar: typeof Blob | string;
-      unread_count: Nullable<number>;
-      messages: MSNChatMessage[];
-    };
+    chatMessages: MSNChatMessage[];
     search: {
-      users: [],
-      chats: [],
-    },
-    socket: Nullable<MessengerSocket>
+      users: [];
+      chats: [];
+    };
+    socket: Nullable<MessengerSocket>;
   }
 }
 

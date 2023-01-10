@@ -10,7 +10,7 @@ export class ChatAvatarEdit<P extends { chat: MSNChat }> extends Block<P> {
       ...props,
 
       handleAvatarChange: (e: Event) => {
-        activeChatController.setActiveChatAvatar(props.chat?.id, e);
+        activeChatController.setActiveChatAvatar(props.chat.id, e);
       },
     });
   }

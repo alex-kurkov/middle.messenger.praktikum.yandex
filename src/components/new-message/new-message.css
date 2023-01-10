@@ -3,14 +3,6 @@
   width: 100%;
   position: relative;
 
-  & legend {
-    display: none;
-  }
-
-  & .error {
-    display: none;
-  }
-
   & input {
     padding: 0 40px;
     border: none;

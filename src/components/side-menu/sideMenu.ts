@@ -28,14 +28,10 @@ export class SideMenu extends Block<object> {
     const addChat = () => {
       interfaceController.showAddChatDialog()
     };
-    const toggleSound = () => {
-      console.log('sound toggled');
-    };
 
     super({
       ...props,
       toggleSideMenu,
-      toggleSound,
       addChat,
       expandSideMenu,
       goToProfilePage,

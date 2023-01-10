@@ -1,5 +1,5 @@
 import { EventBus } from ".";
-import { chatMessages } from "../app-data";
+// import icqBeep from '../assets/icq.ogg'
 
 const initialState: MSNStore = {
   user: null,
@@ -10,17 +10,17 @@ const initialState: MSNStore = {
     chatUsersEditVisible: false,
   },
   chats: [],
-  chatMessages,
+  chatMessages: [],
   activeChat: {
     chat: null,
     users: [],
   },
   search: {
     users: [],
-    chats: []
+    chats: [],
   },
-  socket: null
-}
+  socket: null,
+};
 
 export enum StoreEvents {
   UPDATED = 'flow:store_did_update'

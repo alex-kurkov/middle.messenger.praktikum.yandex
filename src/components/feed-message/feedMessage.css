@@ -3,7 +3,7 @@
   width: fit-content;
   max-width: 80%;
   background-color: var(--base-white);
-  float: inline-start;
+  float: left;
   border-radius: 0 20px 20px;
   padding: 10px;
   position: relative;
@@ -11,7 +11,7 @@
 
   &_isOwn {
     background-color: var(--light-gray);
-    float: inline-end;
+    float: right;
     border-radius: 20px 0 20px 20px;
   }
 

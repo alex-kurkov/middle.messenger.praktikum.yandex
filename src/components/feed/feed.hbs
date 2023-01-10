@@ -1,7 +1,8 @@
 <section class="feed {{#if chat}}flex-vertical-left{{else}}flex-centered{{/if}}">
   {{#if chat}}
     {{{FeedTitle}}}
-    {{{ChatMessagesList inputs=inputs}}}
+    {{{ChatMessagesList messageInput=messageInput}}}
+    {{{NewMessage messageInput=messageInput}}}
   {{else}}
       <p class="feed__empty-message text text_size_m text_weight_regular">
         Выберите чат, чтобы отправить сообщение, или
