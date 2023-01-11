@@ -7,9 +7,9 @@ import { MessengerSocket } from 'core/MessengerSocket';
 class ActiveChatController {
   // @handleError(handler)
   public setActiveChat(id: number) {
-    const newActiveChat: MSNChat | undefined = store.getState().chats?.find(
-      (chat) => chat.id === id
-    );
+    const newActiveChat: MSNChat | undefined = store
+      .getState()
+      .chats?.find((chat) => chat.id === id);
 
     if (!newActiveChat) {
       throw new Error(
@@ -18,28 +18,25 @@ class ActiveChatController {
       );
     }
     store.setState('activeChat', {
-      ...store.getState().activeChat,
       chat: newActiveChat,
       chatUsers: [],
     });
     store.setState('chatMessages', []);
 
     this.getChatUsers(newActiveChat.id).then(() =>
-      this.getMessengerToken(newActiveChat.id)
-        .then((TOKEN) => {
-          const USER_ID = store.getState().user?.id;
-          const CHAT_ID = newActiveChat.id;
-          if (USER_ID && TOKEN && CHAT_ID) {
-            store.getState().socket?.close();
-            store.setState(
-              'socket',
-              new MessengerSocket(USER_ID, CHAT_ID, TOKEN)
-            );
-
-          } else {
-            throw new Error('unable to set socket connection');
-          }
-        })
+      this.getMessengerToken(newActiveChat.id).then((TOKEN) => {
+        const USER_ID = store.getState().user?.id;
+        const CHAT_ID = newActiveChat.id;
+        if (USER_ID && TOKEN && CHAT_ID) {
+          store.getState().socket?.close();
+          store.setState(
+            'socket',
+            new MessengerSocket(USER_ID, CHAT_ID, TOKEN)
+          );
+        } else {
+          throw new Error('unable to set socket connection');
+        }
+      })
     );
   }
 
@@ -110,15 +107,9 @@ class ActiveChatController {
         if (xhr.status === 200) {
           const { id, avatar } = JSON.parse(xhr.response);
 
-          const { activeChat, chats } = store.getState();
+          const { chats } = store.getState();
 
-          store.setState('activeChat', {
-            ...activeChat,
-            chat: {
-              ...activeChat.chat,
-              avatar,
-            },
-          });
+          store.setState('activeChat.chat.avatar', avatar);
 
           const updatedChats = chats?.map((chat) => {
             if (chat.id === id) {
@@ -137,7 +128,7 @@ class ActiveChatController {
   }
 
   public async getChatUsers(id: number) {
-    const users = store.getState().activeChat?.users;
+    const users = store.getState().activeChat.chatUsers;
     if (users && users?.length > 0) {
       return Promise.resolve(users);
     }
@@ -145,8 +136,7 @@ class ActiveChatController {
     await chatsCommonApi.requestChatUsers(id).then((xhr) => {
       if (xhr.status === 200) {
         const fetchedUsers = JSON.parse(xhr.response);
-        const { activeChat } = store.getState();
-        store.setState('activeChat', { ...activeChat, users: fetchedUsers });
+        store.setState('activeChat.chatUsers', fetchedUsers);
         return Promise.resolve(fetchedUsers);
       } else {
         throw new Error(xhr.response);
@@ -160,7 +150,7 @@ class ActiveChatController {
       throw new Error('no active chat found');
     }
     const searchedUsers: MSNUser[] = store.getState().search.users;
-    const currentUsers: MSNUser[] = store.getState().activeChat.users;
+    const currentUsers: MSNUser[] = store.getState().activeChat.chatUsers;
     if (currentUsers.find((user) => user?.id === id)) {
       throw new Error('нельзя добавить пользоватея второй раз');
     }
@@ -174,10 +164,10 @@ class ActiveChatController {
         if (addedUser) {
           const activeChat = store.getState().activeChat;
 
-          store.setState('activeChat', {
-            ...activeChat,
-            users: [...activeChat.users, addedUser],
-          });
+          store.setState('activeChat.chatUsers', [
+            addedUser,
+            ...activeChat.chatUsers,
+          ]);
         }
       } else {
         throw new Error(xhr.response);
@@ -190,7 +180,7 @@ class ActiveChatController {
     if (!chatId) {
       throw new Error('no active chat found');
     }
-    const currentUsers: MSNUser[] = store.getState().activeChat.users;
+    const currentUsers: MSNUser[] = store.getState().activeChat.chatUsers;
 
     await chatsCommonApi.deleteChatUsers(chatId, [id]).then((xhr) => {
       if (xhr.status === 200) {
@@ -201,20 +191,13 @@ class ActiveChatController {
         );
 
         if (updatedUsers) {
-          const activeChat = store.getState().activeChat;
-
-          store.setState('activeChat', {
-            ...activeChat,
-            users: updatedUsers,
-          });
+          store.setState('activeChat.chatUsers', updatedUsers);
         }
       } else {
         throw new Error(xhr.response);
       }
     });
   }
-
 }
-
 
 export const activeChatController = new ActiveChatController();

@@ -1,5 +1,5 @@
 import { EventBus } from ".";
-// import icqBeep from '../assets/icq.ogg'
+import { set } from "utils/set";
 
 const initialState: MSNStore = {
   user: null,
@@ -13,7 +13,7 @@ const initialState: MSNStore = {
   chatMessages: [],
   activeChat: {
     chat: null,
-    users: [],
+    chatUsers: [],
   },
   search: {
     users: [],
@@ -47,13 +47,9 @@ class Store extends EventBus {
   }
 
   public setState(path: string, value: unknown): void {
-    this.set(this.state, path, value);
+    this.state = set(this.state, path, value) as MSNStore;
+    console.log(`STATE CHANGED AT PATH ${path}:`, this.state);
     this.emit(StoreEvents.UPDATED);
-    console.log('STATE:', this.state);
-  }
-
-  private set(state: typeof this.state, path: string, value: unknown): void {
-    this.state = Object.assign(state, { [path]: value });
   }
 }
 

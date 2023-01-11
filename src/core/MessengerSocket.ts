@@ -119,7 +119,8 @@ export class MessengerSocket {
   }
 
   private handleMessagesAdd(messages: MSNChatMessage[]) {
-    store.setState('chatMessages', messages.reverse());
+    // TODO sort
+    store.setState('chatMessages', messages);
     if (this.SCROLL_TO_LAST) {
       interfaceController.scrollMessagesToTheLatter();
       this.SCROLL_TO_LAST = false;

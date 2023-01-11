@@ -1,7 +1,6 @@
 import Block from 'core/Block';
 import template from 'bundle-text:./users-editable-list.hbs';
 import './users-editable-list.css';
-import { store } from 'core';
 import { activeChatController } from 'controllers/active-chat-controller';
 
 export class UsersEditableList<
@@ -10,11 +9,7 @@ export class UsersEditableList<
   static componentName = 'UsersEditableList';
 
   constructor(props: P) {
-    const users =
-      props.type === 'currentUsers'
-        ? store.getState().activeChat.users
-        : store.getState().search.users;
-
+  
     const onClick =
       props.type === 'currentUsers'
         ? (e: PointerEvent) => {
@@ -36,7 +31,6 @@ export class UsersEditableList<
 
     super({
       ...props,
-      users,
       onClick,
     });
   }

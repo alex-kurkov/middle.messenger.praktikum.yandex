@@ -36,7 +36,7 @@ export default class Route<P extends {[key: string]: any}>  {
   }
 
   match(pathname: string): boolean {
-    return isEqual(pathname, this._pathname);
+    return isEqual({pathname}, {pathname: this._pathname});
   }
 
   render() {

@@ -12,50 +12,32 @@ class InterfaceController {
 
   public toggleSideMenu(): void {
     const currentInterfaceState = store.getState()?.interface;
-    store.setState('interface', {
-      ...currentInterfaceState,
-      sideMenuExpanded: !currentInterfaceState?.sideMenuExpanded,
-    });
+    store.setState(
+      'interface.sideMenuExpanded',
+      !currentInterfaceState?.sideMenuExpanded
+    );
   }
 
   public expandSideMenu(): void {
-    store.setState('interface', {
-      ...store.getState().interface,
-      sideMenuExpanded: true,
-    });
+    store.setState('interface.sideMenuExpanded', true);
   }
 
   public showAddChatDialog(): void {
-    store.setState('interface', {
-      ...store.getState().interface,
-      addChatDialogVisible: true,
-    });
+    store.setState('interface.addChatDialogVisible', true);
   }
   public hideAddChatDialog(): void {
-    store.setState('interface', {
-      ...store.getState().interface,
-      addChatDialogVisible: false,
-    });
+    store.setState('interface.addChatDialogVisible', false);
   }
 
   public showEditChatDialog(): void {
-    store.setState('interface', {
-      ...store.getState().interface,
-      editChatDialog: true,
-    });
+    store.setState('interface.editChatDialog', true);
   }
   public hideEditChatDialog(): void {
-    store.setState('interface', {
-      ...store.getState().interface,
-      editChatDialog: false,
-    });
+    store.setState('interface.editChatDialog', false);
     searchController.clearSearchUsers();
   }
   public showChatUsersEdit(): void {
-    store.setState('interface', {
-      ...store.getState().interface,
-      chatUsersEditVisible: true,
-    });
+    store.setState('interface.chatUsersEditVisible', true);
   }
 
   scrollMessagesToTheLatter() {

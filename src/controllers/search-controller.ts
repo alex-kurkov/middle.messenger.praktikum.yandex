@@ -12,8 +12,7 @@ class SearchController {
       if (xhr.status === 200) {
         const users = JSON.parse(xhr.response);
         console.log('FOUND USERS', users);
-        const search = store.getState().search
-        store.setState('search', { ...search, users });
+        store.setState('search.users',users);
         return Promise.resolve(users);
       } else {
         throw new Error(xhr.response);
@@ -22,8 +21,7 @@ class SearchController {
   }
 
   public clearSearchUsers() {
-    const search = store.getState().search
-    store.setState('search', { ...search, users: [] });
+    store.setState('search.users',[]);
   }
 }
 

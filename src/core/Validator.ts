@@ -308,10 +308,9 @@ export default class Validator {
       // от 10 до 15 символов, состоит из цифр
       // ------------------------
       case ValidateRules.PHONE:
-        // eslint-disable-next-line no-case-declarations
-        const digits = value.match(/\d/g);
-
-        if (!digits || !RE.TEN_TO_FIFTEEN_DIGITS_REGEX.test(digits.join(''))) {
+        if (
+          !RE.TEN_TO_FIFTEEN_DIGITS_REGEX.test(value.replace(/\D/g, ''))
+        ) {
           errorMessage = Messages.PHONE_INVALID;
           break;
         }

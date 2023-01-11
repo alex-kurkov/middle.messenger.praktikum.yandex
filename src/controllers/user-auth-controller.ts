@@ -13,10 +13,10 @@ class UserAuthController {
         window.localStorage.setItem('isLoggedIn', 'true');
         store.setState('user', {
           ...user,
-          avatar: getStaticFilePath(user.avatar),
-        });
+          avatar: getStaticFilePath(user.avatar)
+      });
         if (pathname === '/login' || pathname === '/register') {
-          router.go('/messenger')
+          router.go('/messenger');
         } else {
           router.go(pathname);
         }
@@ -28,7 +28,7 @@ class UserAuthController {
     });
   }
 
-  public async logout () {
+  public async logout() {
     // TODO loader start
     await authApi.requestLogout().then((xhr) => {
       if (xhr.status === 200) {

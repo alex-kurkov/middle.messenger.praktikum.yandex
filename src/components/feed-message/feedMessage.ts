@@ -20,7 +20,9 @@ export class FeedMessage<
   static componentName = 'FeedMessage';
   constructor(props: P) {
     const { users, message } = props;
-    const messageUser = users.find((user) => user?.id === message.user_id);
+    const messageUser = users.find(
+      (user) => user?.id === message.user_id
+    );
 
     super({
       ...props,

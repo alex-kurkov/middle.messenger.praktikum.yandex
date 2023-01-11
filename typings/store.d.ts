@@ -11,8 +11,8 @@ declare global {
     user: MSNUser;
     chats: MSNChat[];
     activeChat: {
+      chatUsers: MSNUser[];
       chat: Nullable<MSNChat>;
-      users: MSNUser[];
     };
     chatMessages: MSNChatMessage[];
     search: {
