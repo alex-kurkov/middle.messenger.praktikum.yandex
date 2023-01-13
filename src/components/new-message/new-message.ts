@@ -12,7 +12,7 @@ export default class NewMessage<P extends {
     super({
       ...props,
       handleFileAdd: () => {
-        console.log('file adding');
+        console.log('file adding handler');
       },
       handleSubmit: () => {
         const textInput = this.refs['text_input'].getContent() as HTMLInputElement;
@@ -22,7 +22,7 @@ export default class NewMessage<P extends {
           return;
         }
 
-        const messenger = store.getState().socket;
+        const messenger = store.state.socket;
         messenger?.text(value);
         textInput.value = '';
       },

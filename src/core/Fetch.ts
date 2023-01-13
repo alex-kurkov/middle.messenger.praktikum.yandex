@@ -1,6 +1,6 @@
 export interface RequestOptions {
   timeout?: number;
-  data?: any;
+  data?: unknown;
   headers?: Record<string, string>;
 }
 enum METHODS {
@@ -21,19 +21,9 @@ enum REJECT_MESSAGES {
 
 export default class Fetch {
   protected readonly baseUrl: string;
-  protected readonly authHeaders: Nullable<{
-    mode: string;
-    credentials: string;
-  }> = null;
 
   constructor(baseUrl: string) {
     this.baseUrl = baseUrl;
-    // if (withAuthCookies) {
-    //   this.authHeaders = {
-    //     mode: 'cors',
-    //     credentials: 'include',
-    //   };
-    // }
   }
 
   get = (url: string, options: RequestOptions = {}) => {
@@ -77,9 +67,6 @@ export default class Fetch {
       const xhr = new XMLHttpRequest();
       xhr.open(method, `${this.baseUrl}${url}`);
       xhr.withCredentials = true;
-      if (this.authHeaders) {
-        this.setHeaders(xhr, this.authHeaders);
-      }
       if (headers) {
         this.setHeaders(xhr, headers);
       }
@@ -100,11 +87,8 @@ export default class Fetch {
       if (method === METHODS.GET || !data) {
         xhr.send();
       } else if (data instanceof FormData) {
-        // xhr.setRequestHeader('content-type', 'multipart/form-data');
-        console.log('inside form send')
         xhr.send(data);
       } else {
-        xhr.setRequestHeader('Content-Type', 'application/json; charset=utf-8');
         xhr.send(JSON.stringify(data));
       }
     });
@@ -117,6 +101,7 @@ export default class Fetch {
     Object.keys(headers).forEach((name) => {
       xhr.setRequestHeader(name, headers[name]);
     });
+    xhr.setRequestHeader('accept', 'application/json');
   }
 
   private addQueries(data = {}, url: string): string {

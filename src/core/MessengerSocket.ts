@@ -68,7 +68,7 @@ export class MessengerSocket {
 
       if (data.type === 'message') {
         this.SCROLL_TO_LAST = true;
-        this.handleMessagesAdd([data, ...store.getState().chatMessages]);
+        this.handleMessagesAdd([data, ...store.state.chatMessages]);
         console.dir(document.querySelector('#beep'));
       }
     });
@@ -97,17 +97,17 @@ export class MessengerSocket {
     }
   }
 
-  public sendFile(file: File) {
-    //Отправить POST запрос в ручку /resources для сохранения
-    // файла как ресурса
-    // на сервере и получить id созданного ресурса из ответа(см.swagger)
-    this.socket.send(
-      JSON.stringify({
-        content: fileId,
-        type: 'file',
-      })
-    );
-  }
+  // public sendFile(file: File) {
+  //   //Отправить POST запрос в ручку /resources для сохранения
+  //   // файла как ресурса
+  //   // на сервере и получить id созданного ресурса из ответа(см.swagger)
+  //   this.socket.send(
+  //     JSON.stringify({
+  //       content: fileId,
+  //       type: 'file',
+  //     })
+  //   );
+  // }
 
   public getOld(offset: number) {
     this.socket.send(

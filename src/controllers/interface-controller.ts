@@ -11,11 +11,8 @@ class InterfaceController {
   }
 
   public toggleSideMenu(): void {
-    const currentInterfaceState = store.getState()?.interface;
-    store.setState(
-      'interface.sideMenuExpanded',
-      !currentInterfaceState?.sideMenuExpanded
-    );
+    const { sideMenuExpanded } = store.state.interface;
+    store.setState('interface.sideMenuExpanded', !sideMenuExpanded);
   }
 
   public expandSideMenu(): void {

@@ -8,7 +8,7 @@ class UserChangeController {
   // @handleError(handler)
   public async changeUserData(values: Omit<MSNUser, 'id' | 'avatar'>) {
     // TODO loader start
-    const curUser = store.getState().user;
+    const curUser = store.state.user;
     if (!curUser) {
       throw new Error('user field is missing or null in store');
     }

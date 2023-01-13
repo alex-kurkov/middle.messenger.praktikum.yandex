@@ -1,6 +1,8 @@
 //@ts-nocheck
 import { store } from 'core';
 import { StoreEvents } from 'core/Store';
+import { cloneDeep } from 'utils/cloneDeep';
+import { findChatById } from 'utils/findChatById';
 import { isEqual } from 'utils/isEqual';
 
 function connect(mapStateToProps: (state: MSNStore) => object) {
@@ -10,12 +12,12 @@ function connect(mapStateToProps: (state: MSNStore) => object) {
   ) {
     return class extends ClassConstructor<object> {
       constructor(props) {
-        let state = mapStateToProps(store.getState());
+        let state = cloneDeep(mapStateToProps(store.state));
 
         super({ ...props, ...state });
 
         store.on(StoreEvents.UPDATED, () => {
-          const newState = mapStateToProps(store.getState());
+          const newState = cloneDeep(mapStateToProps(store.state));
 
           if (!isEqual(state, newState)) {
             this.setProps({ ...newState });
@@ -30,9 +32,14 @@ function connect(mapStateToProps: (state: MSNStore) => object) {
 
 export const withUser = connect((s) => ({ user: s.user }));
 export const withOwnId = connect((s) => ({ ownId: s.user?.id }));
-export const withActiveChat = connect((s) => ({ chat: s.activeChat?.chat }));
+export const withActiveChat = connect((s) => ({
+  chat: cloneDeep(findChatById(s.chats, s.activeChatId)),
+}));
+export const withActiveChatId = connect((s) => ({
+  activeChatId: s.activeChatId,
+}));
 export const withActiveChatUsers = connect((s) => ({
-  users: s.activeChat?.chatUsers,
+  users: s.activeChatUsers,
 }));
 export const withAvatar = connect((s) => ({ avatar: s.user?.avatar }));
 export const withSideMenu = connect((s) => ({

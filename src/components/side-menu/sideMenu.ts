@@ -2,6 +2,7 @@ import Block from 'core/Block';
 import './sideMenu.css';
 import template from 'bundle-text:./sideMenu.hbs';
 import {
+  withActiveChatId,
   withChats,
   withSideMenu,
 } from '../../services/class-decorators/store-connectors';
@@ -13,6 +14,7 @@ import { ValidatorController } from 'core';
 @withSideMenu
 @withChats
 @withLiveValidator
+@withActiveChatId
 export class SideMenu extends Block<object> {
   static componentName = 'SideMenu';
 

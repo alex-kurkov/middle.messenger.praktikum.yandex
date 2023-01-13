@@ -11,10 +11,9 @@ const initialState: MSNStore = {
   },
   chats: [],
   chatMessages: [],
-  activeChat: {
-    chat: null,
-    chatUsers: [],
-  },
+  activeChat: null,
+  activeChatId: null,
+  activeChatUsers: [],
   search: {
     users: [],
     chats: [],
@@ -27,7 +26,7 @@ export enum StoreEvents {
 }
 
 class Store extends EventBus {
-  private state = initialState;
+  private _state = initialState;
   __instance: Nullable<Store> = null;
 
   constructor() {
@@ -42,13 +41,14 @@ class Store extends EventBus {
     this.emit(StoreEvents.UPDATED);
   }
 
-  public getState(): MSNStore {
-    return this.state;
+
+  public get state(): MSNStore {
+    return this._state;
   }
 
   public setState(path: string, value: unknown): void {
-    this.state = set(this.state, path, value) as MSNStore;
-    console.log(`STATE CHANGED AT PATH ${path}:`, this.state);
+    this._state = set(this._state, path, value) as MSNStore;
+    console.log(`STATE CHANGED AT PATH ${path} CURRENT STATE:`, this._state);
     this.emit(StoreEvents.UPDATED);
   }
 }

@@ -39,36 +39,6 @@ export default {
     linkMessage: 'назад к страницам',
     link: '/',
   },
-  mainPage: {
-    links: [
-      {
-        pageUrl: '/messenger',
-        text: 'Мессенджер',
-        labelText: 'Лента сообщений с раскрытым меню',
-      },
-      {
-        pageUrl: '/login',
-        text: 'Вход',
-      },
-      {
-        pageUrl: '/register',
-        labelText:
-          'Регистрация + разное состояние :focus (на поле пароль), autocomplete и пример ошибки валидации',
-        text: 'Регистрация',
-      },
-      {
-        pageUrl: '/400',
-        labelText: null,
-        text: '400',
-      },
-      {
-        pageUrl: '/500',
-        labelText: null,
-        text: '5**',
-      },
-    ],
-    title: 'Страницы проекта',
-  },
   loginPage: {
     formName: 'signin',
     formTitle: 'Вход',

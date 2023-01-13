@@ -1,7 +1,7 @@
 import { MessengerSocket } from "services/messenger-socket/messenger-socket";
 
 declare global {
-  interface MSNStore {
+  type MSNStore = {
     interface: {
       sideMenuExpanded: boolean;
       addChatDialogVisible: boolean;
@@ -10,10 +10,9 @@ declare global {
     };
     user: MSNUser;
     chats: MSNChat[];
-    activeChat: {
-      chatUsers: MSNUser[];
-      chat: Nullable<MSNChat>;
-    };
+    activeChat: Nullable<MSNChat>;
+    activeChatId: Nullable<number>;
+    activeChatUsers: MSNUser[];
     chatMessages: MSNChatMessage[];
     search: {
       users: [];

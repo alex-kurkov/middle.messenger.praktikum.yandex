@@ -11,7 +11,7 @@ export class FeedTitle<P extends { chat: MSNChat }> extends Block<P> {
   constructor(props: P) {
     super({
       ...props,
-      abbr: props.chat.title.charAt(0).toUpperCase(),
+      abbr: props.chat.title?.charAt(0).toUpperCase(),
       editChat: () => {
         interfaceController.showEditChatDialog();
       },

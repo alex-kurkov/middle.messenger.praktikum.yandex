@@ -22,8 +22,8 @@ class ChatsCommonAPI {
   }
 
   // formdata: chatId: number, avatar: File
-  updateChatAvatar(formData: FormData): Promise<XMLHttpRequest> {
-    return fetchChatsCommon.put('/avatar', { data: formData });
+  async updateChatAvatar(formData: FormData): Promise<XMLHttpRequest> {
+    return await fetchChatsCommon.put('/avatar', { data: formData });
   }
 
   requestChatUsers(

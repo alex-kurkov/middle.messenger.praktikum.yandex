@@ -1,6 +1,6 @@
 import { Fetch } from 'core';
 
-export const fetchChatsArchive = new Fetch('ya-praktikum.tech/api/v2/chats', true);
+export const fetchChatsArchive = new Fetch('https://ya-praktikum.tech/api/v2/chats');
 
 export class ChatsArchiveAPI {
   requestArchivedChats(

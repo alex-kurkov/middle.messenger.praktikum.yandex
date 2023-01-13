@@ -1,7 +1,6 @@
 import { Router } from 'core';
 import {
   LoginPage,
-  MainPage,
   ProfilePage,
   ProfileEditDataPage,
   ProfileEditPasswordPage,
@@ -11,7 +10,6 @@ import {
 import props from '../app-data';
 
 enum Pathnames {
-  MAIN = '/',
   LOGIN = '/login',
   REGISTER = '/register',
   NOT_FOUND = '/400',
@@ -25,7 +23,6 @@ enum Pathnames {
 const router = new Router('#app');
 
 router
-  .use(Pathnames.MAIN, MainPage, props.mainPage)
   .use(Pathnames.LOGIN, LoginPage, props.loginPage)
   .use(Pathnames.REGISTER, LoginPage, props.registerPage)
   .use(Pathnames.ERROR, NotFoundPage, props.page500)

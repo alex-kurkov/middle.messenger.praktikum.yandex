@@ -1,18 +1,17 @@
 export abstract class BaseAPI {
-  abstract create(): void;
-  abstract request(): void;
-  abstract update(): void;
-  abstract delete(): void;
+  create(): void {
+    throw new Error('Not implemented');
+  }
 
-  // request() {
-  //   throw new Error('Not implemented');
-  // }
+  request(): void {
+    throw new Error('Not implemented');
+  }
 
-  // update() {
-  //   throw new Error('Not implemented');
-  // }
+  update(): void {
+    throw new Error('Not implemented');
+  }
 
-  // delete() {
-  //   throw new Error('Not implemented');
-  // }
+  delete(): void {
+    throw new Error('Not implemented');
+  }
 }

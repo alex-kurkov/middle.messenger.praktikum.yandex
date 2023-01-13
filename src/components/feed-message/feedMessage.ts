@@ -4,10 +4,12 @@ import './feedMessage.css';
 import {
   withActiveChatUsers,
   withOwnId,
+  withUser,
 } from 'services/class-decorators/store-connectors';
 
 @withOwnId
-@withActiveChatUsers
+  @withActiveChatUsers
+  @withUser
 export class FeedMessage<
   P extends {
     message: MSNChatMessage;

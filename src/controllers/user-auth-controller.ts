@@ -1,6 +1,7 @@
 import { store } from 'core';
 import { authApi } from 'services/api';
 import { getStaticFilePath } from 'utils/getStaticFilePath';
+import { chatCommonController } from './chat-common-controller';
 import router from './router';
 
 class UserAuthController {
@@ -14,7 +15,9 @@ class UserAuthController {
         store.setState('user', {
           ...user,
           avatar: getStaticFilePath(user.avatar)
-      });
+        });
+        chatCommonController.getChats();
+        
         if (pathname === '/login' || pathname === '/register') {
           router.go('/messenger');
         } else {

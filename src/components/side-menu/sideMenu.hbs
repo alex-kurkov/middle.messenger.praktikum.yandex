@@ -16,20 +16,16 @@
       <div class="side-menu__search-icon icon icon_large">{{{Icon onClick=expandSideMenu type="search"}}}</div>
     {{/if}}
   </div>
-
   <ul class="side-menu__chats">
       {{#each chats }}
       <li>
         {{{MenuMessage 
           expanded=@root/sideMenuExpanded
-          active=active 
           avatar=avatar 
           unread_count=unread_count
           last_message=last_message
-          lastIsMine=lastIsMine
           title=title
           id=id
-          files=files
         }}}
       </li>
       {{/each}}
