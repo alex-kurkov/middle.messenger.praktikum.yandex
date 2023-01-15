@@ -6,13 +6,13 @@ import { findChatById } from 'utils/findChatById';
 import { isEqual } from 'utils/isEqual';
 
 function connect(mapStateToProps: (state: MSNStore) => object) {
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  // eslint-disable-next-line
   return function <C extends { new (...args: any[]): object }>(
     ClassConstructor: C
   ) {
     return class extends ClassConstructor<object> {
       constructor(props) {
-        let state = cloneDeep(mapStateToProps(store.state));
+        let state = mapStateToProps(store.state);
 
         super({ ...props, ...state });
 

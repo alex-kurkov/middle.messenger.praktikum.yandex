@@ -9,7 +9,7 @@ import {
 } from 'pages';
 import props from '../app-data';
 
-enum Pathnames {
+export enum Pathnames {
   LOGIN = '/login',
   REGISTER = '/register',
   NOT_FOUND = '/400',

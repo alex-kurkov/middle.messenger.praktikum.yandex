@@ -89,6 +89,9 @@ export default class Fetch {
       } else if (data instanceof FormData) {
         xhr.send(data);
       } else {
+        this.setHeaders(xhr, {
+          'content-type': 'application/json; charset=utf-8',
+        });
         xhr.send(JSON.stringify(data));
       }
     });

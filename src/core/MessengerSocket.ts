@@ -1,4 +1,5 @@
 import { interfaceController } from 'controllers/interface-controller';
+import { sortByTime } from 'utils/sortByTime';
 import store from './Store';
 
 export class MessengerSocket {
@@ -119,8 +120,7 @@ export class MessengerSocket {
   }
 
   private handleMessagesAdd(messages: MSNChatMessage[]) {
-    // TODO sort
-    store.setState('chatMessages', messages);
+    store.setState('chatMessages', sortByTime(messages));
     if (this.SCROLL_TO_LAST) {
       interfaceController.scrollMessagesToTheLatter();
       this.SCROLL_TO_LAST = false;
