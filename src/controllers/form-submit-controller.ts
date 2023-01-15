@@ -67,11 +67,7 @@ class FormSubmitController {
 
   private submitSignIn(values: { login: string; password: string }) {
     authApi.requestSignin(values).then((xhr) => {
-      if (xhr.status === 200) {
         return userAuthController.auth('/messenger');
-      } else {
-        throw new Error(xhr.response);
-      }
     });
   }
 

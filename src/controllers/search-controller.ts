@@ -1,21 +1,21 @@
 import { store } from 'core';
 import userApi from 'services/api/user-api';
+import { withPromisifiedErrorHandle }
+  from 'services/property-decorators/withPromisifiedErrorHandle';
 
 class SearchController {
-  // @handleError(handler)
+  @withPromisifiedErrorHandle
   public async searchUsersByLogin(login: string) {
     if (!login.length) {
-      throw new Error('empty login string');
+      return Promise.reject({
+        type: 'logic',
+        message: 'пустое поле login',
+      });
     }
-    // TODO cache search results
     await userApi.requestUsersByLogin(login).then((xhr) => {
-      if (xhr.status === 200) {
         const users = JSON.parse(xhr.response);
         store.setState('search.users',users);
         return Promise.resolve(users);
-      } else {
-        throw new Error(xhr.response);
-      }
     });
   }
 

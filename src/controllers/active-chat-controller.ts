@@ -115,12 +115,10 @@ class ActiveChatController {
     const activeChatUsers: MSNUser[] = store.state.activeChatUsers;
 
     if (activeChatUsers.find((user) => user?.id === id)) {
-      if (!chatId) {
         return Promise.reject({
           type: 'logic',
           message: 'нельзя добавить пользоватея второй раз',
         });
-      }
     }
 
     chatsCommonApi.updateChatUsers(chatId, [id]).then(() => {
