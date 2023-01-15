@@ -11,7 +11,6 @@ class SearchController {
     await userApi.requestUsersByLogin(login).then((xhr) => {
       if (xhr.status === 200) {
         const users = JSON.parse(xhr.response);
-        console.log('FOUND USERS', users);
         store.setState('search.users',users);
         return Promise.resolve(users);
       } else {

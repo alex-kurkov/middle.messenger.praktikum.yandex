@@ -8,7 +8,6 @@ export class MessengerSocket {
   CHAT_ID: number;
   TOKEN: string;
   LATEST_MESSAGE_ID = 0;
-  NO_MORE_MESSAGES_FLAG = false;
   SCROLL_TO_LAST = true;
 
   PING_PONG_ID: Nullable<NodeJS.Timer> = null;
@@ -64,10 +63,21 @@ export class MessengerSocket {
       }
 
       if (Array.isArray(data)) {
-        this.handleMessagesAdd(data);
+        if (data.length === 0) {
+          return;
+        }
+        
+        this.LATEST_MESSAGE_ID = data[data.length - 1].id - 1;
+        if (data.length === 20) {
+          store.setState('interface.moreMessagesAvailable', true);
+        } else {
+          store.setState('interface.moreMessagesAvailable', false);
+        }
+        this.handleMessagesAdd([...data, ...store.state.chatMessages]);
       }
 
       if (data.type === 'message') {
+        this.LATEST_MESSAGE_ID += 1;
         this.SCROLL_TO_LAST = true;
         this.handleMessagesAdd([data, ...store.state.chatMessages]);
         console.dir(document.querySelector('#beep'));
@@ -98,6 +108,9 @@ export class MessengerSocket {
     }
   }
 
+  public loadMoreMessages(): void {
+    this.getOld(this.LATEST_MESSAGE_ID - 1);
+  }
   // public sendFile(file: File) {
   //   //Отправить POST запрос в ручку /resources для сохранения
   //   // файла как ресурса

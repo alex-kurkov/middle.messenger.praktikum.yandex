@@ -7,6 +7,7 @@ declare global {
       addChatDialogVisible: boolean;
       editChatDialog: boolean;
       chatUsersEditVisible: boolean;
+      moreMessagesAvailable: boolean;
     };
     user: MSNUser;
     chats: MSNChat[];
@@ -19,7 +20,7 @@ declare global {
       chats: [];
     };
     socket: Nullable<MessengerSocket>;
-  }
+  };
 }
 
 export {};

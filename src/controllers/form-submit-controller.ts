@@ -28,10 +28,6 @@ class FormSubmitController {
     formNode: HTMLFormElement,
     validator: ValidatorController
   ): void {
-    // console.log('Ошибки: ', validator.errors);
-    // console.log('Данные: ', validator.values);
-    console.log('Форма: ', formNode);
-    console.log(validator);
 
     if (validator.hasErrors) {
       validator.showAllErrors();

@@ -21,6 +21,7 @@ class ActiveChatController {
     }
       store.setState('activeChatId', id)
       store.setState('activeChatUsers', []);
+      store.setState('chatMessages', []);
 
     this.getChatUsers(id).then(() =>
       this.getMessengerToken(id).then((TOKEN) => {

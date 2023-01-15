@@ -43,16 +43,19 @@ export const withActiveChatUsers = connect((s) => ({
 }));
 export const withAvatar = connect((s) => ({ avatar: s.user?.avatar }));
 export const withSideMenu = connect((s) => ({
-  sideMenuExpanded: s.interface?.sideMenuExpanded,
+  sideMenuExpanded: s.interface.sideMenuExpanded,
 }));
 export const withAddChatDialog = connect((s) => ({
-  addChatDialogVisible: s.interface?.addChatDialogVisible,
+  addChatDialogVisible: s.interface.addChatDialogVisible,
 }));
 export const withEditChatDialog = connect((s) => ({
-  editChatDialogVisible: s.interface?.editChatDialog,
+  editChatDialogVisible: s.interface.editChatDialog,
 }));
 export const withChatUsersEditVisible = connect((s) => ({
-  chatUsersEditVisible: s.interface?.chatUsersEditVisible,
+  chatUsersEditVisible: s.interface.chatUsersEditVisible,
+}));
+export const withMoreMessagesAvailable = connect((s) => ({
+  moreMessagesAvailable: s.interface.moreMessagesAvailable,
 }));
 export const withChats = connect((s) => ({ chats: s.chats }));
 export const withChatMessages = connect((s) => ({

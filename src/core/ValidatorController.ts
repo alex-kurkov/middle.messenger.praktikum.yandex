@@ -127,7 +127,6 @@ export default class ValidatorController extends Validator {
   handleInputBlur(target: HTMLInputElement) {
     const inputName: string = target.name;
     this.renderErrorText(inputName, '');
-    console.log('catch eventBus input blur');
   }
 
   handleInputFocus = (target: HTMLInputElement) => {

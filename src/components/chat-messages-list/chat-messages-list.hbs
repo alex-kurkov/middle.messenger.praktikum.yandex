@@ -1,9 +1,12 @@
 <div class="chat-messages flex-vertical-left">
-    <ul class="chat-messages__messages flex-vertical-left">
-      {{#each chatMessages as |message| }}
-        <li class="chat-messages__list-item">
-          {{{FeedMessage message=message }}}
-        </li>
-      {{/each}}
-    </ul>
+  <ul class="chat-messages__messages flex-vertical-left">
+    {{#if moreMessagesAvailable}}
+      {{{Button text="Загрузить еще сообщения" onClick=onLoadMore}}}
+    {{/if}}
+    {{#each chatMessages as |message|}}
+      <li class="chat-messages__list-item">
+        {{{FeedMessage message=message}}}
+      </li>
+    {{/each}}
+  </ul>
 </div>

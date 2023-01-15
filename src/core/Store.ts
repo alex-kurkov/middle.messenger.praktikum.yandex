@@ -8,6 +8,7 @@ const initialState: MSNStore = {
     addChatDialogVisible: false,
     editChatDialog: false,
     chatUsersEditVisible: false,
+    moreMessagesAvailable: false,
   },
   chats: [],
   chatMessages: [],

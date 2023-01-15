@@ -14,7 +14,6 @@ import {
    static componentName = 'ChatUsersEdit';
 
    constructor(props: P) {
-     console.log('props chatuseredit', props)
      super({
        ...props,
      });
