@@ -22,7 +22,6 @@ export class MenuMessage<P extends MSNChat & {activeChatId: Nullable<number>}> e
         },
       },
     });
-    console.log(this)
   }
   render() {
     return template;

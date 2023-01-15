@@ -8,8 +8,6 @@ import { userChangeController } from './user-change-controller';
 enum FormNames {
   SIGNIN = 'signin',
   SIGNUP = 'signup',
-  MESSAGE = 'message',
-  SEARCH = 'search',
   EDIT_PASSWORD = 'editPassword',
   EDIT_DATA = 'editData',
   ADD_CHAT = 'addChat',
@@ -42,12 +40,6 @@ class FormSubmitController {
         break;
       case FormNames.SIGNUP:
         this.submitSignUp(validator.values as Omit<MSNUser, 'id' | 'avatar'>);
-        break;
-      case FormNames.MESSAGE:
-        console.log(FormNames.MESSAGE);
-        break;
-      case FormNames.SEARCH:
-        console.log(FormNames.SEARCH);
         break;
       case FormNames.EDIT_DATA:
         this.submitChangeUserData(validator.values);

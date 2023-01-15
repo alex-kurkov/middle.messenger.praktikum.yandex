@@ -80,7 +80,6 @@ export class MessengerSocket {
         this.LATEST_MESSAGE_ID += 1;
         this.SCROLL_TO_LAST = true;
         this.handleMessagesAdd([data, ...store.state.chatMessages]);
-        console.dir(document.querySelector('#beep'));
       }
     });
 
