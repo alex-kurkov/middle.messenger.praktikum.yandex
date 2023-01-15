@@ -30,6 +30,8 @@ export class MessengerSocket {
   }
 
   private init() {
+    store.setState('interface.moreMessagesAvailable', false);
+
     this.socket.addEventListener('open', () => {
       console.log('Соединение установлено');
       this.PING_PONG_ID = setInterval(() => {
@@ -66,7 +68,7 @@ export class MessengerSocket {
         if (data.length === 0) {
           return;
         }
-        
+
         this.LATEST_MESSAGE_ID = data[data.length - 1].id - 1;
         if (data.length === 20) {
           store.setState('interface.moreMessagesAvailable', true);
