@@ -4,6 +4,7 @@ import renderDOM from './renderDOM';
 import { isEqual } from 'utils/isEqual';
 
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 export default class Route<P extends {[key: string]: any}>  {
   private _pathname = '';
   private _block: Nullable<Block<P>> = null;

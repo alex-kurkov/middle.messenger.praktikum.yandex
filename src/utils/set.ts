@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { merge } from "./merge";
 
 type Indexed<T = any> = {

@@ -42,7 +42,10 @@ export function normalizeDate(d: string): string {
     })} `;
   }
 
-  dateToRender += `${date.getHours()}:${date.getMinutes()}`;
+  dateToRender += `${date.getHours().toString().padStart(2, '0')}:${date
+    .getMinutes()
+    .toString()
+    .padStart(2, '0')}`;
 
   return dateToRender;
 }

@@ -73,16 +73,13 @@ export default class Fetch {
 
       xhr.onload = () => resolve(xhr);
 
-      xhr.onabort = () => reject(new Error(REJECT_MESSAGES.REQUEST_ABORTED));
-      xhr.onerror = () => reject(new Error(REJECT_MESSAGES.REQUEST_ERROR));
+      xhr.onabort = () => reject({type: 'xhr', message: REJECT_MESSAGES.REQUEST_ABORTED});
+      xhr.onerror = () =>
+        reject({ type: 'xhr', message: REJECT_MESSAGES.REQUEST_ERROR });
 
       xhr.timeout = timeout;
       xhr.ontimeout = () =>
-        reject(new Error(REJECT_MESSAGES.REQUEST_TIMEOUTED));
-
-      xhr.onprogress = () => {
-        console.log('XMLHttpRequest in progress...');
-      };
+        reject({ type: 'xhr', message: REJECT_MESSAGES.REQUEST_TIMEOUTED });
 
       if (method === METHODS.GET || !data) {
         xhr.send();

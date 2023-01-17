@@ -49,7 +49,7 @@ class Store extends EventBus {
 
   public setState(path: string, value: unknown): void {
     this._state = set(this._state, path, value) as MSNStore;
-    console.log(`STATE CHANGED AT PATH ${path} CURRENT STATE:`, this._state);
+    // console.log(`STATE CHANGED AT PATH ${path} CURRENT STATE:`, this._state);
     this.emit(StoreEvents.UPDATED);
   }
 }
