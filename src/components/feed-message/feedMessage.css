@@ -2,7 +2,7 @@
   display: block;
   width: fit-content;
   max-width: 80%;
-  min-width: 50%;
+  min-width: 40%;
   background-color: var(--base-white);
   float: left;
   border-radius: 0 20px 20px;
@@ -37,8 +37,9 @@
   &__time {
     color: var(--base-white);
     position: absolute;
+    width: max-content;
     bottom: -16px;
-    right: 0;
+    left: 0;
     opacity: 1;
   }
 

@@ -4,13 +4,11 @@ import './feedMessage.css';
 import {
   withActiveChatUsers,
   withOwnId,
-  withUser,
 } from 'services/class-decorators/store-connectors';
 import { normalizeDate } from 'utils/normalizeDate';
 
 @withOwnId
 @withActiveChatUsers
-@withUser
 export class FeedMessage<
   P extends {
     message: MSNChatMessage;
@@ -24,9 +22,17 @@ export class FeedMessage<
   static componentName = 'FeedMessage';
   constructor(props: P) {
     const { users, message } = props;
-    const messageUser = users.find(
-      (user) => user?.id === message.user_id
-    );
+    const messageUser =
+      users.find((user) => user?.id === message.user_id) || {
+        first_name: 'Удаленный',
+        second_name: 'пользователь',
+        login: '',
+        email: '',
+        phone: '',
+        id: message.user_id,
+        avatar: null,
+      }
+
 
     super({
       ...props,

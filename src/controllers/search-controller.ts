@@ -13,14 +13,29 @@ class SearchController {
       });
     }
     await userApi.requestUsersByLogin(login).then((xhr) => {
-        const users = JSON.parse(xhr.response);
-        store.setState('search.users',users);
-        return Promise.resolve(users);
+      const users = JSON.parse(xhr.response);
+      store.setState('search.users', users);
+      return Promise.resolve(users);
+    });
+  }
+
+  @withPromisifiedErrorHandle
+  public async searchUsersById(id: number) {
+    await userApi.requestUserById(id).then((xhr) => {
+      const user = JSON.parse(xhr.response);
+      if (!user) {
+        return Promise.reject({
+          type: 'xhr',
+          message: `не найден пользователь с id ${id}`,
+        });
+      }
+      store.setState('activeChatUsers', [...store.state.activeChatUsers, user]);
+      return Promise.resolve(user);
     });
   }
 
   public clearSearchUsers() {
-    store.setState('search.users',[]);
+    store.setState('search.users', []);
   }
 }
 
