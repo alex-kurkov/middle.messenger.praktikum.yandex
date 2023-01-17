@@ -6,10 +6,11 @@ import {
   withOwnId,
   withUser,
 } from 'services/class-decorators/store-connectors';
+import { normalizeDate } from 'utils/normalizeDate';
 
 @withOwnId
-  @withActiveChatUsers
-  @withUser
+@withActiveChatUsers
+@withUser
 export class FeedMessage<
   P extends {
     message: MSNChatMessage;
@@ -17,6 +18,7 @@ export class FeedMessage<
     isFile: boolean;
     users: MSNUser[];
     user: MSNUser;
+    time: string
   }
 > extends Block<P> {
   static componentName = 'FeedMessage';
@@ -31,6 +33,7 @@ export class FeedMessage<
       isFile: !!message.file,
       isOwn: props.ownId === message.user_id,
       user: messageUser,
+      time: normalizeDate(message.time),
     });
   }
 

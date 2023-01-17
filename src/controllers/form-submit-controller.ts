@@ -66,7 +66,7 @@ class FormSubmitController {
   }
 
   private submitSignIn(values: { login: string; password: string }) {
-    authApi.requestSignin(values).then((xhr) => {
+    authApi.requestSignin(values).then(() => {
         return userAuthController.auth('/messenger');
     });
   }
