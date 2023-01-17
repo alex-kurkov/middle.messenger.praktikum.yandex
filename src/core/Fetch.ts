@@ -1,6 +1,12 @@
+import queryStringify from "utils/queryStringify";
+
+type PlainObject<T = unknown> = {
+  [k in string]: T;
+};
+
 export interface RequestOptions {
   timeout?: number;
-  data?: unknown;
+  data?: PlainObject | FormData;
   headers?: Record<string, string>;
 }
 enum METHODS {
@@ -27,9 +33,9 @@ export default class Fetch {
   }
 
   get = (url: string, options: RequestOptions = {}) => {
-    if (options?.data) {
+    if (options?.data && !(options.data instanceof FormData)) {
       // eslint-disable-next-line no-param-reassign
-      url = this.addQueries(options.data, url);
+      url += `?${queryStringify(options.data)}`;
     }
     return this.request(
       url,
@@ -102,21 +108,5 @@ export default class Fetch {
       xhr.setRequestHeader(name, headers[name]);
     });
     xhr.setRequestHeader('accept', 'application/json');
-  }
-
-  private addQueries(data = {}, url: string): string {
-    if (typeof data !== 'object') {
-      throw new Error(REJECT_MESSAGES.DATA_NO_OBJECT);
-    }
-
-    const dataEntries = Object.entries(data);
-    if (!dataEntries || !dataEntries.length) {
-      return '';
-    }
-
-    const queries = dataEntries.map(
-      ([key, value]): string => `${key}=${value.toString()}`
-    );
-    return `${url}?${queries.join('&')}`;
   }
 }
