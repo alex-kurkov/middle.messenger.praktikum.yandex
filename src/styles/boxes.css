@@ -37,6 +37,7 @@
   flex-flow: row;
   align-items: center;
 }
+
 .flex-row-start {
   display: flex;
   justify-content: flex-start;
@@ -76,12 +77,15 @@
 .pl_s {
   padding-left: 10px;
 }
+
 .pr_s {
   padding-right: 10px;
 }
+
 .pb_s {
   padding-bottom: 10px;
 }
+
 .pt_s {
   padding-top: 10px;
 }

@@ -2,9 +2,7 @@
   width: 80px;
   height: 100vh;
   background: var(--menu-gradient);
-  flex-basis: 80px;
-  flex-grow: 80px;
-  flex-shrink: 1;
+  flex: 80px 1 80px;
 
   &_expanded {
     width: 360px;

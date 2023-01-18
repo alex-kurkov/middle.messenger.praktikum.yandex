@@ -7,6 +7,7 @@
     width: 4px;
     scrollbar-width: thin;
   }
+
   &::-webkit-scrollbar-track {
     background: transparent;
     border-radius: 2px;
@@ -29,7 +30,7 @@
     padding: 5px 10px 5px 0;
   }
 
-  &__article[data-type='search']:hover::after {
+  &__article[data-type="search"]:hover::after {
     position: absolute;
     top: 0;
     left: 0;
@@ -41,10 +42,11 @@
     height: 100%;
     color: var(--accent);
     background-color: var(--dark-gray-80-opacity);
-    content: 'Добавить';
+    content: "Добавить";
     box-shadow: inset var(--base-white) 0 0 3px 0;
   }
-  &__article[data-type='currentUsers']:hover::after {
+
+  &__article[data-type="currentUsers"]:hover::after {
     position: absolute;
     top: 0;
     left: 0;
@@ -56,20 +58,22 @@
     height: 100%;
     color: var(--accent);
     background-color: var(--dark-gray-80-opacity);
-    content: 'Удалить';
+    content: "Удалить";
   }
 
-  &__article[data-role='admin'] {
+  &__article[data-role="admin"] {
     pointer-events: none;
   }
 
   &__text-block {
     text-align: end;
   }
+
   &__isAdmin-message {
     display: none;
   }
-  &__isAdmin-message[data-role='admin'] {
+
+  &__isAdmin-message[data-role="admin"] {
     color: var(--accent) !important;
     display: inline;
   }

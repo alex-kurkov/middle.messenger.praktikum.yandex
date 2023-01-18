@@ -1,5 +1,4 @@
 .users-search {
-  padding: 10px 0;
   gap: 2px;
   border: 1px solid var(--light-gray);
   margin: 10px 0;
@@ -9,4 +8,3 @@
     color: var(--dark-gray);
   }
 }
-

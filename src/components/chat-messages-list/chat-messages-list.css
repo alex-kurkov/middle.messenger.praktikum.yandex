@@ -18,12 +18,12 @@
       width: 4px;
       scrollbar-width: thin;
     }
-  
+
     &::-webkit-scrollbar-track {
       background: transparent;
       border-radius: 2px;
     }
-  
+
     &::-webkit-scrollbar-thumb {
       background: var(--light-gray);
       border-radius: 2px;

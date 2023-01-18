@@ -11,6 +11,7 @@
       box-shadow: var(--accent) -shadow;
     }
   }
+
   &__clip-icon {
     width: auto;
     max-height: 24px;

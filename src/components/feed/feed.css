@@ -1,9 +1,7 @@
 .feed {
   padding: 0 10px;
   height: 100vh;
-  flex-basis: max-content;
-  flex-shrink: 1000;
-  flex-grow: 1000;
+  flex: 1000 1000 100%;
   width: 100%;
 
   &__empty-message {
