@@ -13,24 +13,41 @@ class SearchController {
       });
     }
     await userApi.requestUsersByLogin(login).then((xhr) => {
-      const users = JSON.parse(xhr.response);
-      store.setState('search.users', users);
-      return Promise.resolve(users);
+      try {
+        const users = JSON.parse(xhr.response);
+        store.setState('search.users', users);
+        return Promise.resolve(users);
+      } catch (error) {
+        return Promise.reject({
+          message: 'НЕвозможно распарсить json c users',
+          type: 'logic',
+        });
+      }
     });
   }
 
   @withPromisifiedErrorHandle
   public async searchUsersById(id: number) {
     await userApi.requestUserById(id).then((xhr) => {
-      const user = JSON.parse(xhr.response);
-      if (!user) {
+      try {
+        const user = JSON.parse(xhr.response);
+        if (!user) {
+          return Promise.reject({
+            type: 'xhr',
+            message: `не найден пользователь с id ${id}`,
+          });
+        }
+        store.setState('activeChatUsers', [
+          ...store.state.activeChatUsers,
+          user,
+        ]);
+        return Promise.resolve(user);
+      } catch (error) {
         return Promise.reject({
-          type: 'xhr',
-          message: `не найден пользователь с id ${id}`,
+          message: 'НЕвозможно распарсить json',
+          type: 'logic',
         });
       }
-      store.setState('activeChatUsers', [...store.state.activeChatUsers, user]);
-      return Promise.resolve(user);
     });
   }
 

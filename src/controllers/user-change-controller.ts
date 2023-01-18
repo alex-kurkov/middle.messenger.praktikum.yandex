@@ -16,7 +16,7 @@ class UserChangeController {
     const normalizedValues = addMissingUserValues(curUser, values);
 
     await userApi.createUser(normalizedValues).then((xhr) => {
-      if (xhr.status === 200) {
+      try {
         const user = JSON.parse(xhr.response);
         store.setState('user', {
           ...user,
@@ -24,8 +24,11 @@ class UserChangeController {
         });
         router.go('/messenger');
         return Promise.resolve();
-      } else {
-        throw new Error(xhr.response);
+      } catch (error) {
+        return Promise.reject({
+          message: 'НЕвозможно распарсить json',
+          type: 'logic',
+        });
       }
     });
   }
@@ -55,16 +58,20 @@ class UserChangeController {
       const image: File = files[0];
       const formData = new FormData();
       formData.set(`avatar`, image, image.name);
-      userApi.createAvatar(formData).then((xhr) => {
-        if (xhr.status === 200) {
+      await userApi.createAvatar(formData).then((xhr) => {
+        try {
           const user = JSON.parse(xhr.response);
           store.setState('user', {
             ...user,
             avatar: getStaticFilePath(user.avatar),
           });
           return;
+        } catch (error) {
+          return Promise.reject({
+            message: 'НЕвозможно распарсить json с данными пользователя',
+            type: 'logic',
+          });
         }
-        throw new Error(xhr.response);
       });
     }
   }

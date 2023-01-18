@@ -9,19 +9,26 @@ class UserAuthController {
     // TODO loader start
     await authApi.requestUserInfo().then((xhr) => {
       if (xhr.status === 200) {
-        const user = JSON.parse(xhr.response);
-        store.setState('user', {
-          ...user,
-          avatar: getStaticFilePath(user.avatar)
-        });
-        chatCommonController.getChats();
-        
-        if (pathname === '/login' || pathname === '/register') {
-          router.go('/messenger');
-        } else {
-          router.go(pathname);
+        try {
+          const user = JSON.parse(xhr.response);
+          store.setState('user', {
+            ...user,
+            avatar: getStaticFilePath(user.avatar),
+          });
+          chatCommonController.getChats();
+
+          if (pathname === '/login' || pathname === '/register') {
+            router.go('/messenger');
+          } else {
+            router.go(pathname);
+          }
+          return Promise.resolve();
+        } catch (error) {
+          return Promise.reject({
+            message: 'НЕвозможно распарсить json c {user: MSNUser}',
+            type: 'logic',
+          });
         }
-        return Promise.resolve();
       } else {
         router.go('/login');
       }

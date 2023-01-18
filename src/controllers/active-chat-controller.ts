@@ -34,7 +34,17 @@ class ActiveChatController {
   private async setSocket(CHAT_ID: number) {
     await chatsCommonApi.requestChatToken(CHAT_ID).then((xhr) => {
       const USER_ID = store.state.user?.id;
-      const TOKEN: string = JSON.parse(xhr.response).token;
+
+      let TOKEN;
+      try {
+        TOKEN = JSON.parse(xhr.response).token;
+      } catch (error) {
+        return Promise.reject({
+          message: 'НЕвозможно распарсить json с {token: string}',
+          type: 'logic',
+        });
+      }
+
       if (USER_ID && TOKEN && CHAT_ID) {
         store.state.socket?.close();
         store.setState('socket', new MessengerSocket(USER_ID, CHAT_ID, TOKEN));
@@ -81,7 +91,20 @@ class ActiveChatController {
       formData.set(`avatar`, image, image.name);
       formData.set(`chatId`, chatId.toString());
       chatsCommonApi.updateChatAvatar(formData).then((xhr) => {
-        const { id, avatar } = JSON.parse(xhr.response);
+        let id: Nullable<number> =null;
+        let avatar: Nullable<string> = null;
+
+        try {
+          const json: { id: number; avatar: string } = JSON.parse(xhr.response);
+          id = json.id;
+          avatar = json.avatar;
+        } catch (error) {
+          return Promise.reject({
+            message: 'НЕвозможно распарсить json с id и avatar',
+            type: 'logic',
+          });
+        }
+
         const { chats } = store.state;
         const updatedChats = chats.map((chat) => {
           if (chat.id === id) {
@@ -98,9 +121,16 @@ class ActiveChatController {
   @withPromisifiedErrorHandle
   public async getChatUsers(id: number) {
     await chatsCommonApi.requestChatUsers(id).then((xhr) => {
-      const fetchedUsers = JSON.parse(xhr.response);
-      store.setState('activeChatUsers', fetchedUsers);
-      return Promise.resolve(fetchedUsers);
+      try {
+        const fetchedUsers = JSON.parse(xhr.response);
+        store.setState('activeChatUsers', fetchedUsers);
+        return Promise.resolve(fetchedUsers);
+      } catch (error) {
+        return Promise.reject({
+          message: 'НЕвозможно распарсить json',
+          type: 'logic',
+        });
+      }
     });
     return Promise.resolve();
   }
@@ -115,10 +145,10 @@ class ActiveChatController {
     const activeChatUsers: MSNUser[] = store.state.activeChatUsers;
 
     if (activeChatUsers.find((user) => user?.id === id)) {
-        return Promise.reject({
-          type: 'logic',
-          message: 'нельзя добавить пользоватея второй раз',
-        });
+      return Promise.reject({
+        type: 'logic',
+        message: 'нельзя добавить пользоватея второй раз',
+      });
     }
 
     chatsCommonApi.updateChatUsers(chatId, [id]).then(() => {

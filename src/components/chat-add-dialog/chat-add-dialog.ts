@@ -16,7 +16,9 @@ export class ChatAddDialog<P extends object> extends Block<P> {
       closeDialog: () => {
         interfaceController.hideAddChatDialog();
       },
-      handleSubmit: () => {
+      handleSubmit: (e: Event) => {
+        console.log(e)
+        e.preventDefault();
         this.eventBus.emit(ValidatorController.EVENTS.FORM_SUBMIT);
       },
     });

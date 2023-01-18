@@ -1,9 +1,8 @@
 import { Fetch } from 'core';
 import { handleResponse } from 'services/property-decorators/handleResponse';
+import { BASE_URL } from './base-api';
 
-export const fetchAuth = new Fetch(
-  'https://ya-praktikum.tech/api/v2/auth',
-);
+export const fetchAuth = new Fetch(`${BASE_URL}/auth`);
 
 class AuthAPI {
   @handleResponse

@@ -58,8 +58,16 @@ export class MessengerSocket {
     });
 
     this.socket.addEventListener('message', (event) => {
-      const data = JSON.parse(event.data);
-
+      let data;
+      try {
+        data = JSON.parse(event.data);
+      } catch (error) {
+          return Promise.reject({
+            message: 'НЕвозможно распарсить json c данными сообщения',
+            type: 'socket',
+          });
+      }
+      
       if (data.type === 'pong') {
         return;
       }

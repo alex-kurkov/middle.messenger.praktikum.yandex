@@ -1,7 +1,8 @@
 import { Fetch } from 'core';
 import { handleResponse } from 'services/property-decorators/handleResponse';
+import { BASE_URL } from './base-api';
 
-const fetchChatsCommon = new Fetch('https://ya-praktikum.tech/api/v2/chats');
+const fetchChatsCommon = new Fetch(`${BASE_URL}/chats`);
 
 class ChatsCommonAPI {
   @handleResponse
