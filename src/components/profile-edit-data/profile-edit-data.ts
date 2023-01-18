@@ -7,9 +7,19 @@ import avatarTemplate from '../../assets/avatar-template.jpg';
 import { ValidatorController } from 'core';
 import { userChangeController } from 'controllers/user-change-controller';
 
+type TypeInputNames =
+  | 'first_name'
+  | 'second_name'
+  | 'display_name'
+  | 'login'
+  | 'phone'
+  | 'email';
+
 @withLiveValidator
 @withUser
-export class ProfileEditData<P extends { user: MSNUser }> extends Block<P> {
+export class ProfileEditData<
+  P extends { user: MSNUser; inputs: Array<{ value?: string; name: string }> }
+> extends Block<P> {
   static componentName = 'ProfileEditData';
 
   constructor(props: P) {
@@ -27,5 +37,18 @@ export class ProfileEditData<P extends { user: MSNUser }> extends Block<P> {
 
   render() {
     return template;
+  }
+
+  componentDidMount(): void {
+    if (this.props.user) {
+      const inputs = this.getContent().querySelectorAll('input');
+      for (const input of inputs) {
+        const key: TypeInputNames = input.name as TypeInputNames;
+        if (input.type === 'file') {
+          continue;
+        }
+        input.value = this.props.user[key] || '';
+      }
+    }
   }
 }
