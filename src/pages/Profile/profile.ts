@@ -1,47 +1,19 @@
 import template from 'bundle-text:./profile.hbs';
-import { InputProps } from 'components/input/input';
+import router from 'controllers/router';
 import Block from '../../core/Block';
 
-interface ProfileProps {
-  avatarInput: {
-    type: string;
-    name: string;
-    required: boolean;
-    id: string;
-    accept: string;
-  };
-  editPasswordForm: {
-    formTitle?: null;
-    formName?: string;
-    formButton: {
-      text: string;
-    };
-    inputs: InputProps[];
-    addon?: null;
-  };
-  editPersonalDataForm: {
-    formTitle?: null;
-    formName?: string;
-    formButton: {
-      text: string;
-    };
-    inputs: InputProps[];
-    addon?: null;
-  };
-  profileEditButtons: {
-    type: string;
-    name: string;
-    text: string;
-    link: string;
-  }[];
-  mainView?: boolean;
-  passwordView?: boolean;
-  dataView?: boolean;
-}
-
-export class Profile extends Block<ProfileProps> {
+export class Profile<P extends object> extends Block<P> {
   static componentName = 'Profile';
 
+  constructor(props: P) {
+    super({
+      ...props,
+      handleCloseIconClick: () => {
+        router.go('/messenger');
+      },
+    });
+  }
+  
   render() {
     return template;
   }

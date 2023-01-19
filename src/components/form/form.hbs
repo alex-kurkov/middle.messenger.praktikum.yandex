@@ -1,4 +1,4 @@
-<form class="form" action="" name="">
+<form class="form" name="{{formName}}">
   <fieldset class="form__fieldset text text_size_m text_weight_regular">
     <legend class="form__legend">
       {{formTitle}}
@@ -27,13 +27,17 @@
   </fieldset>
   {{#if addon}}
     <div class="form__addon text text_size_m text_weight_regular">
-      <span>{{addon.text}}</span>
-      <a class="text-link" href={{addon.link}}>
-        <span>{{addon.linkText}}</span>
-      </a>
+      <span>
+        {{addon.text}}
+      </span>
+      {{#Link to=addon.link}}
+        <span class="text-link">
+          {{addon.linkText}}
+        </span>
+      {{/Link}}
     </div>
   {{/if}}
   {{#if formButton}}
-    {{{Button ref="submitButton" text=formButton.text}}}
+    {{{Button ref="submitButton" onClick=handleSubmit text=formButton.text}}}
   {{/if}}
 </form>

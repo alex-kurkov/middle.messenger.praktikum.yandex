@@ -1,0 +1,32 @@
+.avatar {
+  &_size_m {
+    width: 60px;
+    height: 60px;
+  }
+
+  &_size_s {
+    width: 40px;
+    height: 40px;
+  }
+
+  &__image {
+    border-radius: 50%;
+  }
+
+  &__fallback {
+    border-radius: 50%;
+    height: inherit;
+    width: inherit;
+    border: var(--base-white) solid 1px;
+    color: var(--base-white);
+  }
+
+  &__fallback-letter::first-letter {
+    font-size: 18px;
+    line-height: 60px;
+    border-radius: 60px;
+    padding: 10px 17px;
+    border: 1px solid #ccc;
+    color: #000;
+  }
+}

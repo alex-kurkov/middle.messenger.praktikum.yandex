@@ -11,6 +11,7 @@ export default class Validator {
     SECOND_NAME: 'second_name',
     DISPLAY_NAME: 'display_name',
     MESSAGE: 'message',
+    CHAT_TITLE: 'title',
   };
 
   static RE = {
@@ -39,6 +40,7 @@ export default class Validator {
     EMAIL_INVALID: 'введите валидный email',
     PHONE_INVALID: 'в телефоне должно быть от 10 до 15 цифр',
     LESS_THAN_40: 'не больше 40 символов',
+    LESS_THAN_20: 'не больше 20 символов',
     LOGIN_INVALID: 'цифры(но не только), латиница, "-" и "_"',
     NAME_INVALID: 'с большой буквы, без пробелов, допустим "-"',
     MESSAGE_NOT_EMPTY: 'сообщение должно состоять как минимум из 1 символа...',
@@ -101,6 +103,21 @@ export default class Validator {
         break;
 
       // ------------------------
+      // от 3 до 20 символов
+      // ------------------------
+
+      case ValidateRules.CHAT_TITLE:
+       if (value.length < 3) {
+         errorMessage = Messages.GREATER_THAN_3;
+         break;
+       }
+        if (value.length > 20) {
+          errorMessage = Messages.LESS_THAN_20;
+          break;
+        }
+        break;
+
+      // ------------------------
       // от 3 до 20 символов, латиница, может содержать цифры,
       // но не состоять из них, без пробелов, без
       // спецсимволов(допустимы дефис и нижнее подчёркивание).
@@ -130,7 +147,7 @@ export default class Validator {
 
       // ------------------------
       // от 8 до 40 символов, обязательно хотя бы одна заглавная
-      // буква и цифра!DONE
+      // буква и цифра
       // ------------------------
       case ValidateRules.PASSWORD:
         if (value.length === 0) {
@@ -142,8 +159,8 @@ export default class Validator {
           break;
         }
         if (
-          !RE.HAS_DIGIT_REGEX.test(value)
-          && !RE.HAS_CAPITAL_REGEX.test(value)
+          !RE.HAS_DIGIT_REGEX.test(value) &&
+          !RE.HAS_CAPITAL_REGEX.test(value)
         ) {
           errorMessage = Messages.HAS_CAP_AND_DIGIT;
           break;
@@ -179,8 +196,8 @@ export default class Validator {
           break;
         }
         if (
-          !RE.HAS_DIGIT_REGEX.test(value)
-          && !RE.HAS_CAPITAL_REGEX.test(value)
+          !RE.HAS_DIGIT_REGEX.test(value) &&
+          !RE.HAS_CAPITAL_REGEX.test(value)
         ) {
           errorMessage = Messages.HAS_CAP_AND_DIGIT;
           break;
@@ -216,8 +233,8 @@ export default class Validator {
           break;
         }
         if (
-          !RE.HAS_DIGIT_REGEX.test(value)
-          && !RE.HAS_CAPITAL_REGEX.test(value)
+          !RE.HAS_DIGIT_REGEX.test(value) &&
+          !RE.HAS_CAPITAL_REGEX.test(value)
         ) {
           errorMessage = Messages.HAS_CAP_AND_DIGIT;
           break;
@@ -253,8 +270,8 @@ export default class Validator {
           break;
         }
         if (
-          !RE.HAS_DIGIT_REGEX.test(value)
-          && !RE.HAS_CAPITAL_REGEX.test(value)
+          !RE.HAS_DIGIT_REGEX.test(value) &&
+          !RE.HAS_CAPITAL_REGEX.test(value)
         ) {
           errorMessage = Messages.HAS_CAP_AND_DIGIT;
           break;
@@ -291,10 +308,9 @@ export default class Validator {
       // от 10 до 15 символов, состоит из цифр
       // ------------------------
       case ValidateRules.PHONE:
-        // eslint-disable-next-line no-case-declarations
-        const digits = value.match(/\d/g);
-
-        if (!digits || !RE.TEN_TO_FIFTEEN_DIGITS_REGEX.test(digits.join(''))) {
+        if (
+          !RE.TEN_TO_FIFTEEN_DIGITS_REGEX.test(value.replace(/\D/g, ''))
+        ) {
           errorMessage = Messages.PHONE_INVALID;
           break;
         }

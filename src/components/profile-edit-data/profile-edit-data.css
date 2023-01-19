@@ -1,0 +1,40 @@
+.profile-edit-data {
+  width: 100%;
+  gap: 10px;
+  display: flex;
+
+  &__title {
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    margin-bottom: 0;
+  }
+
+  &__avatar-label {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    align-self: center;
+    position: relative;
+    overflow: hidden;
+  }
+
+  &__avatar-thumb {
+    width: 100px;
+    height: 100px;
+    filter: blur(4px);
+    background-position: center;
+    background-size: cover;
+  }
+
+  &__avatar-edit-icon {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+
+  &__form {
+    display: contents;
+  }
+}

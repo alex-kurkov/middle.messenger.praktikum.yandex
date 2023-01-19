@@ -1,6 +1,12 @@
+import queryStringify from "utils/queryStringify";
+
+type PlainObject<T = unknown> = {
+  [k in string]: T;
+};
+
 export interface RequestOptions {
   timeout?: number;
-  data?: object;
+  data?: PlainObject | FormData;
   headers?: Record<string, string>;
 }
 enum METHODS {
@@ -12,7 +18,7 @@ enum METHODS {
 
 enum REJECT_MESSAGES {
   NO_METHOD = 'не передан метод',
-  NO_URL = 'не передан метод',
+  NO_URL = 'не передан URL',
   DATA_NO_OBJECT = 'поле data должно быть объектом',
   REQUEST_ABORTED = 'запрос отменен',
   REQUEST_TIMEOUTED = 'запрос превысил таймаут',
@@ -20,31 +26,37 @@ enum REJECT_MESSAGES {
 }
 
 export default class Fetch {
-  get = (url: string | URL, options: RequestOptions = {}) => {
-    if (options?.data) {
+  protected readonly baseUrl: string;
+
+  constructor(baseUrl: string) {
+    this.baseUrl = baseUrl;
+  }
+
+  get = (url: string, options: RequestOptions = {}) => {
+    if (options?.data && !(options.data instanceof FormData)) {
       // eslint-disable-next-line no-param-reassign
-      url = this.addQueries(options.data, url);
+      url += `?${queryStringify(options.data)}`;
     }
     return this.request(
       url,
       { ...options, method: METHODS.GET },
-      options.timeout,
+      options.timeout
     );
   };
 
-  post = (url: string | URL, options: RequestOptions = {}) =>
+  post = (url: string, options: RequestOptions = {}) =>
     this.request(url, { ...options, method: METHODS.POST }, options.timeout);
 
-  put = (url: string | URL, options: RequestOptions = {}) =>
+  put = (url: string, options: RequestOptions = {}) =>
     this.request(url, { ...options, method: METHODS.PUT }, options.timeout);
 
-  delete = (url: string | URL, options: RequestOptions = {}) =>
+  delete = (url: string, options: RequestOptions = {}) =>
     this.request(url, { ...options, method: METHODS.DELETE }, options.timeout);
 
   request = (
-    url: string | URL,
+    url: string,
     options: RequestOptions & { method: string },
-    timeout = 5000,
+    timeout = 5000
   ): Promise<XMLHttpRequest> => {
     const { method, headers = {}, data } = options;
 
@@ -53,67 +65,48 @@ export default class Fetch {
         reject(REJECT_MESSAGES.NO_METHOD);
         return;
       }
-      if (!url) {
+      if (typeof url !== 'string') {
         reject(REJECT_MESSAGES.NO_URL);
         return;
       }
 
       const xhr = new XMLHttpRequest();
-      xhr.open(method, url);
-
+      xhr.open(method, `${this.baseUrl}${url}`);
+      xhr.withCredentials = true;
       if (headers) {
         this.setHeaders(xhr, headers);
       }
 
       xhr.onload = () => resolve(xhr);
 
-      xhr.onabort = () => reject(new Error(REJECT_MESSAGES.REQUEST_ABORTED));
-      xhr.onerror = () => reject(new Error(REJECT_MESSAGES.REQUEST_ERROR));
+      xhr.onabort = () => reject({type: 'xhr', message: REJECT_MESSAGES.REQUEST_ABORTED});
+      xhr.onerror = () =>
+        reject({ type: 'xhr', message: REJECT_MESSAGES.REQUEST_ERROR });
 
       xhr.timeout = timeout;
       xhr.ontimeout = () =>
-        reject(new Error(REJECT_MESSAGES.REQUEST_TIMEOUTED));
-
-      xhr.onprogress = () => {
-        console.log('progress...');
-      };
+        reject({ type: 'xhr', message: REJECT_MESSAGES.REQUEST_TIMEOUTED });
 
       if (method === METHODS.GET || !data) {
         xhr.send();
+      } else if (data instanceof FormData) {
+        xhr.send(data);
       } else {
-        xhr.send(data as Document);
+        this.setHeaders(xhr, {
+          'content-type': 'application/json; charset=utf-8',
+        });
+        xhr.send(JSON.stringify(data));
       }
     });
   };
 
   private setHeaders(
     xhr: XMLHttpRequest,
-    headers: Record<string, string>,
+    headers: Record<string, string>
   ): void {
     Object.keys(headers).forEach((name) => {
       xhr.setRequestHeader(name, headers[name]);
     });
-  }
-
-  private addQueries(data = {}, url: string | URL): string | URL {
-    if (typeof data !== 'object') {
-      throw new Error(REJECT_MESSAGES.DATA_NO_OBJECT);
-    }
-
-    const dataEntries = Object.entries(data);
-    if (!dataEntries || !dataEntries.length) {
-      return '';
-    }
-
-    if (typeof url === 'string') {
-      const queries = dataEntries.map(
-        ([key, value]): string => `${key}=${value.toString()}`,
-      );
-      return `${url}?${queries.join('&')}`;
-    }
-    dataEntries.forEach(([key, value]) => {
-      url.searchParams.append(key, value.toString());
-    });
-    return url;
+    xhr.setRequestHeader('accept', 'application/json');
   }
 }

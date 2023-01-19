@@ -1,1 +1,1 @@
-export { ProfileEditPassword as default } from './profileEditPassword';
+export { ProfileEditPassword as default } from './profile-edit-password';

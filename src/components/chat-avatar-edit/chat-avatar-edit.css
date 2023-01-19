@@ -1,0 +1,9 @@
+.chat-avatar-edit {
+  padding: 10px 0;
+  gap: 2px;
+
+  &__avatar-label {
+    width: min-content;
+    max-height: 60px;
+  }
+}

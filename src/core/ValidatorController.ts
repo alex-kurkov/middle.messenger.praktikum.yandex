@@ -1,4 +1,3 @@
-import { InputProps } from 'components/input/input';
 import Block from './Block';
 import Validator from './Validator';
 
@@ -7,10 +6,17 @@ interface State {
   values: Record<string, string>;
 }
 
-export default class ValidatorController<P extends object> extends Validator {
+export default class ValidatorController extends Validator {
+  static EVENTS = {
+    INPUT_CHANGED: 'form:input-event-did-change',
+    INPUT_BLURRED: 'form:input-blur-did-blur',
+    INPUT_FOCUSED: 'form:input-focus-did-focus',
+    FORM_SUBMIT: 'form:did-submit',
+  };
+
   renderErrors = false;
 
-  private block: Block<P>;
+  private block: Block<object>;
 
   state: State = {
     errors: {},
@@ -19,7 +25,11 @@ export default class ValidatorController<P extends object> extends Validator {
 
   controlledInputs: InputProps[];
 
-  constructor(block: Block<P>, inputs: InputProps[], renderErrors: boolean) {
+  constructor(
+    block: Block<object>,
+    inputs: InputProps[],
+    renderErrors: boolean
+  ) {
     super();
     this.block = block;
     this.renderErrors = renderErrors;
@@ -29,14 +39,12 @@ export default class ValidatorController<P extends object> extends Validator {
   }
 
   init() {
-    this.block.setProps({
-      inputs: this.controlledInputs,
-    });
-
     const newState: State = this.controlledInputs.reduce(
       (state, input) => {
         const value: string = input.value ? input.value : '';
-        const error: string = this.validate(input.name, value);
+        const error: string = input.required
+          ? this.validate(input.name, value)
+          : '';
         return {
           errors: {
             ...state.errors,
@@ -48,21 +56,25 @@ export default class ValidatorController<P extends object> extends Validator {
           },
         };
       },
-      { errors: {}, values: {} },
+      { errors: {}, values: {} }
     );
 
     this.state = newState;
+    this.block.setProps({
+      inputs: this.controlledInputs,
+    });
+
   }
 
   enrichInputs(inputs: InputProps[]): InputProps[] {
     return inputs.map((input) => ({
       ...input,
       onBlur: (e: InputEvent) =>
-        this.block.eventBus.emit(Block.EVENTS.INPUT_BLURRED, e.target),
+        this.block.eventBus.emit(ValidatorController.EVENTS.INPUT_BLURRED, e.target),
       onChange: (e: InputEvent) =>
-        this.block.eventBus.emit(Block.EVENTS.INPUT_CHANGED, e.target),
+        this.block.eventBus.emit(ValidatorController.EVENTS.INPUT_CHANGED, e.target),
       onFocus: (e: InputEvent) =>
-        this.block.eventBus.emit(Block.EVENTS.INPUT_FOCUSED, e.target),
+        this.block.eventBus.emit(ValidatorController.EVENTS.INPUT_FOCUSED, e.target),
     }));
   }
 
@@ -83,6 +95,11 @@ export default class ValidatorController<P extends object> extends Validator {
     return errorsArr.some((error: string) => error.length);
   }
 
+  showAllErrors() {
+    const errors: Array<[string, string]>= Array.from(Object.entries(this.state.errors));
+    errors.forEach(([e, text]) => this.renderErrorText(e, text));
+  }
+
   renderErrorText(inputName: string, error: string): void {
     if (!this.renderErrors) {
       return;
@@ -95,6 +112,11 @@ export default class ValidatorController<P extends object> extends Validator {
 
   handleFormChange(target: HTMLInputElement): void {
     const inputName: string = target.name;
+    if (!target.required && target.value === '') {
+          this.state.errors[inputName] = '';
+          this.state.values[inputName] = '';
+      return;
+    }
     const error = this.validate(inputName, target.value);
     this.state.errors[inputName] = error;
     this.state.values[inputName] = target.value;
@@ -105,11 +127,15 @@ export default class ValidatorController<P extends object> extends Validator {
   handleInputBlur(target: HTMLInputElement) {
     const inputName: string = target.name;
     this.renderErrorText(inputName, '');
-    console.log('catch eventBus input blur');
   }
 
   handleInputFocus = (target: HTMLInputElement) => {
     const inputName: string = target.name;
+        if (!target.required && target.value === '') {
+          this.state.errors[inputName] = '';
+          this.state.values[inputName] = '';
+          return;
+        }
     const error = this.validate(inputName, target.value);
     this.state.errors[inputName] = error;
     this.state.values[inputName] = target.value;
@@ -119,16 +145,16 @@ export default class ValidatorController<P extends object> extends Validator {
 
   registerListeners() {
     this.block.eventBus.on(
-      Block.EVENTS.INPUT_CHANGED,
-      this.handleFormChange.bind(this) as () => void,
+      ValidatorController.EVENTS.INPUT_CHANGED,
+      this.handleFormChange.bind(this) as () => void
     );
     this.block.eventBus.on(
-      Block.EVENTS.INPUT_BLURRED,
-      this.handleInputBlur.bind(this) as () => void,
+      ValidatorController.EVENTS.INPUT_BLURRED,
+      this.handleInputBlur.bind(this) as () => void
     );
     this.block.eventBus.on(
-      Block.EVENTS.INPUT_FOCUSED,
-      this.handleInputFocus.bind(this) as () => void,
+      ValidatorController.EVENTS.INPUT_FOCUSED,
+      this.handleInputFocus.bind(this) as () => void
     );
   }
 
@@ -139,10 +165,10 @@ export default class ValidatorController<P extends object> extends Validator {
 
     if (
       !(
-        ruleType === ValidateRules.NEW_PASSWORD
-        || ruleType === ValidateRules.REPEAT_PASSWORD
-      )
-      || errorMessage.length
+        ruleType === ValidateRules.NEW_PASSWORD ||
+        ruleType === ValidateRules.REPEAT_PASSWORD
+      ) ||
+      errorMessage.length
     ) {
       return errorMessage;
     }

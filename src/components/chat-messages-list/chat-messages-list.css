@@ -1,0 +1,40 @@
+.chat-messages {
+  height: calc(100vh - 100px);
+  width: 100%;
+
+  &__more-messages {
+    width: 100%;
+    color: var(--base-white);
+  }
+
+  &__messages {
+    height: fit-content;
+    gap: 24px;
+    padding: 4px;
+    overflow-y: scroll;
+    width: 100%;
+
+    &::-webkit-scrollbar {
+      width: 4px;
+      scrollbar-width: thin;
+    }
+
+    &::-webkit-scrollbar-track {
+      background: transparent;
+      border-radius: 2px;
+    }
+
+    &::-webkit-scrollbar-thumb {
+      background: var(--light-gray);
+      border-radius: 2px;
+    }
+  }
+
+  &__list-item {
+    width: 100%;
+
+    &:last-child {
+      margin-bottom: 200px;
+    }
+  }
+}

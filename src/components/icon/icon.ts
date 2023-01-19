@@ -26,15 +26,18 @@ enum IconTypes {
 
 interface IconProps {
   type: IconTypes;
-  onClick: () => void;
+  onClick?: () => void;
 }
 
-export class Icon extends Block<IconProps> {
+export class Icon extends Block<Pick<IconProps, 'type'> & BlockEvents> {
   static componentName = 'Icon';
+  constructor({ type, onClick }: IconProps) {
+    super({ type, events: { click: onClick } });
+  }
 
   render() {
     if (!this.props.type) {
-      return '<span>не могу отобразить иконку без поля type</span>';
+      throw new Error('не могу отобразить иконку без поля type');
     }
     switch (this.props.type) {
       case IconTypes.CLOSE:

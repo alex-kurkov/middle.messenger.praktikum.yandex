@@ -1,0 +1,15 @@
+<div class="avatar avatar_size_{{size}}">
+  {{#if avatar}}
+    <img
+      class="avatar__image avatar_size_{{size}}"
+      src={{avatar}}
+      alt="Аватар чата"
+    />
+  {{else}}
+    <div class="avatar__fallback flex-centered">
+      <div class="text">
+        {{abbr}}
+      </div>
+    </div>
+  {{/if}}
+</div>

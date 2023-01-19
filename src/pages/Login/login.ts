@@ -1,41 +1,18 @@
 import Block from 'core/Block';
 import template from 'bundle-text:./login.hbs';
-import { InputProps } from 'components/input/input';
-import ValidatorController from 'core/ValidatorController';
+import { withLiveValidator } from '../../services/class-decorators/with-live-validator';
+import { ValidatorController } from 'core';
 
-interface LoginProps {
-  formTitle: string;
-  formName: string;
-  inputs: InputProps[];
-  formButton: {
-    text: string;
-  };
-  addon: {
-    text?: Nullable<string>;
-    link: string;
-    linkText: string;
-  };
-}
-export class Login extends Block<LoginProps> {
-  static componentName = 'Login';
-
-  constructor(props: LoginProps) {
-    super(props);
-
-    const validator = new ValidatorController(this, props.inputs, true);
-
-    this.eventBus.on(Block.EVENTS.FORM_SUBMIT, () => {
-      console.log('Ошибки: ', validator.errors);
-      console.log('Данные: ', validator.values);
+@withLiveValidator
+export class LoginPage extends Block<object> {
+  static componentName = 'LoginPage';
+  constructor(props: object) {
+    super({
+      ...props,
+      handleSubmit: () => {
+        this.eventBus.emit(ValidatorController.EVENTS.FORM_SUBMIT);
+      },
     });
-
-    const { submitButton } = this.refs.formRef.refs;
-    if (submitButton) {
-      submitButton
-        .getContent()
-        .addEventListener('click', () =>
-          this.eventBus.emit(Block.EVENTS.FORM_SUBMIT));
-    }
   }
 
   render() {

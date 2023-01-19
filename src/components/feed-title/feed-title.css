@@ -1,0 +1,32 @@
+.feed-title {
+  width: 100%;
+  height: 60px;
+  border-bottom: 2px solid var(--light-gray);
+  display: flex;
+  place-content: center space-around;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: nowrap;
+  gap: 8px;
+
+  &__avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+  }
+
+  &__title {
+    width: 100%;
+    flex-basis: auto;
+    color: var(--base-white);
+  }
+
+  &__chat-settigs {
+    width: 40px;
+    height: 40px;
+
+    & path {
+      fill: var(--base-white);
+    }
+  }
+}

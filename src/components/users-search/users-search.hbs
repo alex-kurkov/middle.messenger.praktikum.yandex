@@ -1,0 +1,8 @@
+<div class="users-search flex-vertical-left">
+  <p class="text text_size_m text_weight_regular pb_s">
+    Добавить других пользователей мессенджера по логину:
+  </p>
+  {{{UsersEditableList type="search" users=users}}}
+  {{{Input ref="search__input" class="users-search__input" name="user-search" placeholder="логин"}}}
+  {{{ Button text="Искать пользователей" onClick=onSearch}}}
+</div>

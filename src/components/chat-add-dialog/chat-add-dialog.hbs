@@ -1,0 +1,20 @@
+<dialog class="chat-add-dialog flex-centered 
+  {{#if addChatDialogVisible}}
+  {{else}}
+    chat-add-dialog_hidden
+  {{/if}} 
+" >
+  <div class="chat-add-dialog__content">
+    <div class="icon icon_small icon_fixed_topright" data-ref="closeIcon">
+      {{{Icon type="close" onClick=closeDialog}}}
+    </div>
+    {{{Form 
+      ref="formRef" 
+      inputs=inputs 
+      formTitle=formTitle 
+      formButton=formButton
+      formName=formName
+      handleSubmit=handleSubmit
+    }}}
+  </div>
+</dialog>

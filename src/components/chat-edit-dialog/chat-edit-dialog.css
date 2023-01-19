@@ -1,0 +1,43 @@
+.chat-edit-dialog {
+  position: fixed;
+  top: 0;
+  left: 0;
+  border: none;
+  width: 100%;
+  height: 100vh;
+  background-color: var(--light-gray-half-opacity);
+  display: flex;
+
+  &_hidden {
+    display: none;
+  }
+
+  & .text {
+    color: white;
+  }
+
+  &__content {
+    position: relative;
+    width: var(--modal-content-width);
+    background-color: var(--dark-gray);
+    padding: 10px;
+  }
+
+  &__avatar-wrap {
+    padding: 10px 0;
+    gap: 2px;
+  }
+
+  &__avatar-label {
+    width: min-content;
+    max-height: 60px;
+  }
+
+  &__edit-users {
+    margin: 10px 0;
+  }
+
+  & path {
+    fill: var(--base-white);
+  }
+}

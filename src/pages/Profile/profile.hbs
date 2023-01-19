@@ -1,14 +1,8 @@
 {{#Layout class="main_layout_feed"}}
-    {{#Modal}}
-        {{{ProfileEdit 
-            mainView=mainView 
-            dataView=dataView
-            passwordView=passwordView
-            user=user
-            editPasswordForm=editPasswordForm
-            avatarInput=avatarInput
-            editPersonalDataForm=editPersonalDataForm
-            profileEditButtons=profileEditButtons
-        }}}
-    {{/Modal}}
+  {{#Modal}}
+    <div class="icon icon_small icon_fixed_topright" data-ref="closeIcon">
+      {{{Icon type="close" onClick=handleCloseIconClick}}}
+    </div>
+    {{{ProfileContent}}}
+  {{/Modal}}
 {{/Layout}}

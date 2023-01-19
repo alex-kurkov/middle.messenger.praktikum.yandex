@@ -1,0 +1,18 @@
+<dialog class="chat-edit-dialog flex-centered 
+  {{#if editChatDialogVisible}}
+  {{else}}
+    chat-add-dialog_hidden
+  {{/if}} 
+" >
+  <div class="chat-edit-dialog__content">
+    <div class="icon icon_small icon_fixed_topright" data-ref="closeIcon">
+      {{{Icon type="close" onClick=closeDialog}}}
+    </div>
+    <h2 class="text text_size_m">{{chat.title}}</h2>
+    {{{ChatAvatarEdit chat=chat}}}
+
+    {{{ChatUsersEdit}}}
+
+    {{{Button text="Удалить чат" onClick=handleChatDelete}}}
+  </div>
+</dialog>

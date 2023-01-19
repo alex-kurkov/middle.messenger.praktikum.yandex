@@ -2,9 +2,9 @@
   <span>
     {{addon.text}}
   </span>
-  <a class="text-link" href={{addon.link}}>
-    <span>
+  {{#Link to=addon.link }}
+    <span class="text-link">
       {{addon.linkText}}
     </span>
-  </a>
+  {{/Link}}
 </div>

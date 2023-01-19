@@ -1,0 +1,5 @@
+.clickable {
+  display: contents;
+  cursor: pointer;
+  pointer-events: all;
+}

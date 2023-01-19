@@ -1,35 +1,22 @@
 import Block from 'core/Block';
 import './feed.css';
 import template from 'bundle-text:./feed.hbs';
-import ValidatorController from 'core/ValidatorController';
-import { InputProps } from 'components/input/input';
+import { withActiveChat } from 'services/class-decorators/store-connectors';
+import { interfaceController } from 'controllers/interface-controller';
 
-interface FeedProps {
-  inputs: InputProps[];
-  empty: boolean;
-  chatMessages: MSNChat[];
-}
-export class Feed extends Block<FeedProps> {
+@withActiveChat
+export class Feed<
+  P extends { handleNewChatClick?: () => void }
+> extends Block<P> {
   static componentName = 'Feed';
 
-  constructor(props: FeedProps) {
-    super(props);
-
-    const validator = new ValidatorController(this, props.inputs, false);
-
-    this.eventBus.on(Block.EVENTS.FORM_SUBMIT, () => {
-      console.log('Ошибки: ', validator.errors);
-      console.log('Данные: ', validator.values);
+  constructor(props: P) {
+    super({
+      ...props,
+      handleNewChatClick: () => {
+        interfaceController.showAddChatDialog();
+      },
     });
-
-    const submitButton = this.refs?.submitButton;
-
-    if (submitButton) {
-      submitButton
-        .getContent()
-        .addEventListener('click', () =>
-          this.eventBus.emit(Block.EVENTS.FORM_SUBMIT));
-    }
   }
 
   render() {

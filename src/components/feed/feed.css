@@ -1,122 +1,15 @@
 .feed {
-  width: 100%;
   padding: 0 10px;
+  height: 100vh;
+  flex: 1000 1000 100%;
+  width: 100%;
 
-  &__info-text {
-    color: var(--base-white);
-    width: clamp(200px, 70%, 640px);
+  &__empty-message {
+    width: 100%;
     text-align: center;
-    pointer-events: none;
-    flex-basis: auto;
   }
 
-  &__info-text-link {
+  &__message-action {
     color: var(--accent);
-    pointer-events: all;
-  }
-
-  &__title-wrap {
-    width: 100%;
-    height: 60px;
-    border-bottom: 2px solid var(--light-gray);
-    display: flex;
-    place-content: center space-around;
-    justify-content: space-between;
-    align-items: center;
-    flex-wrap: nowrap;
-    gap: 8px;
-  }
-
-  &__avatar {
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
-  }
-
-  &__title {
-    width: 100%;
-    flex-basis: auto;
-    color: var(--base-white);
-  }
-
-  &__chat-settigs {
-    width: 40px;
-    height: 40px;
-
-    & path {
-      fill: var(--base-white);
-    }
-  }
-
-  &__messages-feed {
-    height: calc(100vh);
-    width: 100%;
-    gap: 24px;
-    padding: 4px;
-    overflow-y: scroll;
-
-    &::-webkit-scrollbar {
-      width: 4px;
-      scrollbar-width: thin;
-    }
-
-    &::-webkit-scrollbar-track {
-      background: transparent;
-      border-radius: 2px;
-    }
-
-    &::-webkit-scrollbar-thumb {
-      background: var(--light-gray);
-      border-radius: 2px;
-    }
-  }
-
-  &__list-item {
-    width: 100%;
-
-    &:last-child {
-      margin-bottom: 200px;
-    }
-  }
-
-  &__new-message-wrap {
-    height: 60px;
-    width: 100%;
-    position: relative;
-
-    & legend {
-      display: none;
-    }
-
-    & .error {
-      display: none;
-    }
-
-    & input {
-      padding: 0 40px;
-      border: none;
-
-      &:focus {
-        box-shadow: var(--accent) -shadow;
-      }
-    }
-  }
-
-  &__clip-icon {
-    width: auto;
-    max-height: 24px;
-    position: absolute;
-    top: 50%;
-    left: 10px;
-    transform: translateY(-50%);
-  }
-
-  &__send-icon {
-    width: auto;
-    max-height: 24px;
-    position: absolute;
-    top: 50%;
-    right: 10px;
-    transform: translateY(-50%);
   }
 }
