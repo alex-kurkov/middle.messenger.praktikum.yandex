@@ -59,11 +59,6 @@ export default class Router<P extends { [key: string]: any }> {
       return;
     }
 
-    // this.routes.forEach(routeItem => {
-    //   if (routeItem !== route) {
-    //     routeItem.leave();
-    //   }
-    // })
     if (this._currentRoute && this._currentRoute !== route) {
       this._currentRoute.leave();
     }
@@ -73,7 +68,13 @@ export default class Router<P extends { [key: string]: any }> {
   }
 
   getRoute(pathname: string): Route<P> | undefined {
-    return this.routes.find((route) => route.match(pathname));
+    if (pathname === '/') {
+      pathname = '/messenger'
+    }
+    return (
+      this.routes.find((route) => route.match(pathname)) ||
+      this.routes.find((route) => route.match('/400'))
+    );
   }
 
   get currentPathname(): string | undefined {
