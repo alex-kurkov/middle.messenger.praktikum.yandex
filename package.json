@@ -16,6 +16,11 @@
     "type": "git",
     "url": "git+https://github.com/alex-kurkov/middle.messenger.praktikum.yandex.git"
   },
+  "husky": {
+    "hooks": {
+      "pre-commit": "npm-run-all test lint:*"
+    }
+  },
   "keywords": [
     "Yandex Praktikum",
     "educational project"
@@ -26,10 +31,6 @@
     "url": "https://github.com/alex-kurkov/middle.messenger.praktikum.yandex/issues"
   },
   "homepage": "https://github.com/alex-kurkov/middle.messenger.praktikum.yandex#readme",
-  "husky": {
-    "hooks": {
-      "pre-commit": "npm-run-all test lint:*"
-    },
   "alias": {
     "core": "./src/core",
     "components": "./src/components",
