@@ -1,4 +1,4 @@
-import template from 'bundle-text:./profile.hbs';
+import template from './profile.hbs';
 import router from 'controllers/router';
 import Block from '../../core/Block';
 

@@ -1,5 +1,5 @@
 import Block from 'core/Block';
-import template from 'bundle-text:./feedMessage.hbs';
+import template from './feedMessage.hbs';
 import './feedMessage.css';
 import {
   withActiveChatUsers,

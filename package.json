@@ -4,9 +4,11 @@
   "description": "Учебный проект Yandex Praktikum Middle Frontend Developer",
   "scripts": {
     "dev": "parcel src/index.html --no-cache",
-    "build": "parcel build src/index.html --no-cache",
-    "start": "npm run build && node server.js",
-    "lint": "node_modules/.bin/eslint . --fix"
+    "watch": "webpack --watch",
+    "serve": "webpack serve --stats-error-details --open",
+    "build": "webpack",
+    "lint": "node_modules/.bin/eslint . --fix",
+    "b": "node ./node_modules/.bin/webpack"
   },
   "repository": {
     "type": "git",
@@ -33,28 +35,37 @@
   "dependencies": {
     "express-rate-limit": "6.7.0",
     "handlebars": "4.7.7",
+    "handlebars-loader": "1.7.3",
     "helmet": "6.0.1",
     "nanoid": "4.0.0"
   },
   "devDependencies": {
-    "@parcel/packager-ts": "2.8.0",
-    "@parcel/transformer-inline-string": "2.4.0",
     "@types/node": "18.11.16",
     "@typescript-eslint/eslint-plugin": "5.47.0",
     "@typescript-eslint/parser": "5.47.0",
     "autoprefixer": "10.4.13",
+    "clean-webpack-plugin": "4.0.0",
+    "css-loader": "6.7.3",
+    "cssnano": "5.1.14",
     "dotenv": "16.0.3",
     "eslint": "8.30.0",
     "eslint-config-airbnb": "19.0.4",
     "express": "4.18.2",
-    "parcel": "2.8.0",
+    "file-loader": "6.2.0",
+    "html-webpack-plugin": "5.5.0",
     "postcss": "8.4.12",
     "postcss-import": "15.0.0",
-    "postcss-modules": "4.3.1",
+    "postcss-loader": "7.0.2",
     "postcss-nested": "6.0.0",
-    "postcss-simple-vars": "7.0.1",
+    "raw-loader": "4.0.2",
+    "style-loader": "3.3.1",
     "stylelint": "14.16.0",
     "stylelint-config-standard": "29.0.0",
-    "typescript": "4.6.2"
+    "ts-loader": "9.4.2",
+    "typescript": "4.6.2",
+    "webpack": "5.75.0",
+    "webpack-cli": "5.0.1",
+    "webpack-dev-server": "4.11.1",
+    "webpack-merge": "5.8.0"
   }
 }

@@ -1,4 +1,4 @@
-import template from 'bundle-text:./formAddon.hbs';
+import template from './formAddon.hbs';
 import { Block } from '../../core';
 import './formAddon.css';
 

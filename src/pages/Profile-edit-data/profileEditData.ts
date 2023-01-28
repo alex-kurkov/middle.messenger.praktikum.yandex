@@ -1,5 +1,5 @@
 import Block from 'core/Block';
-import template from 'bundle-text:./profileEditData.hbs';
+import template from './profileEditData.hbs';
 import router from 'controllers/router';
 import { withUser } from 'services/class-decorators/store-connectors';
 

@@ -1,15 +1,15 @@
 import Block from 'core/Block';
 import './style.css';
-import addPerson from 'bundle-text:./add-person.hbs';
-import avatarEdit from 'bundle-text:./avatar-edit.hbs';
-import chatSettings from 'bundle-text:./chat_settings.hbs';
-import expand from 'bundle-text:./expand.hbs';
-import clip from 'bundle-text:./clip.hbs';
-import close from 'bundle-text:./close.hbs';
-import search from 'bundle-text:./search.hbs';
-import send from 'bundle-text:./send.hbs';
-import settings from 'bundle-text:./settings.hbs';
-import sound from 'bundle-text:./sound.hbs';
+import addPerson from './add-person.hbs';
+import avatarEdit from './avatar-edit.hbs';
+import chatSettings from './chat_settings.hbs';
+import expand from './expand.hbs';
+import clip from './clip.hbs';
+import close from './close.hbs';
+import search from './search.hbs';
+import send from './send.hbs';
+import settings from './settings.hbs';
+import sound from './sound.hbs';
 
 enum IconTypes {
   CLOSE = 'close',

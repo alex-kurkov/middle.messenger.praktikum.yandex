@@ -1,5 +1,5 @@
 import Block from 'core/Block';
-import template from 'bundle-text:./users-editable-list.hbs';
+import template from './users-editable-list.hbs';
 import './users-editable-list.css';
 import { activeChatController } from 'controllers/active-chat-controller';
 

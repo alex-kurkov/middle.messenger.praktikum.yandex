@@ -1,11 +1,10 @@
 import Block from 'core/Block';
 import './avatar.css';
-import template from 'bundle-text:./avatar.hbs';
+import template from './avatar.hbs';
 import { getStaticFilePath } from 'utils/getStaticFilePath';
 
-export default class Avatar<P extends {abbr: string, avatar: Nullable<string>}> extends Block<P> {
+export class Avatar<P extends {abbr: string, avatar: Nullable<string>}> extends Block<P> {
   static componentName = 'Avatar';
-
 
   constructor(props: P) {
     const fullAvatarPath = getStaticFilePath(props.avatar);

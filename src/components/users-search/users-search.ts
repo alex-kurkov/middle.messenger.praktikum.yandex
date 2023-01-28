@@ -1,6 +1,6 @@
 import Block from 'core/Block';
 import './users-search.css';
-import template from 'bundle-text:./users-search.hbs';
+import template from './users-search.hbs';
 import { searchController } from 'controllers/search-controller';
 import { withSearchUsers } from 'services/class-decorators/store-connectors';
 

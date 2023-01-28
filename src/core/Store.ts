@@ -6,7 +6,7 @@ const initialState: MSNStore = {
   interface: {
     sideMenuExpanded: true,
     addChatDialogVisible: false,
-    editChatDialog: false,
+    editChatDialogVisible: false,
     chatUsersEditVisible: false,
     moreMessagesAvailable: false,
   },

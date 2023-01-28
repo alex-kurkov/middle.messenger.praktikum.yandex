@@ -27,10 +27,10 @@ class InterfaceController {
   }
 
   public showEditChatDialog(): void {
-    store.setState('interface.editChatDialog', true);
+    store.setState('interface.editChatDialogVisible', true);
   }
   public hideEditChatDialog(): void {
-    store.setState('interface.editChatDialog', false);
+    store.setState('interface.editChatDialogVisible', false);
     searchController.clearSearchUsers();
   }
   public showChatUsersEdit(): void {

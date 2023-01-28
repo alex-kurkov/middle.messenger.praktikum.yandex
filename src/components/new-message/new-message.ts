@@ -1,10 +1,10 @@
 import Block from 'core/Block';
 import './new-message.css';
-import template from 'bundle-text:./new-message.hbs';
+import template from './new-message.hbs';
 import { MessengerSocket } from 'core/MessengerSocket';
 import { store } from 'core';
 
-export default class NewMessage<P extends {
+export class NewMessage<P extends {
   messenger: MessengerSocket
 }> extends Block<P> {
   static componentName = 'NewMessage';

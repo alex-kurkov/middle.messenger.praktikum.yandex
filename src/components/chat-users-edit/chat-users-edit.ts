@@ -1,6 +1,6 @@
 import Block from 'core/Block';
 import './chat-users-edit.css';
-import template from 'bundle-text:./chat-users-edit.hbs';
+import template from './chat-users-edit.hbs';
 import {
   withActiveChatUsers,
   withChats,

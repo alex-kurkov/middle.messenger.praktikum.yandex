@@ -1,5 +1,5 @@
 import Block from 'core/Block';
-import template from 'bundle-text:./login.hbs';
+import template from './login.hbs';
 import { withLiveValidator } from '../../services/class-decorators/with-live-validator';
 import { ValidatorController } from 'core';
 

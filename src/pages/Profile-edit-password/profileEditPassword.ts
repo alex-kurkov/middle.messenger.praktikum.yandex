@@ -1,5 +1,5 @@
 import Block from 'core/Block';
-import template from 'bundle-text:./profileEditPassword.hbs';
+import template from './profileEditPassword.hbs';
 import router from 'controllers/router';
 
 export class ProfileEditPasswordPage<

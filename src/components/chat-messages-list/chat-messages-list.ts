@@ -1,6 +1,6 @@
 import Block from 'core/Block';
 import './chat-messages-list.css';
-import template from 'bundle-text:./chat-messages-list.hbs';
+import template from './chat-messages-list.hbs';
 import {
   withChatMessages,
   withMoreMessagesAvailable,

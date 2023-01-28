@@ -49,7 +49,7 @@ export const withAddChatDialog = connect((s) => ({
   addChatDialogVisible: s.interface.addChatDialogVisible,
 }));
 export const withEditChatDialog = connect((s) => ({
-  editChatDialogVisible: s.interface.editChatDialog,
+  editChatDialogVisible: s.interface.editChatDialogVisible,
 }));
 export const withChatUsersEditVisible = connect((s) => ({
   chatUsersEditVisible: s.interface.chatUsersEditVisible,

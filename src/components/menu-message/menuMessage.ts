@@ -1,6 +1,6 @@
 import Block from 'core/Block';
 import './menuMessage.css';
-import template from 'bundle-text:./menuMessage.hbs';
+import template from './menuMessage.hbs';
 import { activeChatController } from 'controllers/active-chat-controller';
 import { withActiveChatId } from 'services/class-decorators/store-connectors';
 import { normalizeDate } from 'utils/normalizeDate';

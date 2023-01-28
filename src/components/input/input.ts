@@ -1,5 +1,5 @@
 import Block from 'core/Block';
-import template from 'bundle-text:./input.hbs';
+import template from './input.hbs';
 import './input.css';
 
 export class Input extends Block<

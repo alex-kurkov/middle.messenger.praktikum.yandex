@@ -1,6 +1,6 @@
 import Block from 'core/Block';
 import './sideMenu.css';
-import template from 'bundle-text:./sideMenu.hbs';
+import template from './sideMenu.hbs';
 import {
   withActiveChatId,
   withChats,
