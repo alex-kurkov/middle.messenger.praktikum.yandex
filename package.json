@@ -10,7 +10,8 @@
     "lint": "npm-run-all --parallel lint:*",
     "serve": "node server.js",
     "start": "npm-run-all build serve",
-    "test": "echo tests"
+    "test": "echo tests",
+    "prepare": "husky install"
   },
   "repository": {
     "type": "git",
