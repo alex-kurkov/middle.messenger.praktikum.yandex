@@ -3,7 +3,9 @@
   "ignoreFiles": [
     "dist/*",
     "**/*.ts",
-    "**/*.hbs"
+    "**/*.hbs",
+    "**/*.html",
+    "**/*.jpg"
   ],
   "rules": {
     "selector-class-pattern": null
