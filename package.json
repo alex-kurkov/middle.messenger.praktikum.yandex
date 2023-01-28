@@ -3,12 +3,10 @@
   "version": "1.0.13",
   "description": "Учебный проект Yandex Praktikum Middle Frontend Developer",
   "scripts": {
-    "dev": "parcel src/index.html --no-cache",
-    "watch": "webpack --watch",
-    "serve": "webpack serve --stats-error-details --open",
-    "build": "webpack",
-    "lint": "node_modules/.bin/eslint . --fix",
-    "b": "node ./node_modules/.bin/webpack"
+    "dev": "webpack serve --stats-error-details --open --config webpack/dev.config.js",
+    "build": "webpack --config webpack/production.config.js",
+    "lint": "node_modules/.bin/eslint . --fix && npx stylelint",
+    "serve": "npm run build && node server.js"
   },
   "repository": {
     "type": "git",
@@ -53,6 +51,7 @@
     "express": "4.18.2",
     "file-loader": "6.2.0",
     "html-webpack-plugin": "5.5.0",
+    "mini-css-extract-plugin": "2.7.2",
     "postcss": "8.4.12",
     "postcss-import": "15.0.0",
     "postcss-loader": "7.0.2",

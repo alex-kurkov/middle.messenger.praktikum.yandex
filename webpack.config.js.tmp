@@ -80,7 +80,7 @@ module.exports = {
   mode: 'development',
   devtool: 'eval-cheap-module-source-map',
   devServer: {
-    static: path.resolve(__dirname, '..', 'dist'),
+    static: path.resolve(__dirname, 'public'),
     compress: true,
     historyApiFallback: true,
     port: 9009,
