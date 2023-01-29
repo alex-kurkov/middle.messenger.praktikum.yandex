@@ -41,6 +41,9 @@
     "helmet": "6.0.1",
     "nanoid": "4.0.0"
   },
+  "engines": {
+    "node": "16.13.0"
+  },
   "devDependencies": {
     "@types/node": "18.11.16",
     "@typescript-eslint/eslint-plugin": "5.47.0",

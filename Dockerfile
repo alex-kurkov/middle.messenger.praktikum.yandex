@@ -4,4 +4,4 @@ COPY package*.json ./
 RUN npm ci
 COPY . .
 EXPOSE 32121
-CMD npm start
+CMD npm build && npm start
