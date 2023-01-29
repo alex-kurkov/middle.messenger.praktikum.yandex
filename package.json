@@ -8,8 +8,7 @@
     "lint:ts": "eslint . --fix",
     "lint:css": "stylelint **/*.css",
     "lint": "npm-run-all --parallel lint:*",
-    "serve": "node server.js",
-    "start": "npm-run-all build serve",
+    "start": "node server.js",
     "test": "echo tests",
     "prepare": "husky install"
   },
