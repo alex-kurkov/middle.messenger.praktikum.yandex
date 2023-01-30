@@ -1,4 +1,5 @@
-import { nanoid } from 'nanoid';
+// eslint-disable-next-line @typescript-eslint/no-var-requires
+const { v4: uuidv4 } = require('uuid');
 import Handlebars from 'handlebars';
 import EventBus from './EventBus';
 import { cloneDeep } from 'utils/cloneDeep';
@@ -22,7 +23,7 @@ export default class Block<P extends object> {
     FLOW_RENDER: 'flow:render',
   } as const;
 
-  public id = nanoid(6);
+  public id = uuidv4(6);
 
   readonly _meta: BlockMeta<P>;
 
