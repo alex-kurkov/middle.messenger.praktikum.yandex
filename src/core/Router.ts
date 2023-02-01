@@ -33,13 +33,15 @@ export default class Router<P extends { [key: string]: any }> {
   start(): void {
     window.onpopstate = () => {
       this._onRoute(window.location.pathname);
-      // this._onRoute(event.currentTarget.location.pathname);
-      // this.go(window.location.pathname);
     };
     this._onRoute(window.location.pathname);
   }
 
   go(pathname: string): void {
+    const route = this.getRoute(pathname);
+    if (!route) {
+      return;
+    }
     this.history.pushState({}, '', pathname);
     this._onRoute(pathname);
   }
