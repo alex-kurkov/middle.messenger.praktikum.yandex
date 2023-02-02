@@ -1,4 +1,3 @@
-// eslint-disable-next-line @typescript-eslint/no-var-requires
 const { v4: uuidv4 } = require('uuid');
 import Handlebars from 'handlebars';
 import EventBus from './EventBus';
