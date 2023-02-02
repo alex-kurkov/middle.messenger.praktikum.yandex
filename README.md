@@ -2,6 +2,28 @@
 
 [![Netlify Status](https://api.netlify.com/api/v1/badges/71857107-645a-426d-9e52-b4f0b73253ff/deploy-status)](https://app.netlify.com/sites/voluble-marshmallow-b07071/deploys)
 
+## Сайт, макет, код
+
+- макет приложения в приложении Фигма [здесь](https://www.figma.com/file/jbEHoHxmQfW9PpMG2SCI96/YAP_messenger?t=lqSEdEbcNCIGZbhK-6)
+- проект доступен на сервисе render.com:
+
+>- [хостинг через сборку Docker-контейнера](<https://docker-kurkov-msn.onrender.com>)
+>- [как веб-сервис](https://kurkov-messenger.onrender.com)
+
+- код проекта на [github](https://github.com/alex-kurkov/middle.messenger.praktikum.yandex)
+
+## SPRINT_4 UPDATES
+
+- настроена сборка проекта через webpack посредством 2 конфигураций - для prod-режима с минификацией и dev-режима с dev-сервером
+- для минификации данных при загрузке строковых темплейтов из hbs-файлов подключен простой самописный лоадер, который убирает лишние пробелы и переносы строк, таким образом, сжимая строку
+- подключены юнит-тесты на основные блоки, 2 компонента, утилиты
+- настроена сборка образа Docker
+- проведен аудит пакетов
+- настроен прекоммит (выполняется линтинг и тесты)
+- проект выложен на render.com в 2-х вариантах - как веб-сервис и через Docker-контейнер
+
+![dashboard render.com](./.readme/render.jpg)
+
 ## SPRINT_3 UPDATES
 
 - добавлен программный роутинг
@@ -21,12 +43,6 @@
 - добавлен класс Fetch, реализующий базовые методы сетевых CRUD-запросов
 - для удобства навигации реализован временный роутер, работающий в качестве хендлера события 'hashchange' и рендерящий в DOM разные страницы в зависимости от содержания хеша
 - соответсвенно, генерация всех страниц - программная. Рендер - динамический
-
-## Сайт, макет, код
-
-- макет приложения в приложении Фигма [здесь](https://www.figma.com/file/jbEHoHxmQfW9PpMG2SCI96/YAP_messenger?t=lqSEdEbcNCIGZbhK-6)
-- проект доступен на сервисе [Netlify](https://voluble-marshmallow-b07071.netlify.app/)
-- код проекта на [github](https://github.com/alex-kurkov/middle.messenger.praktikum.yandex)
 
 ---
 
