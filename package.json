@@ -71,6 +71,7 @@
     "identity-obj-proxy": "3.0.0",
     "jest": "27.5.1",
     "mini-css-extract-plugin": "2.7.2",
+    "msw": "1.0.0",
     "npm-run-all": "4.1.5",
     "postcss": "8.4.12",
     "postcss-import": "15.0.0",
@@ -90,6 +91,9 @@
   },
   "jest": {
     "testEnvironment": "jsdom",
+    "setupFilesAfterEnv": [
+      "<rootDir>/src/tests/setupTests.ts"
+    ],
     "transform": {
       "^.+\\.(ts|js)$": "babel-jest"
     },
