@@ -1,12 +1,16 @@
-<div class="avatar avatar_size_{{size}}">
+<div class="avatar avatar_size_{{size}} " data-testid="avatar-test">
   {{#if avatar}}
     <img
       class="avatar__image avatar_size_{{size}}"
       src={{avatar}}
       alt="Аватар чата"
+      data-testid="avatar-img"
     />
   {{else}}
-    <div class="avatar__fallback flex-centered">
+    <div 
+      class="avatar__fallback flex-centered" 
+      data-testid="avatar-abbr"
+    >
       <div class="text">
         {{abbr}}
       </div>

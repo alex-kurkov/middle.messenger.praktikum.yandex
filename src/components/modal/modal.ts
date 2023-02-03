@@ -1,6 +1,6 @@
 import Block from 'core/Block';
 import './modal.css';
-import template from 'bundle-text:./modal.hbs';
+import template from './modal.hbs';
 
 export class Modal extends Block<object> {
   static componentName = 'Modal';

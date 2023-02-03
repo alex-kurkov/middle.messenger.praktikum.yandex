@@ -1,10 +1,16 @@
-import { nanoid } from 'nanoid';
+const { v4: uuidv4 } = require('uuid');
 import Handlebars from 'handlebars';
 import EventBus from './EventBus';
+import { cloneDeep } from 'utils/cloneDeep';
 
 interface BlockMeta<P extends object> {
   props?: P;
 }
+
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+type PlainObject<T = any> = {
+  [k in string]: T;
+};
 
 export type BlockEvents = Values<typeof Block.EVENTS>;
 
@@ -16,7 +22,7 @@ export default class Block<P extends object> {
     FLOW_RENDER: 'flow:render',
   } as const;
 
-  public id = nanoid(6);
+  public id = uuidv4(6);
 
   readonly _meta: BlockMeta<P>;
 
@@ -148,17 +154,14 @@ export default class Block<P extends object> {
     return this.element as HTMLElement;
   }
 
-  _makePropsProxy = (props: object): object => {
-    // eslint-disable-next-line @typescript-eslint/no-this-alias
-    // const self = this;
-
-    return new Proxy(props as unknown as object, {
-      get: (target: Record<string, unknown>, prop: string) => {
+  _makePropsProxy = (props: PlainObject): PlainObject => {
+    return new Proxy(props, {
+      get: (target: PlainObject, prop: string) => {
         const value = Reflect.get(target, prop);
         return typeof value === 'function' ? value.bind(target) : value;
       },
-      set: (target: Record<string, unknown>, prop: string, value: unknown) => {
-        const oldProps = { ...target };
+      set: (target: PlainObject, prop: string, value: unknown) => {
+        const oldProps = cloneDeep(target);
         Reflect.set(target, prop, value);
         this.eventBus.emit(Block.EVENTS.FLOW_CDU, oldProps, target);
         return true;
@@ -166,7 +169,7 @@ export default class Block<P extends object> {
       deleteProperty() {
         throw new Error('Нет доступа');
       },
-    }) as unknown as P;
+    });
   };
 
   _createDocumentElement(tagName: string) {

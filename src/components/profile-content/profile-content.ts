@@ -3,7 +3,7 @@ import { userAuthController } from 'controllers/user-auth-controller';
 import { withUser } from 'services/class-decorators/store-connectors';
 import Block from '../../core/Block';
 import avatarTemplate from '../../assets/avatar-template.jpg';
-import template from 'bundle-text:./profile-content.hbs';
+import template from './profile-content.hbs';
 import './profile-content.css';
 
 @withUser

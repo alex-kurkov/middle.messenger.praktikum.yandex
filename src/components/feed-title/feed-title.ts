@@ -1,6 +1,6 @@
 import Block from 'core/Block';
 import './feed-title.css';
-import template from 'bundle-text:./feed-title.hbs';
+import template from './feed-title.hbs';
 import { withActiveChat } from '../../services/class-decorators/store-connectors';
 import { interfaceController } from 'controllers/interface-controller';
 

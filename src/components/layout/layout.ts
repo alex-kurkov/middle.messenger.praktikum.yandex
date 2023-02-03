@@ -1,5 +1,5 @@
 import Block from 'core/Block';
-import template from 'bundle-text:./layout.hbs';
+import template from './layout.hbs';
 import './layout.css';
 
 interface ILayout {

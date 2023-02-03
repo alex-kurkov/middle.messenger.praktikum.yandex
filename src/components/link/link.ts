@@ -1,5 +1,5 @@
 import Block from 'core/Block';
-import template from 'bundle-text:./link.hbs';
+import template from './link.hbs';
 import router from 'controllers/router';
 import './link.css';
 

@@ -1,5 +1,5 @@
 import { registerComponent } from 'core';
-import Avatar from 'components/avatar/avatar';
+import Avatar from 'components/avatar';
 import Button from 'components/button';
 import Input from 'components/input';
 import Layout from 'components/layout';
@@ -16,7 +16,7 @@ import ErrorComponent from 'components/error';
 import Link from 'components/link';
 import FeedTitle from 'components/feed-title';
 import ChatMessagesList from 'components/chat-messages-list';
-import NewMessage from 'components/new-message/new-message';
+import NewMessage from 'components/new-message';
 import ProfileContent from 'components/profile-content';
 import ProfileEditPassword from 'components/profile-edit-password';
 import ProfileEditData from 'components/profile-edit-data';

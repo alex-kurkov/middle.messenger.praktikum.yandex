@@ -6,7 +6,7 @@ const initialState: MSNStore = {
   interface: {
     sideMenuExpanded: true,
     addChatDialogVisible: false,
-    editChatDialog: false,
+    editChatDialogVisible: false,
     chatUsersEditVisible: false,
     moreMessagesAvailable: false,
   },
@@ -26,25 +26,25 @@ export enum StoreEvents {
   UPDATED = 'flow:store_did_update'
 }
 
-class Store extends EventBus {
-  private _state = initialState;
+export class Store extends EventBus {
+  private _state;
   __instance: Nullable<Store> = null;
 
-  constructor() {
+  constructor(initState: MSNStore | object) {
     super();
     if (this.__instance) {
       return this.__instance;
     }
     this.__instance = this;
+    this._state = initState;
   }
 
   init() {
     this.emit(StoreEvents.UPDATED);
   }
 
-
   public get state(): MSNStore {
-    return this._state;
+    return this._state as MSNStore;
   }
 
   public setState(path: string, value: unknown): void {
@@ -54,5 +54,5 @@ class Store extends EventBus {
   }
 }
 
-const store = new Store();
+const store = new Store(initialState);
 export default store;

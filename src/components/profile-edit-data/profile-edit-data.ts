@@ -1,6 +1,6 @@
 import Block from 'core/Block';
 import { withLiveValidator } from '../../services/class-decorators/with-live-validator';
-import template from 'bundle-text:./profile-edit-data.hbs';
+import template from './profile-edit-data.hbs';
 import './profile-edit-data.css';
 import { withUser } from 'services/class-decorators/store-connectors';
 import avatarTemplate from '../../assets/avatar-template.jpg';

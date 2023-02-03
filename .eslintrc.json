@@ -26,6 +26,7 @@
     "no-underscore-dangle": "off",
     "no-restricted-exports": "off",
     "func-names": "off",
-    "no-use-before-define": "off"
+    "no-use-before-define": "off",
+    "@typescript-eslint/no-var-requires": "off"
   }
 }

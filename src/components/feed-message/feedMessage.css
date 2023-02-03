@@ -1,7 +1,8 @@
 .feed-message {
   display: block;
   width: fit-content;
-  width: clamp(150px, "fit-content", 80%);
+  min-width: 150px;
+  max-width: 80%;
   background-color: var(--base-white);
   float: left;
   border-radius: 0 20px 20px;

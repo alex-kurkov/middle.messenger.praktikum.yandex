@@ -5,7 +5,7 @@ declare global {
     interface: {
       sideMenuExpanded: boolean;
       addChatDialogVisible: boolean;
-      editChatDialog: boolean;
+      editChatDialogVisible: boolean;
       chatUsersEditVisible: boolean;
       moreMessagesAvailable: boolean;
     };

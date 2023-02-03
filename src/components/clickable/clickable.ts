@@ -1,5 +1,5 @@
 import Block from 'core/Block';
-import template from 'bundle-text:./clickable.hbs';
+import template from './clickable.hbs';
 import './clickable.css';
 
 export class Clickable<P extends { onClick: () => void }> extends Block<P> {

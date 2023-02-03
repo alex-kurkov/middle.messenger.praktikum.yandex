@@ -4,6 +4,11 @@ type PlainObject<T = unknown> = {
   [k in string]: T;
 };
 
+type HTTPMethod = (
+  url: string,
+  options?: RequestOptions
+) => Promise<XMLHttpRequest>;
+
 export interface RequestOptions {
   timeout?: number;
   data?: PlainObject | FormData;
@@ -32,7 +37,7 @@ export default class Fetch {
     this.baseUrl = baseUrl;
   }
 
-  get = (url: string, options: RequestOptions = {}) => {
+  get: HTTPMethod = (url, options = {}) => {
     if (options?.data && !(options.data instanceof FormData)) {
       // eslint-disable-next-line no-param-reassign
       url += `?${queryStringify(options.data)}`;
@@ -44,13 +49,13 @@ export default class Fetch {
     );
   };
 
-  post = (url: string, options: RequestOptions = {}) =>
+  post: HTTPMethod = (url, options = {}) =>
     this.request(url, { ...options, method: METHODS.POST }, options.timeout);
 
-  put = (url: string, options: RequestOptions = {}) =>
+  put: HTTPMethod = (url, options = {}) =>
     this.request(url, { ...options, method: METHODS.PUT }, options.timeout);
 
-  delete = (url: string, options: RequestOptions = {}) =>
+  delete: HTTPMethod = (url, options = {}) =>
     this.request(url, { ...options, method: METHODS.DELETE }, options.timeout);
 
   request = (
@@ -79,7 +84,8 @@ export default class Fetch {
 
       xhr.onload = () => resolve(xhr);
 
-      xhr.onabort = () => reject({type: 'xhr', message: REJECT_MESSAGES.REQUEST_ABORTED});
+      xhr.onabort = () =>
+        reject({ type: 'xhr', message: REJECT_MESSAGES.REQUEST_ABORTED });
       xhr.onerror = () =>
         reject({ type: 'xhr', message: REJECT_MESSAGES.REQUEST_ERROR });
 

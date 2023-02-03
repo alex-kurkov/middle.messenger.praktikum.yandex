@@ -33,13 +33,15 @@ export default class Router<P extends { [key: string]: any }> {
   start(): void {
     window.onpopstate = () => {
       this._onRoute(window.location.pathname);
-      // this._onRoute(event.currentTarget.location.pathname);
-      // this.go(window.location.pathname);
     };
     this._onRoute(window.location.pathname);
   }
 
   go(pathname: string): void {
+    const route = this.getRoute(pathname);
+    if (!route) {
+      return;
+    }
     this.history.pushState({}, '', pathname);
     this._onRoute(pathname);
   }
@@ -59,11 +61,6 @@ export default class Router<P extends { [key: string]: any }> {
       return;
     }
 
-    // this.routes.forEach(routeItem => {
-    //   if (routeItem !== route) {
-    //     routeItem.leave();
-    //   }
-    // })
     if (this._currentRoute && this._currentRoute !== route) {
       this._currentRoute.leave();
     }
@@ -73,7 +70,13 @@ export default class Router<P extends { [key: string]: any }> {
   }
 
   getRoute(pathname: string): Route<P> | undefined {
-    return this.routes.find((route) => route.match(pathname));
+    if (pathname === '/') {
+      pathname = '/messenger'
+    }
+    return (
+      this.routes.find((route) => route.match(pathname)) ||
+      this.routes.find((route) => route.match('/400'))
+    );
   }
 
   get currentPathname(): string | undefined {
